@@ -1,13 +1,17 @@
 body {
     padding: 0px;
     margin: 0px;
+    font-family: sans-serif;
 }
 
 .section_home, .section_wasabi, .section_simulacao, .section_quemSomos, .section_contato {
     min-height: 100vh;
 }
 
+/* HEADER */
+
 .header {
+    /* height: 122px; */
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -15,6 +19,8 @@ body {
 
     flex-wrap: nowrap;
     gap: 30px;
+
+    border: 2px solid black;
 }
 
 .navbar {
@@ -29,4 +35,46 @@ body {
     flex-wrap: wrap;
     justify-content: flex-end;
     gap: 10px;
+}
+
+/* SEÇÃO HOME */
+
+.section_home {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding-top: 50px;
+}
+
+.section_home .container {
+    display: flex;
+    justify-content: space-between;
+    width: 95%;
+}
+
+.div_msg h1 {
+    font-size: 50px;
+    margin: 0px;
+    padding: 0px;
+}
+
+.div_msg p {
+    font-size: 85px;
+    max-width: 650px;
+    margin: 0px;
+    padding: 30px 0px;
+    color: #558c03;
+    font-weight: bolder;
+}
+
+.div_msg p span {
+    color: #2e5902;
+}
+
+.div_msg h4 {
+    margin: 0px;
+    padding: 0px;
+    font-weight: 300;
+    color: #0d2601;
+    font-size: 35px;
 }
