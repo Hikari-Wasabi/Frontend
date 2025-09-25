@@ -84,11 +84,19 @@ body {
 }
 
 .div_img{
-    padding-right: 80px;
+    padding-right: 70px;
 }
 
 .div_img img {
     max-width: 557px;
     width: 100%;
-    box-shadow: 8cqmin 80px #0d2601;
+    box-shadow: 70px 70px #0d2601;
+}
+
+.img_border {
+    padding: 100px 0px 0px 0px;
+    max-width: 557px;
+    width: 100%; 
+    margin-left: 70px;
+    border-bottom: 36px solid #0d2601;
 }
