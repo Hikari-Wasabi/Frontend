@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora Financeira</title>
+</head>
+
+<style>
+    .titulo {
+        color: green;
+    }
+    .divMsg {
+        background-color: rgb(206, 205, 205);
+    }
+</style>
+
+<body>
+    <h1 class="titulo">Simulador Financeiro Hikari Wasabi</h1>
+    <h3>Aqui você poderá simular o seu faturamento utilizando o nosso sistema.</h3>
+
+    Digite a quantidade de safras:
+    <input type="number" id="input_qtdSafra" placeholder="10"><br><br>
+
+    Digite a quantidade de metros por safra:
+    <input type="number" id="input_qtdMetro" placeholder="150"><br><br>
+
+    Digite a quantidade de wasabis por metro quadrado:
+    <input type="number" id="input_qtdWaM" placeholder="3"><br><br>
+
+    Digite a eficiência por safra (%):
+    <input type="number" id="input_efi" placeholder="70"><br><br>
+
+    Digite o valor que será vendido quilo do wasabi:
+    <input type="number" id="input_valKgWa" placeholder="6000"><br><br>
+
+    <button onclick="calc()">Calcular faturamento</button><br><br>
+
+    <div id="div_msg" class="divMsg"></div>
+
+</body>
+</html>
+
+<script>
+
+    function calc() {
+
+        // Declarando as variaveis dos inputs
+        var qtdSafra = Number(input_qtdSafra.value);
+        var qtdMetro = Number(input_qtdMetro.value);
+        var qtdWaM = Number(input_qtdWaM.value);
+        var efi = Number(input_efi.value);
+        var valKgWa = Number(input_valKgWa.value);
+
+        // Calculando faturamento sem o sistema
+        var qtdMetroTotal = qtdSafra * qtdMetro; // Calculando a quantidade total de metros de todas as safras
+        var qtdWaTotal = qtdMetroTotal * qtdWaM; // Calculando a quantidade total de unidades de wasabi
+        var qtdWaEfi = qtdWaTotal * (efi / 100);  // Calculando a quantida de mudas de wasabi aplicando a taxa de eficiencia
+        var qtdKgWa = qtdWaEfi * 0.065; // Calculando o peso total de wasabi
+        var valFatu = qtdKgWa * valKgWa; // Calculando o faturamento
+        var valSafra = valFatu / qtdSafra; // Calculando o valor faturado de cada safra
+
+        // Calculando faturamento com o sistema
+        var qtdWaEfi2 = qtdWaTotal * ((efi / 100) ** 0.5); // Calculando quantidade de mudas de wasabi com a eficiencia melhorada pelo sistema
+        var qtdKgWa2 = qtdWaEfi2 * 0.065; // Calculando o peso total de wasabi depois da perda em quilos
+        var valFatu2 = qtdKgWa2 * valKgWa; // Calculando o faturamento com a nova eficiencia
+        var valSafra2 = valFatu2 / qtdSafra; // Calculando o valor faturado de cada safra
+
+        // Calculando Output 
+        var difFatu = valFatu2 - valFatu; // Calculando a diferença entre o faturamento sem e com o sistema
+        var difFatuPor = (((valFatu2 * 100) / valFatu) - 100); // Calculando a porcentagem de ganho a mais utilizando o sistema 
+        var efiSis = ((efi / 100) ** 0.5) * 100; // Calculando a eficiencia utilizando o sistema 
+        var difEfi = efiSis - efi;
+
+
+        // Exibindo na tela
+        div_msg.innerHTML = `<br> <h4> O seu faturamento sem a utilização do nosso sistema será de: </h4>
+        Eficiência: <b> ${efi.toFixed(2)}% </b> <br>
+        Total de unidades de Wasabi: ${qtdWaEfi.toFixed(2)} <br>
+        Total de peso de Wasabi: ${qtdKgWa.toFixed(2)}kg <br>
+        Valor da venda de cada safra: R$${valSafra.toFixed(2)} <br>
+        Faturamento: <b> R$${valFatu.toFixed(2)} </b> <br><br>
+        
+        <h4> O seu faturamento com a utilização do nosso sistema será de: </h4>
+        Eficiência: <b> ${efiSis.toFixed(2)}% </b> <br>
+        Total de unidades de Wasabi: ${qtdWaEfi2.toFixed(2)} <br>
+        Total de quilos de Wasabi: ${qtdKgWa2.toFixed(2)}kg <br>
+        Valor da venda de cada safra: R$${valSafra2.toFixed(2)} <br>
+        Faturamento: <b> R$${valFatu2.toFixed(2)} </b> <br><br>
+        
+        <h4> Melhoras causadas pelo sistema </h4>
+        O ganho de faturamento utilizando o nosso sistema será de <b> R$${difFatu.toFixed(2)} </b>, 
+        uma diferença de <b> ${difFatuPor.toFixed(2)}% </b> a mais. <br>
+        A eficiencia será de <b> ${difEfi.toFixed(2)}% </b> a mais. <br><br><br>`
+    }
+
+
+</script>
+
