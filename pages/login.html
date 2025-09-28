@@ -5,8 +5,50 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
     <link rel="stylesheet" href="../styles/login.css">
+    <link rel="stylesheet" href="../styles/index.css">
+    <link rel="stylesheet" href="../styles/login.css">
 </head>
 <body>
-    <h1>Login</h1>
+    <!-- HEADER -->
+    <header class="header">
+        <div class="div_logo">
+            <h1>Wasabi</h1>
+        </div>
+        <nav class="navbar">
+            <span><a href="#section_home">Home</a></span>
+            <span><a href="#section_simulacao">Simulação</a></span>
+            <span><a href="#section_quemSomos">Quem somos</a></span>
+            <span><a href="#section_contato">Contato</a></span>
+        </nav>
+        <div class="div_authButtons">
+            <button><a href="./pages/login.html">Login</a></button>
+            <button><a href="./pages/cadastro.html">Registrar</a></button>
+        </div>
+    </header>
+    
+    <section class="section_login">
+        <div class="container">
+            <form action="">
+                <h1>Bem vindo de volta!</h1>
+                <div class="container_inputs">
+                    <label for="">Email</label>
+                    <input placeholder="Insira o email" type="text">
+                    <label for="">Senha</label>
+                    <input placeholder="Insira a senha" type="password">
+                    <span>
+                        <span>
+                            <input class="checkbox_senha" id="checkbox_senha" type="checkbox">
+                            <label for="checkbox_senha">Lembrar senha</label>
+                        </span>
+                        <span>Esqueci minha senha</span>
+                    </span>
+                </div>
+                <button>Entrar</button>
+            </form>
+            <div class="div_imagem">
+                <img src="../assets/imagem_wasabi_login.png" alt="imagem wasabi">
+            </div>
+        </div>
+    </section>
 </body>
 </html>
