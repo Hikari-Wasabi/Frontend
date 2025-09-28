@@ -4,14 +4,14 @@ body {
     background-color: #CCE4CB;
 }
 
-.section_login {
+.section_main {
     width: 100%;
     display: flex;
     justify-content: center;
     align-self: center;
 }
 
-.section_login .container {
+.section_main .container {
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
@@ -19,7 +19,7 @@ body {
     width: 80%;
 }
 
-.section_login .container form {
+.section_main .container form {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -27,10 +27,11 @@ body {
     max-width: 500px;
 }
 
-.section_login .container form h1 {
+.section_main .container form h1 {
     color: #558C03;
-    font-weight: 700;
+    font-weight: 900;
     font-size: 48px;
+    text-align: center;
 }
 
 .container_inputs {
@@ -79,6 +80,12 @@ body {
     width: 22px;
 }
 
+.button_container {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
 form button {
     background-color: #558C03;
     box-shadow: 0px 6px 4px -2px rgba(0, 0, 0, 0.4);
@@ -88,8 +95,15 @@ form button {
     color: #ffffff;
     font-size: 22px;
     margin-top: 45px;
+    margin-bottom: 45px;
     border: 0px solid;
     cursor: pointer;
+}
+
+.button_voltar {
+    background-color: #CCE4CB;
+    color: #558C03;
+    border: 2px solid #558C03;
 }
 
 .div_imagem {
