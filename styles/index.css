@@ -12,14 +12,27 @@ body {
 /* HEADER */
 
 .header {
-    /* height: 122px; */
+    min-height: 60px;
+    /* background-color: #CCE4CB; */
+    /* position: fixed;
+    top: 0px; */
+    /* width: 100%; */
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
     align-items: center;
-    padding: 0px 20px 0px 20px;
 
     flex-wrap: nowrap;
     gap: 30px;
+}
+
+.header a {
+    color: #000000;
+    text-decoration: none;
+    outline: none;
+}
+
+.div_logo img {
+    height: 50px;
 }
 
 .navbar {
@@ -33,8 +46,31 @@ body {
     display: flex;
     flex-wrap: wrap;
     justify-content: flex-end;
-    gap: 10px;
+    gap: 20px;
 }
+
+.div_authButtons a:first-child {
+    background-color: #CCE4CB;
+    color: #558C03;
+    border: 2px solid #558C03;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 17px;
+    padding: 5px 25px;
+    border-radius: 10px;
+} 
+
+.div_authButtons a:last-child {
+    background-color: #558C03;
+    color: #FFFFFF;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 17px;
+    padding: 5px 18px;
+    border-radius: 10px;
+} 
 
 /* SEÇÃO HOME */
 
