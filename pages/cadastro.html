@@ -4,9 +4,91 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cadastro</title>
-    <link rel="stylesheet" href="../styles/cadastro.css">
+    <link rel="stylesheet" href="../styles/index.css">
+    <link rel="stylesheet" href="../styles/login.css">
 </head>
 <body>
-    <h1>Cadastro</h1>
+    <!-- HEADER -->
+    <header class="header">
+        <div class="div_logo">
+            <img src="../assets/logo.svg" alt="logo wasabi">
+        </div>
+        <nav class="navbar">
+            <span><a href="../index.html">Home</a></span>
+            <span><a href="#section_simulacao">Simulação</a></span>
+            <span><a href="#section_quemSomos">Quem somos</a></span>
+            <span><a href="#section_contato">Contato</a></span>
+        </nav>
+        <div class="div_authButtons">
+            <a href="./login.html">Login</a>
+            <a href="#">Registrar</a>
+        </div>
+    </header>
+    
+    <section class="section_main">
+        <div class="container">
+            <form action="" id="pg1">
+                <h1>Cadastre-se!</h1>
+                <div class="container_inputs">
+                    <label for="">Nome</label>
+                    <input placeholder="Insira o email" type="text">
+                    <label for="">Cnpj</label>
+                    <input placeholder="Insira o Cnpj" type="text">
+                    <label for="">Telefone</label>
+                    <input placeholder="Insira o telefone" type="text">
+                    <label for="">Email</label>
+                    <input placeholder="Insira o email" type="text">
+                    <label for="">Senha</label>
+                    <input placeholder="Insira a senha" type="password">
+                </div>
+                <center>
+                    <button type="button" onclick="proximo()">Próximo</button>
+                </center>
+            </form>
+            
+            <!-- CONTINUAÇÃO DA PÁGINA -->
+            <form action="" id="pg2">
+                <h1>Cadastre-se!</h1>
+                <div class="container_inputs">
+                    <label for="">CEP</label>
+                    <input placeholder="Insira o cep" type="text">
+                    <label for="">País</label>
+                    <input placeholder="Insira o país" type="text">
+                    <label for="">Estado</label>
+                    <input placeholder="Insira o estado" type="text">
+                    <label for="">Cidade</label>
+                    <input placeholder="Insira a cidade" type="text">
+                    <label for="">Número</label>
+                    <input placeholder="Insira o número de casa" type="text">
+                </div>
+
+                <span class="button_container">
+                    <button type="button" class="button_voltar" onclick="voltar()">Voltar</button>
+                    <button type="button" onclick="cadastrar()">Cadastrar</button>
+                </span>
+            </form>
+            <div class="div_imagem">
+                <img src="../assets/imagem_wasabi_login.svg" alt="imagem wasabi">
+            </div>
+        </div>
+    </section>
 </body>
 </html>
+
+<script>
+    pg2.style.display = 'none'
+    
+    function proximo() {
+        pg1.style.display = 'none'
+        pg2.style.display = 'block'
+    }
+
+    function voltar() {
+        pg1.style.display = 'block'
+        pg2.style.display = 'none'
+    }
+
+    function cadastrar() {
+
+    }
+</script>

@@ -1,0 +1,118 @@
+body {
+    margin: 0px;
+    padding: 0px;
+    background-color: #CCE4CB;
+}
+
+.section_main {
+    /* margin-top: 80px; */
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-self: center;
+}
+
+.section_main .container {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    align-items: center;
+    width: 80%;
+}
+
+.section_main .container form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    max-width: 500px;
+}
+
+.section_main .container form h1 {
+    color: #558C03;
+    font-weight: 900;
+    font-size: 48px;
+    text-align: center;
+}
+
+.container_inputs {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    gap: 15px;
+}
+
+.container_inputs input {
+    width: 100%;
+    border: 0px solid;
+    font-size: 18px;
+    padding: 8px 10px;
+    border-radius: 8px;
+    background-color: #EAEAEA;
+    box-shadow: 0px 4px 4px -2px rgba(0, 0, 0, 0.4);
+}
+
+.container_inputs label {
+    color: #558C03;
+    font-weight: bold;
+}
+
+.container_inputs span {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+.container_inputs span span:first-child {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.container_inputs span span:last-child {
+    text-align: end;
+    display: flex;
+    align-items: center;
+}
+
+.container_inputs span span input {
+    box-shadow: 0px 0px 0px 0px #000;
+    height: 32px;
+    width: 22px;
+}
+
+.button_container {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+form button {
+    background-color: #558C03;
+    box-shadow: 0px 6px 4px -2px rgba(0, 0, 0, 0.4);
+    width: 180px;
+    height: 50px;
+    border-radius: 12px;
+    color: #ffffff;
+    font-size: 22px;
+    margin-top: 45px;
+    margin-bottom: 45px;
+    border: 0px solid;
+    cursor: pointer;
+}
+
+.button_voltar {
+    background-color: #CCE4CB;
+    color: #558C03;
+    border: 2px solid #558C03;
+}
+
+.div_imagem {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.div_imagem img {
+    height: 300px;
+}
