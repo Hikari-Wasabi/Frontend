@@ -5,7 +5,11 @@ body {
 }
 
 /* ALTURA SÓ PARA PODER VISUALIZAR OS ELEMENTOS, NO FINAL APAGAR ESSA LINHA!!! */
-.section_home, .section_wasabi, .section_simulacao, .section_quemSomos, .section_contato {
+.section_home,
+.section_wasabi,
+.section_simulacao,
+.section_quemSomos,
+.section_contato {
     min-height: 100vh;
 }
 
@@ -83,7 +87,7 @@ body {
     font-size: 35px;
 }
 
-.div_img{
+.div_img {
     padding-right: 70px;
 }
 
@@ -96,7 +100,103 @@ body {
 .img_border {
     padding: 100px 0px 0px 0px;
     max-width: 557px;
-    width: 100%; 
+    width: 100%;
     margin-left: 70px;
     border-bottom: 36px solid #0d2601;
+}
+
+/* WASABI */
+.banner {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #0d2c0d;
+    color: #cfe3cf;
+    padding: 40px;
+}
+
+/* Caixa da imagem */
+.imagem-wasabi {
+    display: flex;
+    background-color: #cfe3cf;
+    padding: 20px;
+    width: 50%;
+    min-width: 400px;
+    height: 300px;
+    justify-content: center;
+    align-items: center;
+    margin: none;
+}
+
+.imagem-wasabi img {
+    max-width: 300px;
+    height: 150%;
+}
+
+.texto {
+    margin-left: 40px;
+}
+
+.texto h1 {
+    font-size: 50px;
+    font-weight: normal;
+    line-height: 2;
+}
+
+.texto .destaque {
+    color: #5c9e10;
+    font-weight: bold;
+}
+
+.texto p {
+    margin-top: 20px;
+    color: #5c9e10;
+    font-size: 30px;
+}
+
+/* SIMULAÇÃO */
+
+.sobre {
+    background-color: #cde2c7;
+    /* verde claro do fundo */
+    padding: 60px 20px;
+    text-align: center;
+}
+
+.sobre h1 {
+    font-family: 'Raleway';
+    margin-bottom: 50px;
+    color: #0D2601;
+    width: 1500px;
+    height: 200px;
+    font-size: 70px;
+
+}
+
+
+.sobre .verde {
+    color: #5a9b2c;
+    font-weight: bold;
+}
+
+.beneficios {
+    display: flex;
+    justify-content: center;
+    gap: 80px;
+}
+
+.item {
+    max-width: 250px;
+}
+
+.item img {
+    justify-content: space-between;
+    width: 150px;
+    margin-bottom: 15px;
+    
+}
+
+.item p {
+    font-size: 25px;
+    color: #1c2c17;
 }
