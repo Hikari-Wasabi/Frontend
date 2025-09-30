@@ -23,16 +23,26 @@
     <input type="number" id="input_qtdSafra" placeholder="10"><br><br>
 
     Digite a quantidade de metros por safra:
-    <input type="number" id="input_qtdMetro" placeholder="150"><br><br>
-
-    Digite a quantidade de wasabis por metro quadrado:
-    <input type="number" id="input_qtdWaM" placeholder="3"><br><br>
-
-    Digite a eficiência por safra (%):
-    <input type="number" id="input_efi" placeholder="70"><br><br>
+    <input type="number" id="input_qtdarea" placeholder="150"><br><br>
 
     Digite o valor que será vendido quilo do wasabi:
-    <input type="number" id="input_valKgWa" placeholder="6000"><br><br>
+    <input type="number" id="input_valwasabi" placeholder="Recomendação:2000 a 8000"><br><br>
+
+    Em que mês será plantado esse wasabi?<br>
+    <select  id="select_mescomeco">
+        <option value="1">JAN</option>
+        <option value="2">FEV</option>
+        <option value="3">MAR</option>
+        <option value="4">ABR</option>
+        <option value="5">MAI</option>
+        <option value="6">JUN</option>
+        <option value="7">JUL</option>
+        <option value="8">AGO</option>
+        <option value="9">SET</option>
+        <option value="10">OUT</option>
+        <option value="11">NOV</option>
+        <option value="12">DEZ</option>
+    </select><br><br>
 
     <button onclick="calc()">Calcular faturamento</button><br><br>
 
@@ -42,58 +52,104 @@
 </html>
 
 <script>
-
-    function calc() {
-
-        // Declarando as variaveis dos inputs
-        var qtdSafra = Number(input_qtdSafra.value);
-        var qtdMetro = Number(input_qtdMetro.value);
-        var qtdWaM = Number(input_qtdWaM.value);
-        var efi = Number(input_efi.value);
-        var valKgWa = Number(input_valKgWa.value);
-
-        // Calculando faturamento sem o sistema
-        var qtdMetroTotal = qtdSafra * qtdMetro; // Calculando a quantidade total de metros de todas as safras
-        var qtdWaTotal = qtdMetroTotal * qtdWaM; // Calculando a quantidade total de unidades de wasabi
-        var qtdWaEfi = qtdWaTotal * (efi / 100);  // Calculando a quantida de mudas de wasabi aplicando a taxa de eficiencia
-        var qtdKgWa = qtdWaEfi * 0.065; // Calculando o peso total de wasabi
-        var valFatu = qtdKgWa * valKgWa; // Calculando o faturamento
-        var valSafra = valFatu / qtdSafra; // Calculando o valor faturado de cada safra
-
-        // Calculando faturamento com o sistema
-        var qtdWaEfi2 = qtdWaTotal * ((efi / 100) ** 0.5); // Calculando quantidade de mudas de wasabi com a eficiencia melhorada pelo sistema
-        var qtdKgWa2 = qtdWaEfi2 * 0.065; // Calculando o peso total de wasabi depois da perda em quilos
-        var valFatu2 = qtdKgWa2 * valKgWa; // Calculando o faturamento com a nova eficiencia
-        var valSafra2 = valFatu2 / qtdSafra; // Calculando o valor faturado de cada safra
-
-        // Calculando Output 
-        var difFatu = valFatu2 - valFatu; // Calculando a diferença entre o faturamento sem e com o sistema
-        var difFatuPor = (((valFatu2 * 100) / valFatu) - 100); // Calculando a porcentagem de ganho a mais utilizando o sistema 
-        var efiSis = ((efi / 100) ** 0.5) * 100; // Calculando a eficiencia utilizando o sistema 
-        var difEfi = efiSis - efi;
-
-
-        // Exibindo na tela
-        div_msg.innerHTML = `<br> <h4> O seu faturamento sem a utilização do nosso sistema será de: </h4>
-        Eficiência: <b> ${efi.toFixed(2)}% </b> <br>
-        Total de unidades de Wasabi: ${qtdWaEfi.toFixed(2)} <br>
-        Total de peso de Wasabi: ${qtdKgWa.toFixed(2)}kg <br>
-        Valor da venda de cada safra: R$${valSafra.toFixed(2)} <br>
-        Faturamento: <b> R$${valFatu.toFixed(2)} </b> <br><br>
+    // cenário ideal a aborvição da umidade do ar na areia e cascalho é de 80% 
+    // um wasabi morre de 1 a 3 dias fora da umidade desejada
+    // umidade minima para produção de wasabi é de 60%
+    // uma unidade de wasabi será ocupa 0.09 metros quadrados
+    
+    
+    function calc(){
+        var qnt_safra = Number(input_qtdSafra.value)
+        var qnt_area = Number(input_qtdarea.value)
+        var valor_wasabi = Number(input_valwasabi.value)
+        var mes_começo = Number(select_mescomeco.value)
         
-        <h4> O seu faturamento com a utilização do nosso sistema será de: </h4>
-        Eficiência: <b> ${efiSis.toFixed(2)}% </b> <br>
-        Total de unidades de Wasabi: ${qtdWaEfi2.toFixed(2)} <br>
-        Total de quilos de Wasabi: ${qtdKgWa2.toFixed(2)}kg <br>
-        Valor da venda de cada safra: R$${valSafra2.toFixed(2)} <br>
-        Faturamento: <b> R$${valFatu2.toFixed(2)} </b> <br><br>
-        
-        <h4> Melhoras causadas pelo sistema </h4>
-        O ganho de faturamento utilizando o nosso sistema será de <b> R$${difFatu.toFixed(2)} </b>, 
-        uma diferença de <b> ${difFatuPor.toFixed(2)}% </b> a mais. <br>
-        A eficiencia será de <b> ${difEfi.toFixed(2)}% </b> a mais. <br><br><br>`
+        var temp_plant = 0;
+        var umi_total = 0;
+        var qnt_wasabi_total = (qnt_area * qnt_safra) / 0.09
+        var qnt_wasabi_coletados = qnt_wasabi_total;
+        var peso_wasabi = 280;
+
+        if(valor_wasabi > 8000){
+            alert('Valor do Wasabi esta acima do padrão do mercado, você pode ter uma dificuldade de vendas')
+        }else if(valor_wasabi < 2000){
+            alert('O valor de Wasabi esta abaixo do padrão de mercado... você pode aumentar esse valor')
+        }
+
+        while(temp_plant < 18){
+            temp_plant += 1
+            
+            // Janeiro
+            if(mes_começo == 1){
+                umi_total = 75
+                mes_começo +=1
+                // Fevereiro
+            }else if(mes_começo == 2){
+                umi_total = 75
+                mes_começo +=1
+                // Março
+            }else if(mes_começo == 3){
+                umi_total = 72.5
+                mes_começo +=1
+                // Abril
+            }else if(mes_começo == 4){
+                umi_total = 67.5
+                mes_começo +=1
+                // Maio
+            }else if(mes_começo == 5){
+                umi_total = 62.5
+                mes_começo +=1
+                // Junho
+            }else if(mes_começo == 6){
+                umi_total = 55.5
+                mes_começo +=1
+                // Julho
+            }else if(mes_começo == 7){
+                umi_total = 50
+                mes_começo +=1
+                // Agosto    
+            }else if(mes_começo == 8){
+                umi_total = 45
+                mes_começo +=1
+                // Setembro
+            }else if(mes_começo == 9){
+                umi_total = 55
+                mes_começo +=1
+                // Outubro
+            }else if(mes_começo == 10){
+                umi_total = 65
+                mes_começo +=1
+                // Novembro
+            }else if(mes_começo == 11){
+                umi_total = 70
+                mes_começo +=1
+                // Dezembro
+            }else if(mes_começo == 12){
+                umi_total = 75
+                mes_começo +=1 
+            }
+            if(mes_começo > 12){
+                mes_começo = 1
+            }
+            if(umi_total < 60){
+                qnt_wasabi_coletados -= 10
+                console.log('perde wasabi')
+            }else{
+                console.log('não perde wasabi')
+            }
+        }
+        var eficiencia = (qnt_wasabi_coletados * 100) / qnt_wasabi_total;
+        var kg_wasabi = (qnt_wasabi_coletados * peso_wasabi) / 1000
+        var ganhos = kg_wasabi * valor_wasabi
+        var ganhos_safra = ganhos / qnt_safra
+
+                div_msg.innerHTML = `<br> <h4> O seu faturamento sem a utilização do nosso sistema será de: </h4>
+        Eficiência: <b> ${eficiencia.toFixed(2)}% </b> <br>
+        Total de unidades de Wasabi: ${qnt_wasabi_coletados.toFixed(0)} <br>
+        Total de peso de Wasabi: ${kg_wasabi.toFixed(2)}kg <br>
+        Valor da venda de cada safra: R$${ganhos_safra.toFixed(2)} <br>
+        Faturamento: <b> R$${ganhos.toFixed(2)} </b> <br><br>`
+
     }
-
-
+    
 </script>
-
