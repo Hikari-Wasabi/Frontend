@@ -103,8 +103,8 @@ body {
 }
 
 .div_msg p {
-    font-size: 85px;
-    max-width: 650px;
+    font-size: 70px;
+    max-width: 500px;
     margin: 0px;
     padding: 30px 0px;
     color: #558c03;
@@ -128,49 +128,58 @@ body {
 }
 
 .div_img img {
-    max-width: 557px;
+    max-width: 500px;
     width: 100%;
-    box-shadow: 70px 70px #0d2601;
+    box-shadow: 60px 60px #0d2601;
 }
 
 .img_border {
     padding: 100px 0px 0px 0px;
     max-width: 557px;
     width: 100%;
-    margin-left: 70px;
+    margin-left: 60px;
     border-bottom: 36px solid #0d2601;
 }
 
 /* WASABI */
 .banner {
     display: flex;
-    align-items: center;
-    justify-content: center;
+    align-items: flex-end;
+    justify-content: space-around;
     background-color: #0d2c0d;
+    min-height: 450px;
     color: #cfe3cf;
-    padding: 40px;
+    padding: 40px 40px 0px 0px;
+
 }
 
 /* Caixa da imagem */
 .imagem-wasabi {
+
     display: flex;
     background-color: #cfe3cf;
     padding: 20px;
-    width: 50%;
+    width: 45%;
+    max-width: 650px;
     min-width: 400px;
     height: 300px;
     justify-content: center;
     align-items: center;
     margin: none;
+
 }
 
 .imagem-wasabi img {
-    max-width: 300px;
-    height: 150%;
+    /* max-width: 300px;
+    height: 150%; */
+    position: relative;
+    top: -40px;
+    width: 350px;
 }
 
 .texto {
     margin-left: 40px;
+    align-self: flex-start;
 }
 
 .texto h1 {
