@@ -149,7 +149,7 @@ body {
     background-color: #0d2c0d;
     min-height: 450px;
     color: #cfe3cf;
-    padding: 40px 40px 0px 0px;
+    padding: 20px 40px 0px 0px;
 
 }
 
@@ -179,13 +179,14 @@ body {
 
 .texto {
     margin-left: 40px;
-    align-self: flex-start;
+    align-self: center;
+    max-width: 500px;;
 }
 
 .texto h1 {
     font-size: 50px;
     font-weight: normal;
-    line-height: 2;
+    /* line-height: 2; */
 }
 
 .texto .destaque {
@@ -212,7 +213,7 @@ body {
     font-family: 'Raleway';
     margin-bottom: 50px;
     color: #0D2601;
-    width: 1500px;
+    /* width: 1500px; */
     height: 200px;
     font-size: 70px;
 
