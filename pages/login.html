@@ -28,13 +28,15 @@
     
     <section class="section_main">
         <div class="container">
-            <form action="">
+            <form id="formulario_login">
                 <h1>Bem vindo de volta!</h1>
                 <div class="container_inputs">
+                    <label for="">Token da empresa</label>
+                    <input placeholder="Insira o token da empresa" type="text" id="input_token">
                     <label for="">Email</label>
-                    <input placeholder="Insira o email" type="text">
+                    <input placeholder="Insira o email da empresa" type="text" id="input_email">
                     <label for="">Senha</label>
-                    <input placeholder="Insira a senha" type="password">
+                    <input placeholder="Insira a senha" type="password" id="input_senha">
                     <span>
                         <span>
                             <input class="checkbox_senha" id="checkbox_senha" type="checkbox">
@@ -42,9 +44,9 @@
                         </span>
                         <span>Esqueci minha senha</span>
                     </span>
-                    <p id="mensagemErro">ERRO!!!!</p>
+                    <div id="div_mensagem_erro"></div>
                 </div>
-                <button>Entrar</button>
+                <button onclick="validacao_login()">Entrar</button>
             </form>
             <div class="div_imagem">
                 <img src="../assets/imagem_wasabi_login.svg" alt="imagem wasabi">
@@ -53,3 +55,32 @@
     </section>
 </body>
 </html>
+
+<script>
+    function validacao_login() {
+        var form = document.getElementById('formulario_login');
+
+        form.addEventListener('submit' , function(event) {
+
+            event.preventDefault();
+        })
+        var token_usuario = input_token.value
+        var senha_usuario = input_senha.value
+        var email_usuario = input_email.value    
+        
+        var token_empresa = "Abk321"
+        var senha_empresa = "12345"
+        var email_empresa = "admin@empresa.com"
+        
+           
+        if (token_empresa == token_usuario && senha_empresa == senha_usuario && email_empresa == email_usuario){
+            div_mensagem_erro.innerHTML = `conta autorizada bem vindo a o site!`
+        } else {
+            div_mensagem_erro.innerHTML = `<span><b style="color: red;">Informações invalidas digite novamente</b></span>` 
+        } 
+
+    
+    
+    }
+    
+</script>
