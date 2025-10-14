@@ -18,6 +18,7 @@
     .div_simulador{
         flex-direction: row;
         display: flex;
+        margin-top: 40px;
     }
     .titulo {
         color: #558C03;
@@ -25,6 +26,7 @@
         position: absolute;
         text-shadow: 0 0 3.5px #000000;
         font-weight: bold;
+        font-size: 48px;
     }
     .div_resultado{
         width: 50%;
@@ -43,14 +45,27 @@
         display: flex;
         background-color: rgb(255, 255, 255);
         width: 60%;
-        height: 240px;
         border-radius: 10px;
-        justify-content: center;
         font-family: "poppins", sans-serif;
         font-size: 23px;
         padding-left: 20px;
         padding-top: 20px;
+        padding-right: 20px;
         flex-direction: column;
+    }
+    .div_resultado .container p{
+        font-family: "poppins", sans-serif;
+        flex-direction: column;
+        text-align: center;
+        display: flex;
+        color: #000000;
+        font-size: 25px;
+        font-weight: lighter;
+    }
+    .div_resultado .container span{
+        font-size: 60px;
+        font-weight: bold;
+        text-shadow: 0 0 3.5px #000000;
     }
     .div_input{
         justify-content: left;
@@ -104,7 +119,7 @@
 
 <body style="background-color: rgb(205, 226, 199);">
         
-    <header class="header">
+    <header class="header" >
         <div class="div_logo">
             <img src="../assets/logo.svg" alt="logo wasabi">
         </div>
@@ -135,6 +150,9 @@
         Valor que será vendido quilo do wasabi:
         <input type="number" id="input_valwasabi" placeholder="Recomendação:2000 a 8000">
 
+        Quantidade de wasabis por metro quadrado:
+        <input type="number" id="input_wasabi_pm" placeholder="0.009m² a 0.35m²">
+
         Em que mês será plantado esse wasabi?<br>
         <select id="select_mescomeco">
             <option value="1">JAN</option>
@@ -163,8 +181,10 @@
         Faturamento:<br><br>
         </div>
     <h4>Com o nosso sistema</h4>
-    <div class="container">
-
+    <div id="div_fat" class="container">
+      <p> Com o nosso serviço de monitoramento de </p>
+       <p> umidade e temperatura você irá faturar: </p><br>
+       <p><span>R$:<span style="color: #558C03;">000000</span></span></p>
     </div>
     </div>
 </div>
@@ -173,21 +193,19 @@
 </html>
 
 <script>
-    // cenário ideal a aborvição da umidade do ar na areia e cascalho é de 80% 
-    // um wasabi morre de 1 a 3 dias fora da umidade desejada
-    // umidade minima para produção de wasabi é de 60%
-    // uma unidade de wasabi será ocupa 0.09 metros quadrados
 
 
     function calc() {
-        var qnt_safra = Number(input_qtdSafra.value)
-        var qnt_area = Number(input_qtdarea.value)
-        var valor_wasabi = Number(input_valwasabi.value)
-        var mes_começo = Number(select_mescomeco.value)
+
+        var qnt_safra = Number(input_qtdSafra.value);
+        var qnt_area = Number(input_qtdarea.value);
+        var valor_wasabi = Number(input_valwasabi.value);
+        var mes_começo = Number(select_mescomeco.value);
+        var wasabi_pm = Number(input_wasabi_pm.value);
 
         var temp_plant = 0;
         var umi_total = 0;
-        var qnt_wasabi_total = (qnt_area * qnt_safra) / 0.09
+        var qnt_wasabi_total = (qnt_area * qnt_safra) / wasabi_pm;
         var qnt_wasabi_coletados = qnt_wasabi_total;
         var peso_wasabi = 280;
 
@@ -196,7 +214,12 @@
         } else if (valor_wasabi < 2000) {
             alert('O valor de Wasabi esta abaixo do padrão de mercado... você pode aumentar esse valor')
         }
-
+        if(wasabi_pm < 0.009){
+            alert('Esse espaçamento entre os wasabis é prejudicial à plantação')
+        }else if(wasabi_pm > 0.035){
+            alert('Um espaçamento tão grande implica com a eficacia da plantação')
+        }
+        else{
         while (temp_plant < 18) {
             temp_plant += 1
 
@@ -260,17 +283,26 @@
             }
         }
         var eficiencia = (qnt_wasabi_coletados * 100) / qnt_wasabi_total;
-        var kg_wasabi = (qnt_wasabi_coletados * peso_wasabi) / 1000
-        var ganhos = kg_wasabi * valor_wasabi
-        var ganhos_safra = ganhos / qnt_safra
+        var kg_wasabi = (qnt_wasabi_coletados * peso_wasabi) / 1000;
+        var kg_wasabi_total = (qnt_wasabi_total * peso_wasabi) / 1000;
+        var ganhos = (kg_wasabi * valor_wasabi) / (eficiencia/100);
+        var ganhos_total = (kg_wasabi_total * valor_wasabi) / (eficiencia/100);
+        var perda = ganhos_total - ganhos;
+        var ganhos_safra = ganhos / qnt_safra;
 
+        console.log(`${perda}`)
         div_msg.innerHTML = `
         Eficiência:  ${eficiencia.toFixed(2)}% <br>
         Total de unidades de Wasabi: ${qnt_wasabi_coletados.toFixed(0)}<br> 
         Total de peso de Wasabi: ${kg_wasabi.toFixed(2)}kg<br>
         Valor da venda de cada safra: R$${ganhos_safra.toFixed(2)} <br>
-        Faturamento: R$${ganhos.toFixed(2)} `
+        Perda sem o sistema: R$${perda.toFixed(2)}<br><br> `
 
+        div_fat.innerHTML =`
+        <p> Com o nosso serviço de monitoramento de </p>
+       <p> umidade e temperatura você irá faturar: </p><br>
+       <p><span>R$:<span style="color: #558C03;">${ganhos_total.toFixed(2)}</span></span></p>`
+       }
     }
 
 </script>
