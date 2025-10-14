@@ -1,54 +1,175 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../styles/login.css">
+    <link rel="stylesheet" href="../styles/index.css">
+    <link rel="stylesheet" href="../styles/login.css">
     <title>Calculadora Financeira</title>
 </head>
 
+<link rel="stylesheet" href="https://use.typekit.net/tkx8ars.css">
+<link rel="stylesheet" href="https://use.typekit.net/ysw8fpv.css">
+
 <style>
+
+    .div_simulador{
+        flex-direction: row;
+        display: flex;
+    }
     .titulo {
-        color: green;
+        color: #558C03;
+        justify-self: center;
+        position: absolute;
+        text-shadow: 0 0 3.5px #000000;
+        font-weight: bold;
     }
-    .divMsg {
-        background-color: rgb(206, 205, 205);
+    .div_resultado{
+        width: 50%;
+        justify-items: center;
+        align-items: center;
+        flex-direction: column;
+        margin-right: 0;
     }
+    .div_resultado h4{
+        color: #558C03;
+        font-family: "poppins", sans-serif;
+        font-size: 35px;
+        font-weight: 500;
+    }
+    .div_resultado .container{
+        display: flex;
+        background-color: rgb(255, 255, 255);
+        width: 60%;
+        height: 240px;
+        border-radius: 10px;
+        justify-content: center;
+        font-family: "poppins", sans-serif;
+        font-size: 23px;
+        padding-left: 20px;
+        padding-top: 20px;
+        flex-direction: column;
+    }
+    .div_input{
+        justify-content: left;
+        display: flex;
+        flex-direction: column;
+        margin-left: 80px;
+        color: #558C03;
+        margin-top: 10px;
+        font-size: 21px;
+        font-family: "poppins", sans-serif;
+        font-weight: bold;
+        width: 40%;
+        gap: 20px;
+    }
+    .div_input input{
+        border-radius: 5px;
+        border: none;
+        height: 35px;
+        width: 100%;
+        box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2);
+        font-family: 'inter-variable', sans-serif;
+        font-weight: bold;
+        padding-left: 15px;
+        font-size: 15px;
+    }
+    .div_input select{
+        border-radius: 5px;
+        border: none;
+        height: 35px;
+        width: 100%;
+        box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2);
+        font-family: 'inter-variable', sans-serif;
+        font-weight: bold;
+        padding-left: 15px;
+        font-size: 15px;
+    }
+    .div_input button{
+        border: none;
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.4);
+        border-radius: 5px;
+        width: 30%;
+        height: 60px;
+        align-self: center;
+        background-color: #558C03;
+        font-family: "poppins", sans-serif;
+        font-size: 21px;
+        color: #CCE4CB;
+    }
+
 </style>
 
-<body>
-    <h1 class="titulo">Simulador Financeiro Hikari Wasabi</h1>
-    <h3>Aqui você poderá simular o seu faturamento utilizando o nosso sistema.</h3>
+<body style="background-color: rgb(205, 226, 199);">
+        
+    <header class="header">
+        <div class="div_logo">
+            <img src="../assets/logo.svg" alt="logo wasabi">
+        </div>
+        <nav class="navbar">
+            <span><a href="../index.html">Home</a></span>
+            <span><a href="#section_simulacao">Simulação</a></span>
+            <span><a href="#section_quemSomos">Quem somos</a></span>
+            <span><a href="#section_contato">Contato</a></span>
+        </nav>
+        <div class="div_authButtons">
+            <a href="#">Login</a>
+            <a href="./cadastro.html">Registrar</a>
+        </div>
+    </header>
 
-    Digite a quantidade de safras:
-    <input type="number" id="input_qtdSafra" placeholder="10"><br><br>
+    
+    <h1 class="titulo">Simulador Financeiro</h1>
+    
+<div class="div_simulador">
+    <div class="div_input">
 
-    Digite a quantidade de metros por safra:
-    <input type="number" id="input_qtdarea" placeholder="150"><br><br>
+        Quantidade de safras: 
+        <input type="number" id="input_qtdSafra" placeholder="Insira a quantidade de safras">
 
-    Digite o valor que será vendido quilo do wasabi:
-    <input type="number" id="input_valwasabi" placeholder="Recomendação:2000 a 8000"><br><br>
+        Área média das plantações p/m²:
+        <input type="number" id="input_qtdarea" placeholder="Insira o m²">
 
-    Em que mês será plantado esse wasabi?<br>
-    <select  id="select_mescomeco">
-        <option value="1">JAN</option>
-        <option value="2">FEV</option>
-        <option value="3">MAR</option>
-        <option value="4">ABR</option>
-        <option value="5">MAI</option>
-        <option value="6">JUN</option>
-        <option value="7">JUL</option>
-        <option value="8">AGO</option>
-        <option value="9">SET</option>
-        <option value="10">OUT</option>
-        <option value="11">NOV</option>
-        <option value="12">DEZ</option>
-    </select><br><br>
+        Valor que será vendido quilo do wasabi:
+        <input type="number" id="input_valwasabi" placeholder="Recomendação:2000 a 8000">
 
-    <button onclick="calc()">Calcular faturamento</button><br><br>
+        Em que mês será plantado esse wasabi?<br>
+        <select id="select_mescomeco">
+            <option value="1">JAN</option>
+            <option value="2">FEV</option>
+            <option value="3">MAR</option>
+            <option value="4">ABR</option>
+            <option value="5">MAI</option>
+            <option value="6">JUN</option>
+            <option value="7">JUL</option>
+            <option value="8">AGO</option>
+            <option value="9">SET</option>
+            <option value="10">OUT</option>
+            <option value="11">NOV</option>
+            <option value="12">DEZ</option>
+        </select><br><br>
 
-    <div id="div_msg" class="divMsg"></div>
+        <button onclick="calc()">Simular</button><br><br>
+    </div>
+<div class="div_resultado">
+    <h4>Resultado</h4>
+        <div id="div_msg" class="container">
+        Eficiência:<br>
+        Total de unidades de Wasabi:<br>
+        Total de peso de Wasabi:<br>
+        Valor da venda de cada safra:<br>
+        Faturamento:<br><br>
+        </div>
+    <h4>Com o nosso sistema</h4>
+    <div class="container">
 
+    </div>
+    </div>
+</div>
 </body>
+
 </html>
 
 <script>
@@ -56,85 +177,85 @@
     // um wasabi morre de 1 a 3 dias fora da umidade desejada
     // umidade minima para produção de wasabi é de 60%
     // uma unidade de wasabi será ocupa 0.09 metros quadrados
-    
-    
-    function calc(){
+
+
+    function calc() {
         var qnt_safra = Number(input_qtdSafra.value)
         var qnt_area = Number(input_qtdarea.value)
         var valor_wasabi = Number(input_valwasabi.value)
         var mes_começo = Number(select_mescomeco.value)
-        
+
         var temp_plant = 0;
         var umi_total = 0;
         var qnt_wasabi_total = (qnt_area * qnt_safra) / 0.09
         var qnt_wasabi_coletados = qnt_wasabi_total;
         var peso_wasabi = 280;
 
-        if(valor_wasabi > 8000){
+        if (valor_wasabi > 8000) {
             alert('Valor do Wasabi esta acima do padrão do mercado, você pode ter uma dificuldade de vendas')
-        }else if(valor_wasabi < 2000){
+        } else if (valor_wasabi < 2000) {
             alert('O valor de Wasabi esta abaixo do padrão de mercado... você pode aumentar esse valor')
         }
 
-        while(temp_plant < 18){
+        while (temp_plant < 18) {
             temp_plant += 1
-            
+
             // Janeiro
-            if(mes_começo == 1){
+            if (mes_começo == 1) {
                 umi_total = 75
-                mes_começo +=1
+                mes_começo += 1
                 // Fevereiro
-            }else if(mes_começo == 2){
+            } else if (mes_começo == 2) {
                 umi_total = 75
-                mes_começo +=1
+                mes_começo += 1
                 // Março
-            }else if(mes_começo == 3){
+            } else if (mes_começo == 3) {
                 umi_total = 72.5
-                mes_começo +=1
+                mes_começo += 1
                 // Abril
-            }else if(mes_começo == 4){
+            } else if (mes_começo == 4) {
                 umi_total = 67.5
-                mes_começo +=1
+                mes_começo += 1
                 // Maio
-            }else if(mes_começo == 5){
+            } else if (mes_começo == 5) {
                 umi_total = 62.5
-                mes_começo +=1
+                mes_começo += 1
                 // Junho
-            }else if(mes_começo == 6){
+            } else if (mes_começo == 6) {
                 umi_total = 55.5
-                mes_começo +=1
+                mes_começo += 1
                 // Julho
-            }else if(mes_começo == 7){
+            } else if (mes_começo == 7) {
                 umi_total = 50
-                mes_começo +=1
+                mes_começo += 1
                 // Agosto    
-            }else if(mes_começo == 8){
+            } else if (mes_começo == 8) {
                 umi_total = 45
-                mes_começo +=1
+                mes_começo += 1
                 // Setembro
-            }else if(mes_começo == 9){
+            } else if (mes_começo == 9) {
                 umi_total = 55
-                mes_começo +=1
+                mes_começo += 1
                 // Outubro
-            }else if(mes_começo == 10){
+            } else if (mes_começo == 10) {
                 umi_total = 65
-                mes_começo +=1
+                mes_começo += 1
                 // Novembro
-            }else if(mes_começo == 11){
+            } else if (mes_começo == 11) {
                 umi_total = 70
-                mes_começo +=1
+                mes_começo += 1
                 // Dezembro
-            }else if(mes_começo == 12){
+            } else if (mes_começo == 12) {
                 umi_total = 75
-                mes_começo +=1 
+                mes_começo += 1
             }
-            if(mes_começo > 12){
+            if (mes_começo > 12) {
                 mes_começo = 1
             }
-            if(umi_total < 60){
+            if (umi_total < 60) {
                 qnt_wasabi_coletados -= 10
                 console.log('perde wasabi')
-            }else{
+            } else {
                 console.log('não perde wasabi')
             }
         }
@@ -143,13 +264,13 @@
         var ganhos = kg_wasabi * valor_wasabi
         var ganhos_safra = ganhos / qnt_safra
 
-                div_msg.innerHTML = `<br> <h4> O seu faturamento sem a utilização do nosso sistema será de: </h4>
-        Eficiência: <b> ${eficiencia.toFixed(2)}% </b> <br>
-        Total de unidades de Wasabi: ${qnt_wasabi_coletados.toFixed(0)} <br>
-        Total de peso de Wasabi: ${kg_wasabi.toFixed(2)}kg <br>
+        div_msg.innerHTML = `
+        Eficiência:  ${eficiencia.toFixed(2)}% <br>
+        Total de unidades de Wasabi: ${qnt_wasabi_coletados.toFixed(0)}<br> 
+        Total de peso de Wasabi: ${kg_wasabi.toFixed(2)}kg<br>
         Valor da venda de cada safra: R$${ganhos_safra.toFixed(2)} <br>
-        Faturamento: <b> R$${ganhos.toFixed(2)} </b> <br><br>`
+        Faturamento: R$${ganhos.toFixed(2)} `
 
     }
-    
+
 </script>
