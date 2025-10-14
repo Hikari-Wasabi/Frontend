@@ -1,0 +1,109 @@
+    .div_simulador {
+        flex-direction: row;
+        display: flex;
+        margin-top: 40px;
+    }
+
+    .titulo {
+        color: #558C03;
+        justify-self: center;
+        position: absolute;
+        text-shadow: 0 0 3.5px #000000;
+        font-weight: bold;
+        font-size: 48px;
+    }
+
+    .div_resultado {
+        width: 50%;
+        justify-items: center;
+        align-items: center;
+        flex-direction: column;
+        margin-right: 0;
+    }
+
+    .div_resultado h4 {
+        color: #558C03;
+        font-family: "poppins", sans-serif;
+        font-size: 35px;
+        font-weight: 500;
+    }
+
+    .div_resultado .container {
+        display: flex;
+        background-color: rgb(255, 255, 255);
+        width: 60%;
+        border-radius: 10px;
+        font-family: "poppins", sans-serif;
+        font-size: 23px;
+        padding-left: 20px;
+        padding-top: 20px;
+        padding-right: 20px;
+        flex-direction: column;
+    }
+
+    .div_resultado .container p {
+        font-family: "poppins", sans-serif;
+        flex-direction: column;
+        text-align: center;
+        display: flex;
+        color: #000000;
+        font-size: 25px;
+        font-weight: lighter;
+    }
+
+    .div_resultado .container span {
+        font-size: 60px;
+        font-weight: bold;
+        text-shadow: 0 0 3.5px #000000;
+    }
+
+    .div_input {
+        justify-content: left;
+        display: flex;
+        flex-direction: column;
+        margin-left: 80px;
+        color: #558C03;
+        margin-top: 10px;
+        font-size: 21px;
+        font-family: "poppins", sans-serif;
+        font-weight: bold;
+        width: 40%;
+        gap: 20px;
+    }
+
+    .div_input input {
+        border-radius: 5px;
+        border: none;
+        height: 35px;
+        width: 100%;
+        box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2);
+        font-family: 'inter-variable', sans-serif;
+        font-weight: bold;
+        padding-left: 15px;
+        font-size: 15px;
+    }
+
+    .div_input select {
+        border-radius: 5px;
+        border: none;
+        height: 35px;
+        width: 100%;
+        box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2);
+        font-family: 'inter-variable', sans-serif;
+        font-weight: bold;
+        padding-left: 15px;
+        font-size: 15px;
+    }
+
+    .div_input button {
+        border: none;
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.4);
+        border-radius: 5px;
+        width: 30%;
+        height: 60px;
+        align-self: center;
+        background-color: #558C03;
+        font-family: "poppins", sans-serif;
+        font-size: 21px;
+        color: #CCE4CB;
+    }
