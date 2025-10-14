@@ -9,7 +9,7 @@ body {
 .section_wasabi,
 .section_simulacao,
 .section_quemSomos,
-.section_contato {
+.section_duvida {
     min-height: 100vh;
 }
 
@@ -63,7 +63,7 @@ body {
     font-size: 17px;
     padding: 5px 25px;
     border-radius: 10px;
-} 
+}
 
 .div_authButtons a:last-child {
     background-color: #558C03;
@@ -74,7 +74,7 @@ body {
     font-size: 17px;
     padding: 5px 18px;
     border-radius: 10px;
-} 
+}
 
 /* SEÇÃO HOME */
 
@@ -104,7 +104,7 @@ body {
 
 .div_msg p {
     font-size: 70px;
-    max-width: 500px;
+    max-width: 400px;
     margin: 0px;
     padding: 30px 0px;
     color: #558c03;
@@ -170,8 +170,6 @@ body {
 }
 
 .imagem-wasabi img {
-    /* max-width: 300px;
-    height: 150%; */
     position: relative;
     top: -40px;
     width: 350px;
@@ -180,13 +178,13 @@ body {
 .texto {
     margin-left: 40px;
     align-self: center;
-    max-width: 500px;;
+    max-width: 500px;
+    ;
 }
 
 .texto h1 {
     font-size: 50px;
     font-weight: normal;
-    /* line-height: 2; */
 }
 
 .texto .destaque {
@@ -203,8 +201,7 @@ body {
 /* SIMULAÇÃO */
 
 .sobre {
-    background-color: #cde2c7;
-    /* verde claro do fundo */
+    background-color: #cfe3cf;
     padding: 60px 20px;
     text-align: center;
 }
@@ -213,12 +210,10 @@ body {
     font-family: 'Raleway';
     margin-bottom: 50px;
     color: #0D2601;
-    /* width: 1500px; */
     height: 200px;
     font-size: 70px;
 
 }
-
 
 .sobre .verde {
     color: #5a9b2c;
@@ -233,16 +228,245 @@ body {
 
 .item {
     max-width: 250px;
+    margin-top: 100px;
 }
 
 .item img {
     justify-content: space-between;
     width: 150px;
     margin-bottom: 15px;
-    
+
 }
 
 .item p {
     font-size: 25px;
     color: #1c2c17;
+}
+
+
+/* Simulacao pt2  */
+
+.simulacao {
+    background-color: #cfe3cf;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 60px 40px;
+}
+
+.simulacao-conteudo {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 85%;
+    max-width: 900px;
+}
+
+.simulacao-texto {
+    background-color: #0f260c;
+    padding: 60px 80px;
+    width: 55%;
+}
+
+.simulacao-texto h2 {
+    color: white;
+    font-size: 45px;
+    font-weight: 600px;
+    margin-bottom: 20px;
+    line-height: 1.4;
+}
+
+.simulacao-texto .verde {
+    color: #5c9e10;
+}
+
+.simulacao-texto p {
+    color: #4a9918;
+    font-size: 20px;
+    margin-bottom: 30px;
+    line-height: 1.6;
+}
+
+.botao-simule {
+    background-color: #5c9e10;
+    color: white;
+    text-decoration: none;
+    padding: 12px 28px;
+    border-radius: 8px;
+    font-weight: 600px;
+
+}
+
+.botao-simule:hover {
+    background-color: #5c9e10;
+}
+
+.simulacao-imagem {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 30%;
+}
+
+.simulacao-imagem img {
+
+    max-width: 500px;
+    width: 1000px;
+    height: 1000px;
+    margin-left: 200px;
+    margin-top: -50px;
+
+}
+
+/* SEÇÃO ARDUINO */
+
+.Arduino {
+    display: flex;
+    position: absolute;
+    width: 1350px;
+    height: 800px;
+    left: 0px;
+    top: 2955px;
+    background: #0f260c;
+    gap: 40px;   
+}
+
+
+.sensor {
+    max-width: 600px;
+}
+
+.sensor h1 {
+    font-size: 40px;
+    margin-bottom: 20px;
+    font-weight: bold;
+    color: #f0f0f0;
+}
+
+.sensor .itens {
+    color: #88b04b;
+}
+
+.imagem img {
+    max-width: 400px;
+    height: auto;
+    border-radius: 10px;
+}
+
+
+.sensor span {
+  list-style: none;
+  padding-left: 0;
+}
+
+.sensor li {
+  font-size: 17px;
+  color: #89c45b;
+  margin-bottom: 5px;
+}
+
+
+
+/* FOOTER */
+
+.section_duvida {
+    display: flex;
+    padding: 60px 0px 0px 0px;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #cde2c7;
+}
+
+.div_container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 85%;
+}
+
+.div_container h1 {
+    color: #0D2601;
+    padding: 0px;
+    margin: 0px 0px 50px 0px;
+    font-size: 50px;
+    font-weight: 500;
+    text-align: center;
+}
+
+.div_container p {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 18px;
+    border-radius: 15px;
+    padding: 7px 10px 7px 20px;
+    width: 100%;
+    max-width: 600px;
+    background-color: #FFFFFF;
+    color: #000000;
+    line-height: 28px;
+    margin: 0px 0px 18px 0px;
+}
+
+.div_container p span {
+    padding: 0px 10px 0px 0px;
+}
+
+.div_container p span span {
+    color: #595959df;
+    display: none;
+    padding: 0px 0px 0px 15px;
+    font-size: 16px;
+}
+
+.div_container p button {
+    background-color: transparent;
+    font-weight: bolder;
+    font-size: 18px;
+    border: 0px;
+    height: fit-content;
+    cursor: pointer;
+}
+
+footer {
+    padding: 50px 0px 50px 0px;
+    position: relative;
+    bottom: 0px;
+}
+
+.div_imgs {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 50px;
+    padding: 20px 0px;
+}
+
+.div_imgs img {
+    height: 50px;
+}
+
+.div_links {
+    padding: 0px 0px 20px 0px;
+}
+
+.div_links ul {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 70px;
+}
+
+.div_links ul li a {
+    text-decoration: none;
+    color: #000;
+    font-size: 20px;
+}
+
+footer center span {
+    color: #0D26014D;
+    font-weight: 400;
+    font-size: 20px;
 }
