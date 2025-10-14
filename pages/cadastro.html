@@ -17,7 +17,7 @@
             <span><a href="../index.html">Home</a></span>
             <span><a href="#section_simulacao">Simulação</a></span>
             <span><a href="#section_quemSomos">Quem somos</a></span>
-            <span><a href="#section_contato">Contato</a></span>
+            <span><a href="#section_duvida">Contato</a></span>
         </nav>
         <div class="div_authButtons">
             <a href="./login.html">Login</a>
@@ -40,6 +40,7 @@
                     <input placeholder="Insira o email" type="text">
                     <label for="">Senha</label>
                     <input placeholder="Insira a senha" type="password">
+                    <p id="mensagemErro1">ERRO!!!!</p>
                 </div>
                 <center>
                     <button type="button" onclick="proximo()">Próximo</button>
@@ -60,8 +61,8 @@
                     <input placeholder="Insira a cidade" type="text">
                     <label for="">Número</label>
                     <input placeholder="Insira o número de casa" type="text">
+                    <p id="mensagemErro2">ERRO!!!!</p>
                 </div>
-
                 <span class="button_container">
                     <button type="button" class="button_voltar" onclick="voltar()">Voltar</button>
                     <button type="button" onclick="cadastrar()">Cadastrar</button>

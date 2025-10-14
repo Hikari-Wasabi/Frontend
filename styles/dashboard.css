@@ -1,0 +1,259 @@
+body {
+    margin: 0px;
+    padding: 0px;
+    background-color: white;
+    
+}
+
+.header {
+    font-family: sans-serif;
+    min-height: 60px;
+    background-color: #CCE4CB;
+    /* 
+    /* position: fixed;
+    top: 0px; */
+    /* width: 100%; */
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+
+    flex-wrap: nowrap;
+    gap: 30px;
+}
+
+.header a {
+    color: #000000;
+    text-decoration: none;
+    outline: none;
+}
+
+.div_logo img {
+    height: 50px;
+}
+
+.navbar {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    gap: 20px;
+}
+
+.div_father {
+    display: flex;
+    margin: 0px;
+    position: relative;
+    top: 30px;
+    justify-content: space-around;
+}
+
+.containerTemp {
+    width: 320px;
+    height: 200px;
+    position: relative;
+    background-color: #CCE4CB;
+    border-radius: 24px;
+    background-image: url(../assets/sun.gif);
+    background-repeat: no-repeat;
+    background-size: 100%;
+
+
+    & .divTemp {
+        position: absolute;
+        height: 50px;
+        background-color: #88C8BC;
+        width: 10%;
+        bottom: 0%;
+        right: 0;
+        border-radius: 24px;
+        outline: 3px solid #F0FFFF;
+        display: grid;
+        place-items: center;
+        transition: 0.5s;
+
+        &:before,
+        &:after {
+            position: absolute;
+            content: '';
+            width: 24px;
+            aspect-ratio: 1;
+            background-color: radial-gradient(circle 24px at top left,
+                    		#E8DCCA 98%, #424242);
+        }
+
+        &::before {
+            left: -34px;
+            bottom: 0;
+            top: 26px;
+            width: 34px;
+        }
+
+        &:after {
+            top: -34;
+            right: -10px;
+            width: 34px;
+        }
+
+        &:hover {
+            width: 60%;
+
+            span {
+                width: 100%;
+            }
+        }
+
+        span {
+            display: grid;
+            color: #424242;
+            place-items: center;
+            overflow: hidden;
+            width: 1.5ch;
+            letter-spacing: 2px;
+            font-weight: 600;
+        }
+
+    }
+}
+
+.containerUmi {
+    width: 350px;
+    height: 200px;
+    position: relative;
+    background-color: #CCE4CB;
+    border-radius: 24px;
+    background-image: url(../assets/windandrainmarch.webp);
+    background-repeat: no-repeat;
+    background-size: 100%;
+
+
+    & .divUmi {
+        position: absolute;
+        height: 50px;
+        background-color: #000;
+        width: 10%;
+        bottom: 0%;
+        right: 0;
+        border-radius: 24px;
+        outline: 10px solid #fff;
+        display: grid;
+        place-items: center;
+        transition: 0.5s;
+
+        &:before,
+        &:after {
+            position: absolute;
+            content: '';
+            width: 24px;
+            aspect-ratio: 1;
+            background-color: radial-gradient(circle 24px at top left,
+                    #000 98%, #fff);
+        }
+
+        &::before {
+            left: -34px;
+            bottom: 0;
+            top: 26px;
+            width: 34px;
+        }
+
+        &:after {
+            top: -34;
+            right: -10px;
+            width: 34px;
+        }
+
+        &:hover {
+            width: 60%;
+
+            span {
+                width: 100%;
+            }
+        }
+
+        span {
+            display: grid;
+            color: #fff;
+            place-items: center;
+            overflow: hidden;
+            width: 1.5ch;
+            letter-spacing: 2px;
+            font-weight: 600;
+        }
+
+    }
+}
+
+.container_kpi {
+    display: flex;
+    position: relative;
+    left: 75%;
+    margin: 3%;
+    justify-content: flex-end;
+    flex-direction: column-reverse;
+    align-items: flex-end;
+    padding: 20px;
+    width: 300px;
+    height: 200px;
+}
+
+.example_status {
+    display: flex;
+    position: relative;
+    justify-content: flex-start;
+    left: 20px;
+    top: 150px;
+    font-size: large;
+    font-style: bold;
+}
+
+.style_critico {
+        display: flex;
+        background-color: #8B0000;
+        border: none;
+        color: white;
+        border-radius: 5px;
+        padding: 15px 35px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        margin: 4px 2px;
+    }
+
+.style_nocivo {
+        background-color: #C7490E;
+        border: none;
+        border-radius: 5px;
+        color: white;
+        padding: 15px 33px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        margin: 4px 2px;
+    }
+
+.style_inóspito {
+        background-color: #FFA500;
+        border-radius: 5px;
+        border: none;
+        color: white;
+        padding: 15px 30px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        margin: 4px 2px;
+    }
+
+.style_adequado {
+        background-color: #228B22;
+        border: none;
+        color: white;
+        padding: 15px 21px;
+        border-radius: 5px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        margin: 4px 2px;
+    }

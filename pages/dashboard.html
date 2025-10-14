@@ -1,12 +1,131 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard</title>
-    <link rel="stylesheet" href="../styles/dashboard.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard</title>
+  <link rel="stylesheet" href="../styles/dashboard.css">
+  <link rel="stylesheet" href="../styles/index.css">
 </head>
+
 <body>
-    <h1>Dashboard</h1>
-</body>
+
+  <body>
+    <!-- HEADER -->
+    <header class="header">
+      <div class="div_logo">
+        <img src="../assets/logo.svg" alt="logo wasabi">
+      </div>
+      <nav class="navbar">
+        <span><a href="../index.html">Home</a></span>
+        <span><a href="#section_simulacao">Simulação</a></span>
+        <span><a href="#section_quemSomos">Quem somos</a></span>
+        <span><a href="#section_duvida">Contato</a></span>
+      </nav>
+
+    </header>
+
+    <div class="div_father">
+      <div class="containerTemp">
+        <div class="divTemp">
+          <span>Temperatura</span>
+        </div>
+      </div>
+      <div class="containerUmi">
+        <div class="divUmi">
+          <span>Umidade</span>
+        </div>
+      </div>
+    </div>
+
+<div class="example_status"> 
+
+  Status atual do ambiente:     
+
+</div>
+
+    <div class="container_kpi">
+
+      <button class="style_critico">Crítico</button>
+      <button class="style_nocivo">Nocivo</button>
+      <button class="style_adequado">Adequado</button>
+      <button class="style_inóspito">Inóspito</button>
+    </div>
+
+    <div class="graficos" style="display:flex; width: 800px; height: 700px;">
+      <canvas id="dashboardCSS" style="width: 300px; height: 200px;"></canvas>
+
+      <div>
+
+        <canvas id="line" style="width: 700px; height: 700px;"></canvas>
+
+      </div>
+
+    </div>
+
+
+  </body>
+
 </html>
+
+<script>
+  
+
+  const ctx = document.getElementById('dashboardCSS');
+
+  new Chart(ctx, {
+    type: 'line',
+    data: {
+      labels: ['Madrugada', 'Manhã', 'Tarde', 'Noite'],
+      datasets: [
+        {
+          label: 'Umidade Média',
+          data: [90, 89, 93, 87, 88, 82],
+          backgroundColor: '#32b9cd'
+        },
+      ]
+    },
+    options: {
+      scales: {
+        y: {
+          beginAtZero: true
+        }
+      }
+    }
+  });
+
+  const lineCtx = document.getElementById('line');
+  new Chart(lineCtx, {
+    type: 'line',
+    data: {
+      labels: ['12:00', '13:00', '14:00', '15:00', '16:00', '17:00'],
+      datasets: [
+        {
+          label: 'Temperatura',
+          data: [30, 29, 28, 25, 22, 23],
+          borderColor: '#f75d52',
+          backgroundColor: 'rgba(247, 93, 82, 0.1)',
+        },
+      ]
+    },
+    options: {
+      scales: {
+        y: {
+          beginAtZero: false,
+          title: {
+            display: true,
+          }
+        },
+        x: {
+          title: {
+            display: true,
+            text: 'Horário'
+          }
+        }
+      }
+    }
+  });
+
+</script>
