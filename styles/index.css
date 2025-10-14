@@ -170,8 +170,6 @@ body {
 }
 
 .imagem-wasabi img {
-    /* max-width: 300px;
-    height: 150%; */
     position: relative;
     top: -40px;
     width: 350px;
@@ -187,7 +185,6 @@ body {
 .texto h1 {
     font-size: 50px;
     font-weight: normal;
-    /* line-height: 2; */
 }
 
 .texto .destaque {
@@ -217,7 +214,6 @@ body {
     font-size: 70px;
 
 }
-
 
 .sobre .verde {
     color: #5a9b2c;
@@ -268,7 +264,7 @@ body {
 
 .simulacao-texto {
     background-color: #0f260c;
-    padding: 60px 50px;
+    padding: 60px 80px;
     width: 55%;
 }
 
@@ -326,11 +322,15 @@ body {
 
 .Arduino {
     display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 50px;
-    background-color: #0f260c; 
+    position: absolute;
+    width: 1350px;
+    height: 800px;
+    left: 0px;
+    top: 2955px;
+    background: #0f260c;
+    gap: 40px;   
 }
+
 
 .sensor {
     max-width: 600px;
@@ -344,31 +344,25 @@ body {
 }
 
 .sensor .itens {
-    color: #88b04b; 
+    color: #88b04b;
 }
-
-
-.sensor p {
-    font-size: 20px;
-    margin-bottom: 50px;
-}
-
-
-.sensor p {
-    margin-left: 20px;
-    line-height: 1.8;
-}
-
-.sensor p li {
-    margin-bottom: 10px;
-    color: #a6c08c; 
-}
-
 
 .imagem img {
     max-width: 400px;
     height: auto;
-    border-radius: 10px; 
+    border-radius: 10px;
+}
+
+
+.sensor span {
+  list-style: none;
+  padding-left: 0;
+}
+
+.sensor li {
+  font-size: 17px;
+  color: #89c45b;
+  margin-bottom: 5px;
 }
 
 
