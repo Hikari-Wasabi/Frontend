@@ -63,7 +63,7 @@ body {
     font-size: 17px;
     padding: 5px 25px;
     border-radius: 10px;
-} 
+}
 
 .div_authButtons a:last-child {
     background-color: #558C03;
@@ -74,7 +74,7 @@ body {
     font-size: 17px;
     padding: 5px 18px;
     border-radius: 10px;
-} 
+}
 
 /* SEÇÃO HOME */
 
@@ -104,7 +104,7 @@ body {
 
 .div_msg p {
     font-size: 70px;
-    max-width: 500px;
+    max-width: 400px;
     margin: 0px;
     padding: 30px 0px;
     color: #558c03;
@@ -180,7 +180,8 @@ body {
 .texto {
     margin-left: 40px;
     align-self: center;
-    max-width: 500px;;
+    max-width: 500px;
+    ;
 }
 
 .texto h1 {
@@ -203,8 +204,7 @@ body {
 /* SIMULAÇÃO */
 
 .sobre {
-    background-color: #cde2c7;
-    /* verde claro do fundo */
+    background-color: #cfe3cf;
     padding: 60px 20px;
     text-align: center;
 }
@@ -213,7 +213,6 @@ body {
     font-family: 'Raleway';
     margin-bottom: 50px;
     color: #0D2601;
-    /* width: 1500px; */
     height: 200px;
     font-size: 70px;
 
@@ -233,16 +232,144 @@ body {
 
 .item {
     max-width: 250px;
+    margin-top: 100px;
 }
 
 .item img {
     justify-content: space-between;
     width: 150px;
     margin-bottom: 15px;
-    
+
 }
 
 .item p {
     font-size: 25px;
     color: #1c2c17;
 }
+
+
+/* Simulacao pt2  */
+
+.simulacao {
+    background-color: #cfe3cf;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 60px 40px;
+}
+
+.simulacao-conteudo {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 85%;
+    max-width: 900px;
+}
+
+.simulacao-texto {
+    background-color: #0f260c;
+    padding: 60px 50px;
+    width: 55%;
+}
+
+.simulacao-texto h2 {
+    color: white;
+    font-size: 45px;
+    font-weight: 600px;
+    margin-bottom: 20px;
+    line-height: 1.4;
+}
+
+.simulacao-texto .verde {
+    color: #5c9e10;
+}
+
+.simulacao-texto p {
+    color: #4a9918;
+    font-size: 20px;
+    margin-bottom: 30px;
+    line-height: 1.6;
+}
+
+.botao-simule {
+    background-color: #5c9e10;
+    color: white;
+    text-decoration: none;
+    padding: 12px 28px;
+    border-radius: 8px;
+    font-weight: 600px;
+
+}
+
+.botao-simule:hover {
+    background-color: #5c9e10;
+}
+
+.simulacao-imagem {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 30%;
+}
+
+.simulacao-imagem img {
+
+    max-width: 500px;
+    width: 1000px;
+    height: 1000px;
+    margin-left: 200px;
+    margin-top: -50px;
+
+}
+
+/* SEÇÃO ARDUINO */
+
+.Arduino {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 50px;
+    background-color: #0f260c; 
+}
+
+.sensor {
+    max-width: 600px;
+}
+
+.sensor h1 {
+    font-size: 40px;
+    margin-bottom: 20px;
+    font-weight: bold;
+    color: #f0f0f0;
+}
+
+.sensor .itens {
+    color: #88b04b; 
+}
+
+
+.sensor p {
+    font-size: 20px;
+    margin-bottom: 50px;
+}
+
+
+.sensor p {
+    margin-left: 20px;
+    line-height: 1.8;
+}
+
+.sensor p li {
+    margin-bottom: 10px;
+    color: #a6c08c; 
+}
+
+
+.imagem img {
+    max-width: 400px;
+    height: auto;
+    border-radius: 10px; 
+}
+
+
+
