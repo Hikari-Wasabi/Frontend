@@ -35,13 +35,21 @@ body {
     gap: 20px;
 }
 
+.div_father {
+    display: flex;
+    margin: 0px;
+    position: relative;
+    top: 30px;
+    justify-content: space-around;
+}
+
 .containerTemp {
-    width: 400px;
+    width: 300px;
     height: 200px;
     position: relative;
     background-color: #CCE4CB;
     border-radius: 24px;
-    background-image: url(https://i.pinimg.com/736x/56/33/1d/56331d044147824462a1262b49791080.jpg);
+    background-image: url(../assets/sun.gif);
     background-repeat: no-repeat;
     background-size: 100%;
 
@@ -54,7 +62,7 @@ body {
         bottom: 0%;
         right: 0;
         border-radius: 24px;
-        outline: 10px solid #fff;
+        outline: 2px solid #F0FFFF;
         display: grid;
         place-items: center;
         transition: 0.5s;
@@ -109,7 +117,7 @@ body {
     position: relative;
     background-color: #CCE4CB;
     border-radius: 24px;
-    background-image: url(https://i.pinimg.com/736x/b3/88/c6/b388c6374905f09824b8d9cc5d75603e.jpg);
+    background-image: url(../assets/logo.svg);
     background-repeat: no-repeat;
     background-size: 100%;
 
@@ -173,18 +181,21 @@ body {
 
 .container_kpi {
     display: flex;
-    flex-direction: column;
-    width: 200px;
-    padding: 50px;
-    margin: 20px;
-    left: 20px;
-    align-items: flex-end;
+    position: relative;
+    left: 75%;
+    margin: 3%;
     justify-content: flex-end;
+    flex-direction: column-reverse;
+    align-items: flex-end;
+    padding: 20px;
+    width: 300px;
+    height: 200px;
 
 
 }
 
 .style_critico {
+        display: flex;
         background-color: #8B0000;
         border: none;
         color: white;
