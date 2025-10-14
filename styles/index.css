@@ -104,11 +104,7 @@ body {
 
 .div_msg p {
     font-size: 70px;
-<<<<<<< HEAD
     max-width: 400px;
-=======
-    max-width: 515px;
->>>>>>> f280f296795c52e406d674877967b24ecb1955c7
     margin: 0px;
     padding: 30px 0px;
     color: #558c03;
@@ -247,7 +243,6 @@ body {
     color: #1c2c17;
 }
 
-<<<<<<< HEAD
 
 /* Simulacao pt2  */
 
@@ -372,7 +367,6 @@ body {
 
 
 
-=======
 /* FOOTER */
 
 .section_duvida {
@@ -476,4 +470,3 @@ footer center span {
     font-weight: 400;
     font-size: 20px;
 }
->>>>>>> f280f296795c52e406d674877967b24ecb1955c7
