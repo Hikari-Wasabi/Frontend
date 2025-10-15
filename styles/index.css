@@ -155,7 +155,6 @@ body {
 
 /* Caixa da imagem */
 .imagem-wasabi {
-
     display: flex;
     background-color: #cfe3cf;
     padding: 20px;
@@ -166,7 +165,6 @@ body {
     justify-content: center;
     align-items: center;
     margin: none;
-
 }
 
 .imagem-wasabi img {
@@ -179,11 +177,10 @@ body {
     margin-left: 40px;
     align-self: center;
     max-width: 500px;
-    ;
 }
 
 .texto h1 {
-    font-size: 50px;
+    font-size: 60px;
     font-weight: normal;
 }
 
@@ -193,7 +190,8 @@ body {
 }
 
 .texto p {
-    margin-top: 20px;
+    margin-top: 30px;
+    line-height: 40px;
     color: #5c9e10;
     font-size: 30px;
 }
@@ -507,4 +505,17 @@ footer center span {
     color: #0D26014D;
     font-weight: 400;
     font-size: 20px;
+}
+
+
+/* Lidando com o tamanho da tela dos dispositivos */
+@media (width < 1000px) {
+    .banner {
+        flex-direction: column-reverse;
+    }
+    .texto {
+        padding: 20px 0px 70px 50px;
+        align-self: flex-start;
+        margin: 0px;
+    }
 }
