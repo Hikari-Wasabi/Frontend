@@ -51,10 +51,6 @@ body {
   border-radius: 4px;
 }
 
-.navbar span a:hover {
-  background-color: rgba(50, 185, 205, 0.1);
-}
-
 .div_father {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -75,12 +71,6 @@ body {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-}
-
-.containerTemp:hover,
-.containerUmi:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.12);
 }
 
 .divTemp,
@@ -159,11 +149,6 @@ body {
       color: white;
     }
 
-    .container_kpi button:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
-    }
-
     .container_kpi button.active {
       transform: scale(1.05);
       box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.2);
@@ -186,69 +171,9 @@ body {
       transition: transform 0.3s;
     }
 
-    .chart-container:hover {
-      transform: translateY(-5px);
-    }
-
     .chart-container canvas {
       width: 100%;
       height: 300px;
     }
 
     
-
-
-
-
-/* .style_critico {
-  display: flex;
-  background-color: #8b0000;
-  border: none;
-  color: white;
-  border-radius: 5px;
-  padding: 15px 35px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 16px;
-  margin: 4px 2px;
-}
-
-.style_nocivo {
-  background-color: #c7490e;
-  border: none;
-  border-radius: 5px;
-  color: white;
-  padding: 15px 33px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 16px;
-  margin: 4px 2px;
-}
-
-.style_inóspito {
-  background-color: #ffa500;
-  border-radius: 5px;
-  border: none;
-  color: white;
-  padding: 15px 30px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 16px;
-  margin: 4px 2px;
-}
-
-.style_adequado {
-  background-color: #228b22;
-  border: none;
-  color: white;
-  padding: 15px 21px;
-  border-radius: 5px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 16px;
-  margin: 4px 2px;
-} */
