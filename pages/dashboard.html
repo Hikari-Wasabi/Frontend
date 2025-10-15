@@ -28,23 +28,29 @@
     </header>
 
     <div class="div_father">
-      <div class="containerTemp">
+      <div class="containerTemp fade-in">
         <div class="divTemp">
           <span>Temperatura</span>
+          <div class="temp-value" style="font-size: 40px;">25°C</div>
+          <div class="temp-trend">
+            <span style="color: #FF4500">+2°C desde ontem</span>
+          </div>
         </div>
       </div>
-      <div class="containerUmi">
+      <div class="containerUmi fade-in">
         <div class="divUmi">
           <span>Umidade</span>
+          <div class="umi-value" style="font-size: 40px;">65%</div>
+          <div class="umi-trend">
+            <span style="color: #3498db;">-5% desde ontem</span>
+          </div>
         </div>
       </div>
     </div>
 
-<div class="example_status"> 
-
-  Status atual do ambiente:     
-
-</div>
+    <div class="example_status">
+      Status atual do ambiente: <span>Adequado</span>
+    </div>
 
     <div class="container_kpi">
 
@@ -54,15 +60,15 @@
       <button class="style_inóspito">Inóspito</button>
     </div>
 
-    <div class="graficos" style="display:flex; width: 800px; height: 700px;">
-      <canvas id="dashboardCSS" style="width: 300px; height: 200px;"></canvas>
-
-      <div>
-
-        <canvas id="line" style="width: 700px; height: 700px;"></canvas>
-
+    <div class="graficos">
+      <div class="chart-container">
+        <h3>Umidade por Período do Dia</h3>
+        <canvas id="dashboardCSS"></canvas>
       </div>
-
+      <div class="chart-container">
+        <h3>Variação de Temperatura</h3>
+        <canvas id="line"></canvas>
+      </div>
     </div>
 
 
@@ -71,61 +77,100 @@
 </html>
 
 <script>
-  
+    // Configuração dos gráficos
+    const ctx = document.getElementById('dashboardCSS');
 
-  const ctx = document.getElementById('dashboardCSS');
-
-  new Chart(ctx, {
-    type: 'line',
-    data: {
-      labels: ['Madrugada', 'Manhã', 'Tarde', 'Noite'],
-      datasets: [
-        {
-          label: 'Umidade Média',
-          data: [90, 89, 93, 87, 88, 82],
-          backgroundColor: '#32b9cd'
-        },
-      ]
-    },
-    options: {
-      scales: {
-        y: {
-          beginAtZero: true
-        }
-      }
-    }
-  });
-
-  const lineCtx = document.getElementById('line');
-  new Chart(lineCtx, {
-    type: 'line',
-    data: {
-      labels: ['12:00', '13:00', '14:00', '15:00', '16:00', '17:00'],
-      datasets: [
-        {
-          label: 'Temperatura',
-          data: [30, 29, 28, 25, 22, 23],
-          borderColor: '#f75d52',
-          backgroundColor: 'rgba(247, 93, 82, 0.1)',
-        },
-      ]
-    },
-    options: {
-      scales: {
-        y: {
-          beginAtZero: false,
+    new Chart(ctx, {
+      type: 'line',
+      data: {
+        labels: ['Madrugada', 'Manhã', 'Tarde', 'Noite'],
+        datasets: [
+          {
+            label: 'Umidade Média (%)',
+            data: [60, 59, 63, 47],
+            borderColor: '#32b9cd',
+            backgroundColor: 'rgba(50, 185, 205, 0.1)',
+            borderWidth: 3,
+            tension: 0.3,
+            fill: true
+          },
+        ]
+      },
+      options: {
+        responsive: true,
+        plugins: {
+          legend: {
+            position: 'top',
+          },
           title: {
             display: true,
+            text: 'Umidade por Período do Dia'
           }
         },
-        x: {
-          title: {
-            display: true,
-            text: 'Horário'
+        scales: {
+          y: {
+            beginAtZero: false,
+            min: 0,
+            max: 90,
+            title: {
+              display: true,
+              text: 'Umidade (%)'
+            }
+          },
+          x: {
+            title: {
+              display: true,
+              text: 'Período do Dia'
+            }
           }
         }
       }
-    }
-  });
+    });
 
-</script>
+    const lineCtx = document.getElementById('line');
+    new Chart(lineCtx, {
+      type: 'line',
+      data: {
+        labels: ['12:00', '13:00', '14:00', '15:00', '16:00', '17:00'],
+        datasets: [
+          {
+            label: 'Temperatura (°C)',
+            data: [30, 29, 28, 25, 22, 23],
+            borderColor: '#f75d52',
+            backgroundColor: 'rgba(247, 93, 82, 0.1)',
+            borderWidth: 3,
+            tension: 0.3,
+            fill: true
+          },
+        ]
+      },
+      options: {
+        responsive: true,
+        plugins: {
+          legend: {
+            position: 'top',
+          },
+          title: {
+            display: true,
+            text: 'Variação de Temperatura ao Longo do Dia'
+          }
+        },
+        scales: {
+          y: {
+            beginAtZero: false,
+            title: {
+              display: true,
+              text: 'Temperatura (°C)'
+            }
+          },
+          x: {
+            title: {
+              display: true,
+              text: 'Horário'
+            }
+          }
+        }
+      }
+    });
+
+    </script>
