@@ -349,11 +349,8 @@ body {
 
 .Arduino {
     display: flex;
-    /* position: absolute; */
     width: 100%;
     height: 800px;
-    /* left: 0px; */
-    /* top: 2955px; */
     background: #0f260c;
     gap: 40px;   
 }
@@ -375,6 +372,7 @@ body {
     font-weight: bold;
     text-align: start;
     color: #f0f0f0;
+    margin-left: 100px;
 }
 
 .sensor .itens {
@@ -385,18 +383,35 @@ body {
     max-width: 400px;
     height: auto;
     border-radius: 10px;
+    margin-top: 110px;
+
 }
 
+.imagem2 {
+position: relative;
+top: -200px;
+left: -150px;
+}
 
 .sensor span {
   list-style: none;
   padding-left: 0;
 }
 
+.Placa {
+ color: white;
+ font-size: 50px;
+}
+
+
 .sensor li {
   font-size: 17px;
   color: #89c45b;
   margin-bottom: 5px;
+  font-size: 20px;
+  padding-top: 10px;
+  list-style: disc;
+  margin-right: 150px;
 }
 
 
