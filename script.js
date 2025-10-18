@@ -1,4 +1,13 @@
 
+function mudarConteudoDoBotao () {
+  botao_resposta1.innerText = '+'
+  botao_resposta2.innerText = '+'
+  botao_resposta3.innerText = '+'
+  botao_resposta4.innerText = '+'
+  botao_resposta5.innerText = '+'
+  botao_resposta6.innerText = '+'
+}
+
 function setarTodosInvisiveis() {
   span_resposta1.style.display = "none";
   span_resposta2.style.display = "none";
@@ -6,8 +15,8 @@ function setarTodosInvisiveis() {
   span_resposta4.style.display = "none";
   span_resposta5.style.display = "none";
   span_resposta6.style.display = "none";
+  mudarConteudoDoBotao()
 }
-
 
 
 setarTodosInvisiveis()
