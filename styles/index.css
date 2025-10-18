@@ -1,17 +1,12 @@
+html {
+  scroll-behavior: smooth;
+}
+
 body {
     padding: 0px;
     margin: 0px;
     font-family: sans-serif;
 }
-
-/* ALTURA SÓ PARA PODER VISUALIZAR OS ELEMENTOS, NO FINAL APAGAR ESSA LINHA!!! */
-/* .section_home,
-.section_wasabi,
-.section_simulacao,
-.section_quemSomos,
-.section_duvida {
-    min-height: 100vh;
-} */
 
 /* HEADER */
 
@@ -27,16 +22,18 @@ body {
 
     flex-wrap: nowrap;
     gap: 30px;
+    padding: 5px 0px 0px 0px;
 }
 
 .header a {
     color: #000000;
     text-decoration: none;
     outline: none;
+    font-size: 18px;
 }
 
 .div_logo img {
-    height: 50px;
+    height: 80px;
 }
 
 .navbar {
@@ -60,20 +57,25 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 17px;
-    padding: 5px 25px;
+    font-size: 18px;
+    /* padding: 8px 25px; */
     border-radius: 10px;
+    width: 140px;
+    height: 38px;
 }
 
 .div_authButtons a:last-child {
     background-color: #558C03;
     color: #FFFFFF;
+    border: 2px solid #558C03;
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 17px;
-    padding: 5px 18px;
+    font-size: 18px;
+    /* padding: 7px 18px; */
     border-radius: 10px;
+    width: 140px;
+    height: 38px;
 }
 
 /* SEÇÃO HOME */

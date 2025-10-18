@@ -6,20 +6,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Wasabi</title>
     <link rel="stylesheet" href="./styles/index.css">
-    <link rel="shortcut icon" type="imagex/png" href="./assets/imagem_wasabi_login.png">
+    <link rel="shortcut icon" type="imagex/png" href="./assets/logo.png">
 </head>
 
 <body>
     <!-- HEADER -->
     <header class="header">
         <div class="div_logo">
-            <h1>Wasabi</h1>
+            <img src="./assets/logo.png" alt="logo wasabi">
         </div>
         <nav class="navbar">
             <span><a href="#section_home">Home</a></span>
             <span><a href="#section_simulacao">Simulação</a></span>
-            <span><a href="#section_quemSomos">Quem somos</a></span>
-            <span><a href="#section_duvida">Contato</a></span>
+            <span><a href="./pages/contato.html">Contato</a></span>
+            <span><a href="#section_duvida">Dúvidas</a></span>
         </nav>
         <div class="div_authButtons">
             <a href="./pages/login.html">Login</a>
@@ -83,7 +83,7 @@
         </div>
     </section>
         <!-- -- Simulação -->
-        <section class="simulacao">
+        <section id="section_simulacao" class="simulacao">
             <div class="simulacao-conteudo">
                 <div class="simulacao-texto">
                     <span>
@@ -93,7 +93,9 @@
                             sua produção rende mais e suas perdas diminuem.
                         </p>
                     </span>
-                    <button class="botao-simule" onclick="simulacao()">Simule Agora</button>
+                    <a href="./pages/simulacao.html">
+                        <button class="botao-simule" onclick="simulacao()">Simule Agora</button>
+                    </a>
                 </div>
 
                 <div class="simulacao-imagem">
@@ -187,10 +189,10 @@
         </div>
         <div class="div_links">
             <ul>
-                <li><a href="">Home</a></li>
-                <li><a href="">Simulacao</a></li>
-                <li><a href="">Contato</a></li>
-                <li><a href="">Quem somos</a></li>
+                <li><a href="#section_home">Home</a></li>
+                <li><a href="#section_simulacao">Simulacao</a></li>
+                <li><a href="./pages/contato.html">Contato</a></li>
+                <li><a href="#section_duvida">Dúvidas</a></li>
             </ul>
         </div>
         <center>
