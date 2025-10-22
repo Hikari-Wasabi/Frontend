@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro</title>
+    <link rel="stylesheet" href="../styles/index.css">
+    <link rel="stylesheet" href="../styles/login.css">
+</head>
+
+<body>
+    <!-- HEADER -->
+    <header class="header">
+        <div class="div_logo">
+            <img src="../assets/logo.svg" alt="logo wasabi">
+        </div>
+        <nav class="navbar">
+            <span><a href="../index.html">Home</a></span>
+            <span><a href="#section_simulacao">Simulação</a></span>
+            <span><a href="#section_quemSomos">Quem somos</a></span>
+            <span><a href="#section_duvida">Contato</a></span>
+        </nav>
+        <div class="div_authButtons">
+            <a href="./login.html">Login</a>
+            <a href="#">Registrar</a>
+        </div>
+    </header>
+
+    <section class="section_main">
+        <div class="container">
+            <form action="" id="pg1">
+                <h1>Cadastre-se!</h1>
+                <div class="container_inputs">
+                    <label for="">Nome</label>
+                    <input id="nome" placeholder="Insira o nome" type="text">
+
+                    <label for="">Cnpj</label>
+                    <input id="cnpj" placeholder="Insira o Cnpj" type="text">
+
+                    <label for="">Telefone</label>
+                    <input id="telefone" placeholder="Insira o telefone" type="text">
+
+                    <label for="">Email</label>
+                    <input id="email" placeholder="Insira o email" type="text">
+
+                    <label for="">Senha</label>
+                    <input id="senha" placeholder="Insira a senha" type="password">
+
+                    <p id="mensagemErro1"></p>
+                </div>
+                <center>
+                    <button type="button" onclick="proximo()">Próximo</button>
+                </center>
+            </form>
+
+            <!-- CONTINUAÇÃO DA PÁGINA -->
+            <form action="" id="pg2">
+                <h1>Cadastre-se!</h1>
+                <div class="container_inputs">
+                    <label for="">CEP</label>
+                    <input id="cep" placeholder="Insira o cep" type="text">
+
+                    <label for="">País</label>
+                    <input id="pais" placeholder="Insira o país" type="text">
+
+                    <label for="">Estado</label>
+                    <input id="estado" placeholder="Insira o estado" type="text">
+
+                    <label for="">Cidade</label>
+                    <input id="cidade" placeholder="Insira a cidade" type="text">
+
+                    <label for="">Número</label>
+                    <input id="numero" placeholder="Insira o número de casa" type="text">
+                    <p id="mensagemErro2"></p>
+                </div>
+                <span class="button_container">
+                    <button type="button" class="button_voltar" onclick="voltar()">Voltar</button>
+                    <button type="button" onclick="cadastrar()">Cadastrar</button>
+                </span>
+            </form>
+            <div class="div_imagem">
+                <img src="../assets/imagem_wasabi_login.svg" alt="imagem wasabi">
+            </div>
+        </div>
+    </section>
+</body>
+
+</html>
+
+<script>
+
+
+    document.getElementById("pg2").style.display = 'none'
+
+    function proximo() {
+        document.getElementById("pg1").style.display = 'none'
+        document.getElementById("pg2").style.display = 'block'
+    }
+
+    function voltar() {
+        document.getElementById("pg1").style.display = 'block'
+        document.getElementById("pg2").style.display = 'none'
+    }
+
+    function cadastrar() {
+        // 1° página
+        var nome = document.getElementById("nome").value
+        var cnpj = document.getElementById("cnpj").value
+        var telefone = document.getElementById("telefone").value
+        var email = document.getElementById("email").value
+        var senha = document.getElementById("senha").value
+
+        // 2° página
+        var cep = document.getElementById("cep").value
+        var pais = document.getElementById("pais").value
+        var estado = document.getElementById("estado").value
+        var cidade = document.getElementById("cidade").value
+        var numero = document.getElementById("numero").value
+
+        var mensagemErro1 = document.getElementById("mensagemErro1")
+        var mensagemErro2 = document.getElementById("mensagemErro2")
+
+        mensagemErro1.style.display = 'none'
+        mensagemErro2.style.display = 'none'
+
+        // verificação de campos vazios
+        if (
+            nome == "" || cnpj == "" || telefone == "" || email == "" ||
+            senha == "" || cep == "" || pais == "" || estado == "" ||
+            cidade == "" || numero == ""
+        ) {
+            mensagemErro2.style.display = 'block'
+            mensagemErro2.innerHTML = "Não podem ter campos vazios"
+    
+        }
+
+        // verificação de email
+        if (!email.includes("@") || !email.endsWith(".com")) {
+            mensagemErro2.style.display = 'block'
+            mensagemErro2.innerHTML = "Email está em formato incorreto"
+     
+        }
+
+        // verificação de senha
+        var temMaiuscula = senha != senha.toLowerCase()
+        var temMinuscula = senha != senha.toUpperCase()
+        var temNumero = senha.includes("0") || senha.includes("1") || senha.includes("2") || senha.includes("3") ||
+            senha.includes("4") || senha.includes("5") || senha.includes("6") || senha.includes("7") ||
+            senha.includes("8") || senha.includes("9")
+        var temEspecial = senha.includes("!") || senha.includes("@") || senha.includes("#") ||
+            senha.includes("$") || senha.includes("%") || senha.includes("&") ||
+            senha.includes("*") || senha.includes("?")
+
+        if (senha.length < 8 || !temMaiuscula || !temMinuscula || !temNumero || !temEspecial) {
+            mensagemErro1.style.display = 'block'
+            mensagemErro1.innerHTML = "Senha Fraca!"
+        
+        }
+
+        // formatar tel (11) 12345-6789
+        if (telefone.length == 11) {
+            telefone = "(" + telefone.substring(0, 2) + ") " +
+                telefone.substring(2, 7) + "-" +
+                telefone.substring(7, 11)
+        }
+
+        // formatar CEP 12345-789
+        if (cep.length == 8) {
+            cep = cep.substring(0, 5) + "-" + cep.substring(5, 8)
+        }
+
+        alert(
+            "Cadastro realizado com sucesso!\n\n" +
+            "Nome: " + nome +
+            "\nCNPJ: " + cnpj +
+            "\nTelefone: " + telefone +
+            "\nEmail: " + email +
+            "\nCEP: " + cep +
+            "\nPaís: " + pais +
+            "\nEstado: " + estado +
+            "\nCidade: " + cidade +
+            "\nNúmero: " + numero
+        )
+    }
+</script>
