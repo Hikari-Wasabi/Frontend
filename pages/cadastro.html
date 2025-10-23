@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,65 +8,66 @@
     <link rel="stylesheet" href="../styles/index.css">
     <link rel="stylesheet" href="../styles/login.css">
 </head>
+
 <body>
 
-<header class="header">
-    <div class="div_logo">
-        <img src="../assets/logo.png" alt="logo wasabi">
-    </div>
-    <nav class="navbar">
-        <span><a href="../index.html#section_home">Home</a></span>
-        <span><a href="../index.html#section_simulacao">Simulação</a></span>
-        <span><a href="./contato.html">Contato</a></span>
-        <span><a href="../index.html#section_duvida">Dúvidas</a></span>
-    </nav>
-    <div class="div_authButtons">
-        <a href="./login.html">Login</a>
-        <a href="#">Registrar</a>
-    </div>
-</header>
-
-<section class="section_main">
-    <div class="container">
-
-        <!-- Página 1 -->
-        <form id="pg1">
-            <h1>Cadastre-se!</h1>
-            <div class="container_inputs">
-          
-                <label>Token</label>
-                <input type="text" id="input_token" placeholder="Insira o Token">
-
-                <label>Nome</label>
-                <input type="text" id="input_nome" placeholder="Insira o nome">
-
-                <label>Telefone</label>
-                <input type="text" id="input_telefone" placeholder="Insira o telefone">
-
-                <label>Email</label>
-                <input type="text" id="input_email" placeholder="Insira o email">
-
-                <label>Senha</label>
-                <input type="password" id="input_senha" placeholder="Insira a senha">
-
-                <label>Confirmar Senha</label>
-                <input type="password" id="input_Confsenha" placeholder="Confirme a senha">
-
-                <p id="mensagemErro1" style="display:none; color:red"></p>
-            </div>
-            <center>
-                <button type="button" onclick="cadastrar()">Cadastrar</button>
-            </center>
-        </form>
-
-       
-
-        <div class="div_imagem">
-            <img src="../assets/logo.png" alt="imagem wasabi">
+    <header class="header">
+        <div class="div_logo">
+            <img src="../assets/logo.png" alt="logo wasabi">
         </div>
-    </div>
-</section>
- <footer>
+        <nav class="navbar">
+            <span><a href="../index.html#section_home">Home</a></span>
+            <span><a href="../index.html#section_simulacao">Simulação</a></span>
+            <span><a href="./contato.html">Contato</a></span>
+            <span><a href="../index.html#section_duvida">Dúvidas</a></span>
+        </nav>
+        <div class="div_authButtons">
+            <a href="./login.html">Login</a>
+            <a href="#">Registrar</a>
+        </div>
+    </header>
+
+    <section class="section_main">
+        <div class="container">
+
+            <!-- Página 1 -->
+            <form id="pg1">
+                <h1>Cadastre-se!</h1>
+                <div class="container_inputs">
+
+                    <label>Token</label>
+                    <input type="text" id="input_token" placeholder="Insira o Token">
+
+                    <label>Nome</label>
+                    <input type="text" id="input_nome" placeholder="Insira o nome">
+
+                    <label>Telefone</label>
+                    <input type="text" id="input_telefone" placeholder="Insira o telefone" maxlength="11">
+
+                    <label>Email</label>
+                    <input type="text" id="input_email" placeholder="Insira o email">
+
+                    <label>Senha</label>
+                    <input type="password" id="input_senha" placeholder="Insira a senha">
+
+                    <label>Confirmar Senha</label>
+                    <input type="password" id="input_Confsenha" placeholder="Confirme a senha">
+
+                    <p id="mensagemErro1" style="display:none; color:red"></p>
+                </div>
+                <center>
+                    <button type="button" onclick="cadastrar()">Cadastrar</button>
+                </center>
+            </form>
+
+
+
+            <div class="div_imagem">
+                <img src="../assets/logo.png" alt="imagem wasabi">
+            </div>
+        </div>
+    </section>
+    <footer>
         <div class="div_imgs">
             <img src="../assets/icon/iconeInstagram.svg" alt="icone instagram">
             <img src="../assets/icon/iconeFacebook.svg" alt="icone facebook">
@@ -85,55 +87,61 @@
         </center>
     </footer>
 
-<script>
+    <script>
 
-    function cadastrar() {
-        var token = input_token.value
-        var nome = input_nome.value
-        var telefone = input_telefone.value
-        var email = input_email.value
-        var senha = input_senha.value
-        var Confsenha = input_Confsenha.value
-        var TokenIsValid = false
-        var houveErro = false
-        mensagemErro1.style.display = 'none'
+        function cadastrar() {
+            var token = input_token.value
+            var nome = input_nome.value
+            var telefone = input_telefone.value
+            var email = input_email.value
+            var senha = input_senha.value
+            var Confsenha = input_Confsenha.value
+            var TokenIsValid = false
+            var houveErro = false
+            mensagemErro1.style.display = 'none'
+            mensagemErro1.innerHTML= ''
 
-       
 
-        // Verifica campos vazios
-        if (
-            token == "" || nome == "" || telefone == "" || email == "" ||
-                senha == "" || Confsenha == "" 
-        ) {
-            houveErro = true
-            mensagemErro1.style.display = 'block'
-            mensagemErro1.innerHTML += "<br> Não podem ter campos vazios!"
-        
-        }
-        //Verifica Token
-        if (token == "A1B2C3") {
-            TokenIsValid = true
-        } else {
-            houveErro = true
-            mensagemErro1.style.display = 'block'
-            mensagemErro1.innerHTML += "<br> O Token está inválido!"
-        
-        } 
-        
-        // Formata tel (11) 12345-6789
-        if (telefone.length == 11) {
-            telefone = "(" + telefone.substring(0, 2) + ") " +
-                telefone.substring(2, 7) + "-" +
-                telefone.substring(7, 11)
-        }
 
-        // Verifica email
-        if (!email.includes("@") || !email.endsWith(".com")) {
-            houveErro = true
-            mensagemErro1.style.display = 'block'
-            mensagemErro1.innerHTML += "<br> Email está em formato incorreto!"
+            // Verifica campos vazios
+            if (
+                token == "" || nome == "" || telefone == "" || email == "" ||
+                senha == "" || Confsenha == ""
+            ) {
+                houveErro = true
+                mensagemErro1.style.display = 'block'
+                mensagemErro1.innerHTML += "<br> Não podem ter campos vazios!"
+
+            }
+            //Verifica Token
+            if (token == "A1B2C3") {
+                TokenIsValid = true
+            } else {
+                houveErro = true
+                mensagemErro1.style.display = 'block'
+                mensagemErro1.innerHTML += "<br> O Token está inválido!"
+
+            }
+
+            // Formata tel (11) 12345-6789
+            if (telefone.length == 11) {
+                telefone = "(" + telefone.substring(0, 2) + ") " +
+                    telefone.substring(2, 7) + "-" +
+                    telefone.substring(7, 11)
+            }
         
-        }
+            // Verifica email
+            if (
+                !email.includes("@") ||
+                !email.endsWith(".com") ||
+                email.indexOf("@") === 0 ||                  
+                email.indexOf("@") === email.length - 5 ||    
+                email[email.indexOf("@") + 1] === '.'         
+            ) {
+                houveErro = true
+                mensagemErro1.style.display = 'block'
+                mensagemErro1.innerHTML += "<br>Email está em formato incorreto!"
+            }
 
         // Verifica senha
 
@@ -143,7 +151,7 @@
         var temEspecial = false
         var i = 0
 
-        while (i < senha.length) {  
+        while (i < senha.length) {
             var c = senha[i]
             if (c >= "A" && c <= "Z") temMaiuscula = true
             else if (c >= "a" && c <= "z") temMinuscula = true
@@ -156,8 +164,6 @@
             houveErro = true
             mensagemErro1.style.display = 'block'
             mensagemErro1.innerHTML += "<br> Senha Fraca!"
-        
-            
         }
 
         // Confirma senha 
@@ -168,20 +174,20 @@
         } if (houveErro) {
             mensagemErro1.style.display = 'block';
             mensagemErro1.innerHTML += "<br> Cadastro não realizado!"
-        } else { 
-            alert (
-            "Cadastro realizado com sucesso!\n\n" +
-            "Nome: " + nome +
-            "\nToken: " + token +
-            "\nTelefone: " + telefone +
-            "\nEmail: " + email )
+        } else {
+            alert(
+                "Cadastro realizado com sucesso!\n\n" +
+                "Nome: " + nome +
+                "\nToken: " + token +
+                "\nTelefone: " + telefone +
+                "\nEmail: " + email)
             window.location.href = "./login.html"
-      
+
 
         }
-    
         
     };
-</script>
+    </script>
 </body>
+
 </html>
