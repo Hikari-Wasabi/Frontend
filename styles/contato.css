@@ -72,43 +72,4 @@
     height: 40px;
 }
 
-/* FOOTER */
 
-footer {
-    padding: 0px 0px 50px 0px;
-}
-
-.div_imgs {
-    display: flex;
-    justify-content: center;
-    gap: 50px;
-    padding: 20px 0px;
-}
-
-.div_imgs img {
-    height: 50px;
-}
-
-.div_links {
-    padding: 0px 0px 20px 0px;
-}
-
-.div_links ul {
-    list-style: none;
-    display: flex;
-    justify-content: center;
-    flex-wrap: nowrap;
-    gap: 70px;
-}
-
-.div_links ul li a {
-    text-decoration: none;
-    color: #000;
-    font-size: 20px;
-}
-
-footer center span {
-    color: #0D26014D;
-    font-weight: 400;
-    font-size: 20px;
-}
