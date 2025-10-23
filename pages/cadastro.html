@@ -6,91 +6,163 @@
     <title>Cadastro</title>
     <link rel="stylesheet" href="../styles/index.css">
     <link rel="stylesheet" href="../styles/login.css">
-    <link rel="shortcut icon" type="imagex/png" href="./assets/imagem_wasabi_login.png">
 </head>
 <body>
-    <!-- HEADER -->
-    <header class="header">
-        <div class="div_logo">
-            <img src="../assets/logo.png" alt="logo wasabi">
-        </div>
-        <nav class="navbar">
-            <span><a href="../index.html#section_home">Home</a></span>
-            <span><a href="../index.html#section_simulacao">Simulação</a></span>
-            <span><a href="./contato.html">Contato</a></span>
-            <span><a href="../index.html#section_duvida">Dúvidas</a></span>
-        </nav>
-        <div class="div_authButtons">
-            <a href="./login.html">Login</a>
-            <a href="#">Registrar</a>
-        </div>
-    </header>
-    
-    <section class="section_main">
-        <div class="container">
-            <form action="" id="pg1">
-                <h1>Cadastre-se!</h1>
-                <div class="container_inputs">
-                    <label for="">Nome</label>
-                    <input placeholder="Insira o email" type="text">
-                    <label for="">Cnpj</label>
-                    <input placeholder="Insira o Cnpj" type="text">
-                    <label for="">Telefone</label>
-                    <input placeholder="Insira o telefone" type="text">
-                    <label for="">Email</label>
-                    <input placeholder="Insira o email" type="text">
-                    <label for="">Senha</label>
-                    <input placeholder="Insira a senha" type="password">
-                    <p id="mensagemErro1">ERRO!!!!</p>
-                </div>
-                <center>
-                    <button type="button" onclick="proximo()">Próximo</button>
-                </center>
-            </form>
-            
-            <!-- CONTINUAÇÃO DA PÁGINA -->
-            <form action="" id="pg2">
-                <h1>Cadastre-se!</h1>
-                <div class="container_inputs">
-                    <label for="">CEP</label>
-                    <input placeholder="Insira o cep" type="text">
-                    <label for="">País</label>
-                    <input placeholder="Insira o país" type="text">
-                    <label for="">Estado</label>
-                    <input placeholder="Insira o estado" type="text">
-                    <label for="">Cidade</label>
-                    <input placeholder="Insira a cidade" type="text">
-                    <label for="">Número</label>
-                    <input placeholder="Insira o número de casa" type="text">
-                    <p id="mensagemErro2">ERRO!!!!</p>
-                </div>
-                <span class="button_container">
-                    <button type="button" class="button_voltar" onclick="voltar()">Voltar</button>
-                    <button type="button" onclick="cadastrar()">Cadastrar</button>
-                </span>
-            </form>
-            <div class="div_imagem">
-                <img src="../assets/imagem_wasabi_login.svg" alt="imagem wasabi">
+
+<header class="header">
+    <div class="div_logo">
+        <img src="../assets/logo.svg" alt="logo wasabi">
+    </div>
+    <nav class="navbar">
+        <span><a href="../index.html">Home</a></span>
+        <span><a href="#section_simulacao">Simulação</a></span>
+        <span><a href="#section_quemSomos">Quem somos</a></span>
+        <span><a href="#section_duvida">Contato</a></span>
+    </nav>
+    <div class="div_authButtons">
+        <a href="./login.html">Login</a>
+        <a href="#">Registrar</a>
+    </div>
+</header>
+
+<section class="section_main">
+    <div class="container">
+
+        <!-- Página 1 -->
+        <form id="pg1">
+            <h1>Cadastre-se!</h1>
+            <div class="container_inputs">
+          
+                <label>Token</label>
+                <input type="text" id="input_token" placeholder="Insira o Token">
+
+                <label>Nome</label>
+                <input type="text" id="input_nome" placeholder="Insira o nome">
+
+                <label>Telefone</label>
+                <input type="text" id="input_telefone" placeholder="Insira o telefone">
+
+                <label>Email</label>
+                <input type="text" id="input_email" placeholder="Insira o email">
+
+                <label>Senha</label>
+                <input type="password" id="input_senha" placeholder="Insira a senha">
+
+                <label>Confirmar Senha</label>
+                <input type="password" id="input_Confsenha" placeholder="Confirme a senha">
+
+                <p id="mensagemErro1" style="display:none; color:red"></p>
             </div>
+            <center>
+                <button type="button" onclick="cadastrar()">Cadastrar</button>
+            </center>
+        </form>
+
+       
+
+        <div class="div_imagem">
+            <img src="../assets/imagem_wasabi_login.svg" alt="imagem wasabi">
         </div>
-    </section>
-</body>
-</html>
+    </div>
+</section>
 
 <script>
-    pg2.style.display = 'none'
-    
-    function proximo() {
-        pg1.style.display = 'none'
-        pg2.style.display = 'block'
-    }
-
-    function voltar() {
-        pg1.style.display = 'block'
-        pg2.style.display = 'none'
-    }
 
     function cadastrar() {
+        var token = input_token.value
+        var nome = input_nome.value
+        var telefone = input_telefone.value
+        var email = input_email.value
+        var senha = input_senha.value
+        var Confsenha = input_Confsenha.value
+        var TokenIsValid = false
+        var houveErro = false
+        mensagemErro1.style.display = 'none'
 
-    }
+       
+
+        // Verifica campos vazios
+        if (
+            token == "" || nome == "" || telefone == "" || email == "" ||
+                senha == "" || Confsenha == "" 
+        ) {
+            houveErro = true
+            mensagemErro1.style.display = 'block'
+            mensagemErro1.innerHTML += "<br> Não podem ter campos vazios!"
+        
+        }
+        //Verifica Token
+        if (token == "A1B2C3") {
+            TokenIsValid = true
+        } else {
+            houveErro = true
+            mensagemErro1.style.display = 'block'
+            mensagemErro1.innerHTML += "<br> O Token está inválido!"
+        
+        } 
+        
+        // Formata tel (11) 12345-6789
+        if (telefone.length == 11) {
+            telefone = "(" + telefone.substring(0, 2) + ") " +
+                telefone.substring(2, 7) + "-" +
+                telefone.substring(7, 11)
+        }
+
+        // Verifica email
+        if (!email.includes("@") || !email.endsWith(".com")) {
+            houveErro = true
+            mensagemErro1.style.display = 'block'
+            mensagemErro1.innerHTML += "<br> Email está em formato incorreto!"
+        
+        }
+
+        // Verifica senha
+
+        var temMaiuscula = false
+        var temMinuscula = false
+        var temNumero = false
+        var temEspecial = false
+        var i = 0
+
+        while (i < senha.length) {  
+            var c = senha[i]
+            if (c >= "A" && c <= "Z") temMaiuscula = true
+            else if (c >= "a" && c <= "z") temMinuscula = true
+            else if (c >= "0" && c <= "9") temNumero = true
+            else temEspecial = true
+            i = i + 1
+        }
+
+        if (senha.length < 8 || !temMaiuscula || !temMinuscula || !temNumero || !temEspecial) {
+            houveErro = true
+            mensagemErro1.style.display = 'block'
+            mensagemErro1.innerHTML += "<br> Senha Fraca!"
+           
+            
+        }
+
+        // Confirma senha 
+        if (Confsenha !== senha) {
+            houveErro = true
+            mensagemErro1.style.display = 'block'
+            mensagemErro1.innerHTML = "Confirmação de senha inválida!"
+        } if (houveErro) {
+            mensagemErro1.style.display = 'block';
+            mensagemErro1.innerHTML += "<br> Cadastro não realizado!"
+        } else { 
+            alert (
+            "Cadastro realizado com sucesso!\n\n" +
+            "Nome: " + nome +
+            "\nToken: " + token +
+            "\nTelefone: " + telefone +
+            "\nEmail: " + email )
+            window.location.href = "./login.html"
+      
+
+        }
+    
+        
+    };
 </script>
+</body>
+</html>
