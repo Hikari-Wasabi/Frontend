@@ -32,8 +32,6 @@
             <form id="formulario_login">
                 <h1>Bem vindo de volta!</h1>
                 <div class="container_inputs">
-                    <label for="">Token da empresa</label>
-                    <input placeholder="Insira o token da empresa" type="text" id="input_token">
                     <label for="">Email</label>
                     <input placeholder="Insira o email da empresa" type="text" id="input_email">
                     <label for="">Senha</label>
@@ -78,7 +76,6 @@
 
 <script>
     function validacao_login() {
-        var token_usuario = input_token.value
         var senha_usuario = input_senha.value
         var email_usuario = input_email.value    
         
@@ -87,7 +84,7 @@
         var email_empresa = "admin@empresa.com"
         
            
-        if (token_empresa == token_usuario && senha_empresa == senha_usuario && email_empresa == email_usuario){
+        if (senha_empresa == senha_usuario && email_empresa == email_usuario){
             // div_mensagem_erro.innerHTML = `conta autorizada bem vindo a o site!`
             window.location.href = "./dashboard.html"
         } else {
