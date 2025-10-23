@@ -1,16 +1,17 @@
     .div_simulador {
         flex-direction: row;
         display: flex;
-        margin-top: 40px;
+        margin-top: 0px;
+        
     }
 
     .titulo {
         color: #558C03;
         justify-self: center;
-        position: absolute;
         text-shadow: 0 0 3.5px #000000;
         font-weight: bold;
         font-size: 48px;
+        margin: 0px;
     }
 
     .div_resultado {
@@ -26,13 +27,15 @@
         font-family: "poppins", sans-serif;
         font-size: 35px;
         font-weight: 500;
+        margin: 0px;
     }
 
     .div_resultado .container {
         display: flex;
-        background-color: rgb(255, 255, 255);
+        background-color: #f5f7fa;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
         width: 60%;
-        border-radius: 10px;
+        border-radius: 12px;
         font-family: "poppins", sans-serif;
         font-size: 23px;
         padding-left: 20px;
@@ -72,10 +75,11 @@
     }
 
     .div_input input {
-        border-radius: 5px;
+        border-radius: 12px;
         border: none;
         height: 35px;
         width: 100%;
+        background-color: #f5f7fa;
         box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2);
         font-family: 'inter-variable', sans-serif;
         font-weight: bold;
