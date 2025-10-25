@@ -122,11 +122,13 @@ body {
       gap: 10px;
       flex-wrap: wrap;
       margin-bottom: 20px;
-      padding: 0 20px;
+      padding: 30px 20px;
     }
 
     .container_kpi button {
-      padding: 12.8px 24px;
+      padding: 12.8px 0px;
+      width: 120px;
+      font-size: 15px;
       border: none;
       border-radius: 80px;
       font-weight: 600;
@@ -140,7 +142,7 @@ body {
       color: white;
     }
 
-    .style_nocivo {
+    .style_instavel {
       background-color: #c7490e;
       color: white;
     }
