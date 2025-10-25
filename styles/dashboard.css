@@ -28,6 +28,12 @@ body {
   outline: none;
 }
 
+.titulo-dashboard {
+  color: #228b22;
+  font-weight: bolder;
+  padding: 10px 15px 10px 15px;
+}
+
 .div_logo img {
   height: 40px;
 }
