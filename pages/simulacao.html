@@ -175,7 +175,7 @@
                     mes_começo = 1
                 }
                 if (umi_total < 60) {
-                    qnt_wasabi_coletados -= 10
+                    qnt_wasabi_coletados -= 200
                     console.log('perde wasabi')
                 } else {
                     console.log('não perde wasabi')
@@ -184,8 +184,8 @@
             var eficiencia = (qnt_wasabi_coletados * 100) / qnt_wasabi_total;
             var kg_wasabi = (qnt_wasabi_coletados * peso_wasabi) / 1000;
             var kg_wasabi_total = (qnt_wasabi_total * peso_wasabi) / 1000;
-            var ganhos = (kg_wasabi * valor_wasabi) / (eficiencia / 100);
-            var ganhos_total = (kg_wasabi_total * valor_wasabi) / (eficiencia / 100);
+            var ganhos = (kg_wasabi * valor_wasabi) * (eficiencia / 100);
+            var ganhos_total = (kg_wasabi_total * valor_wasabi) * (eficiencia / 100);
             var perda = ganhos_total - ganhos;
             var ganhos_safra = ganhos / qnt_safra;
 
@@ -194,13 +194,17 @@
         Eficiência:  ${eficiencia.toFixed(2)}% <br>
         Total de unidades de Wasabi: ${qnt_wasabi_coletados.toFixed(0)}<br> 
         Total de peso de Wasabi: ${kg_wasabi.toFixed(2)}kg<br>
-        Valor da venda de cada safra: R$${ganhos_safra.toFixed(2)} <br>
-        Perda sem o sistema: R$${perda.toFixed(2)}<br><br> `
+        Valor da venda de cada safra: ${ganhos_safra.toLocaleString
+        ("pt-BR", {style:"currency", currency: "BRL"})} <br>
+        Perda sem o sistema: ${perda.toLocaleString("pt-BR",
+            {style:"currency", currency: "BRL"}
+        )}<br><br> `
 
             div_fat.innerHTML = `
         <p> Com o nosso serviço de monitoramento de </p>
        <p> umidade e temperatura você irá faturar: </p><br>
-       <p><span>R$:<span style="color: #558C03;">${ganhos_total.toFixed(2)}</span></span></p>`
+       <p><span>R$:<span style="color: #558C03;">
+        ${new Intl.NumberFormat('pt-BR').format(ganhos_total.toFixed(2))}</span></span></p>`
         }
     }
 
