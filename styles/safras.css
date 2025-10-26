@@ -32,6 +32,7 @@ body {
 
 .div_safras {
     width: 100%;
+    max-width: 675px;
 }
 
 .div_safras h1 {
@@ -42,7 +43,7 @@ body {
 
 .container_cards {
     display: flex;
-    justify-content: center;
+    justify-content: flex-end;
     flex-wrap: wrap;
     gap: 15px;
 }

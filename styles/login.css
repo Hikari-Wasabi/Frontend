@@ -118,24 +118,24 @@ form button {
 
 .div_imagem {
     display: flex;
-    justify-content: flex-end;
     align-items: center;
     flex-direction: column;
+    align-self: center;
+    gap: 25px;
 }
 
 .div_imagem h2 {
     font-size: 45px;
     text-align: center;
-    max-width: 600px;
+    max-width: 500px;
     margin: 0px;
     color: #558C03;
     font-weight: bolder;
     font-style: italic;
     font-family: Georgia, 'Times New Roman', Times, serif;
-
 }
 
 .div_imagem img {
-    width: 600px;
+    width: 500px;
 }
 
