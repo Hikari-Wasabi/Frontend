@@ -96,6 +96,8 @@
 
     function calc() {
 
+        
+
         var qnt_safra = Number(input_qtdSafra.value);
         var qnt_area = Number(input_qtdarea.value);
         var valor_wasabi = Number(input_valwasabi.value);
@@ -108,6 +110,10 @@
         var qnt_wasabi_coletados = qnt_wasabi_total;
         var peso_wasabi = 280;
 
+
+        if (qnt_area == 0 || qnt_area == 0 || valor_wasabi == 0 || wasabi_pm == 0) {
+            alert('Algum valor do formulario não foi cadastrado ou está igual a 0')
+        } else {
         if (valor_wasabi > 8000) {
             alert('Valor do Wasabi esta acima do padrão do mercado, você pode ter uma dificuldade de vendas')
         } else if (valor_wasabi < 2000) {
@@ -201,6 +207,7 @@
         <p> Com o nosso serviço de monitoramento de </p>
        <p> umidade e temperatura você irá faturar: </p><br>
        <p><span>R$:<span style="color: #558C03;">${ganhos_total.toFixed(2)}</span></span></p>`
+        }
         }
     }
 
