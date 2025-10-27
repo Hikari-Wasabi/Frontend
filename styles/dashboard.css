@@ -28,6 +28,12 @@ body {
   outline: none;
 }
 
+.titulo-dashboard {
+  color: #228b22;
+  font-weight: bolder;
+  padding: 10px 15px 10px 15px;
+}
+
 .div_logo img {
   height: 40px;
 }
@@ -66,7 +72,6 @@ body {
   border-radius: 12px;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
   padding: 1.5rem;
-  transition: transform 0.3s, box-shadow 0.3s;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -116,16 +121,17 @@ body {
       gap: 10px;
       flex-wrap: wrap;
       margin-bottom: 20px;
-      padding: 0 20px;
+      padding: 30px 20px;
     }
 
     .container_kpi button {
-      padding: 12.8px 24px;
+      padding: 12.8px 0px;
+      width: 120px;
+      font-size: 15px;
       border: none;
       border-radius: 80px;
       font-weight: 600;
       cursor: pointer;
-      transition: all 0.3s;
       box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     }
 
@@ -134,7 +140,7 @@ body {
       color: white;
     }
 
-    .style_nocivo {
+    .style_instavel {
       background-color: #c7490e;
       color: white;
     }
@@ -168,7 +174,6 @@ body {
       border-radius: 12px;
       box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
       padding: 24px;
-      transition: transform 0.3s;
     }
 
     .chart-container canvas {

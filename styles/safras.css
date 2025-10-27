@@ -1,0 +1,98 @@
+body {
+    background-color: #f5f7fa;
+}
+
+.titulo_safra {
+    margin: 0px;
+    padding: 20px 0px 20px 40px;
+    color: #195925;
+    font-weight: bolder;
+}
+
+.section_main {
+    display: flex;
+    width: 100%;
+    
+    justify-content: center;
+}
+
+.section_main .container {
+    display: flex;
+    justify-content: space-between;
+    width: 90%;
+    gap: 100px;
+}
+
+.div_logoWasabi {
+    align-self: center;
+}
+
+.img_logo {
+    width: 500px;
+}
+
+.div_safras {
+    width: 100%;
+    /* max-width: 675px; */
+}
+
+.div_safras h1 {
+    text-align: center;
+    color: #195925;
+    font-size: 38px;
+    /* padding: 0px 0px 0px 10%; */
+}
+
+.container_cards {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 35px;
+    /* flex-direction: column; */
+}
+
+.card-safra {
+    /* height: 150px; */
+    /* width: 250px; */
+    display: flex;
+    width: fit-content;
+    align-items: center;
+    border-radius: 15px;
+    border: 2px solid #558C03;
+    background-color: #e0f9e0;
+    padding: 15px 12px;
+    gap: 15px;
+    cursor: pointer;
+}
+
+.card-safra img {
+    height: 100px;
+    border-radius: 15px;
+}
+
+.card-safra span {
+    
+}
+
+.card-safra span p {
+    font-size: 17px;
+    text-align: start;
+    padding: 8px 0px 0px 0px;
+    margin: 0px;
+}
+
+.card-safra span p span {
+    color: #8b9848;
+}
+
+.card-safra span h2 {
+    font-weight: bolder;
+    text-align: start;
+    padding: 0px 0px 4px 0px;
+    margin: 0px;
+}
+
+.card-safra span h2 span {
+    color: #808f28;
+}
+

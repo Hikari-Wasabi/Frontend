@@ -12,8 +12,6 @@
 </head>
 
 <body>
-
-  <body>
     <!-- HEADER -->
     <header class="header">
       <div class="div_logo">
@@ -21,36 +19,49 @@
       </div>
       <nav class="navbar">
         <span><a href="../index.html#section_home">Home</a></span>
-        <span><a href="../index.html#section_simulacao">Simulação</a></span>
+        <span><a href="./simulacao.html">Simulação</a></span>
         <span><a href="./contato.html">Contato</a></span>
         <span><a href="../index.html#section_duvida">Dúvidas</a></span>
       </nav>
 
     </header>
-
     <div class="div_father">
-      <div class="containerTemp fade-in">
+      <div></div>
+      <div class="containerTemp">
+        <div class="divTemp">
+          <span>Safra</span>
+          <div class="temp-value" style="font-size: 40px; color: #676565;">#1001</div>
+        </div>
+      </div><div class="containerTemp ">
+        <div class="divTemp">
+          <span>Sensor</span>
+          <div class="temp-value" style="font-size: 40px; color: #676565;">#101</div>
+        </div>
+      </div>
+      <div></div>
+    </div>
+    <div class="div_father">
+      <div class="containerTemp">
         <div class="divTemp">
           <span>Temperatura</span>
-          <div class="temp-value" style="font-size: 40px;">25°C</div>
+          <div class="temp-value" style="font-size: 40px;">12°C</div>
           <div class="temp-trend">
             <span style="color: #FF4500">+2°C desde ontem</span>
           </div>
         </div>
       </div>
-      <div class="containerTemp fade-in">
+      <div class="containerTemp">
         <div class="divTemp">
           <span>Status</span>
-          <div class="temp-value" style="font-size: 40px; color: #228b22;"">Adequado</div>
+          <div class="temp-value" style="font-size: 40px; color: #228b22;">Adequado</div>
           <div class="temp-trend">
-            <!-- <span style="color: green">+2°C desde ontem</span> -->
           </div>
         </div>
       </div>
-      <div class="containerUmi fade-in">
+      <div class="containerUmi">
         <div class="divUmi">
           <span>Umidade</span>
-          <div class="umi-value" style="font-size: 40px;">65%</div>
+          <div class="umi-value" style="font-size: 40px;">86%</div>
           <div class="umi-trend">
             <span style="color: #3498db;">-5% desde ontem</span>
           </div>
@@ -58,21 +69,16 @@
       </div>
     </div>
 
-    <div class="example_status">
-      <!-- Status atual do ambiente: <span>Adequado</span> -->
-    </div>
-
     <div class="container_kpi">
 
-      <button class="style_critico">Crítico</button>
-      <button class="style_nocivo">Nocivo</button>
-      <button class="style_adequado">Adequado</button>
-      <button class="style_inóspito">Inóspito</button>
+      <button title="Quando a temperatura e umidade estão em níveis inadequados" class="style_critico">Crítico</button>
+      <button title="Quando a temperatura ou umidade estão em níveis inadequados" class="style_instavel">Instável</button>
+      <button title="Quando a temperatura e umidade estão em níveis adequados" class="style_adequado">Adequado</button>
     </div>
 
     <div class="graficos">
       <div class="chart-container">
-        <h3>Umidade por Período do Dia</h3>
+        <h3>Variação de Umidade</h3>
         <canvas id="dashboardCSS"></canvas>
       </div>
       <div class="chart-container">
@@ -93,11 +99,11 @@
     new Chart(ctx, {
       type: 'line',
       data: {
-        labels: ['Madrugada', 'Manhã', 'Tarde', 'Noite'],
+        labels: ['12:00', '13:00', '14:00', '15:00', '16:00', '17:00'],
         datasets: [
           {
             label: 'Umidade Média (%)',
-            data: [60, 59, 63, 47],
+            data: [85, 88, 91, 94, 90, 86],
             borderColor: '#32b9cd',
             backgroundColor: 'rgba(50, 185, 205, 0.1)',
             borderWidth: 3,
@@ -120,7 +126,7 @@
           y: {
             beginAtZero: false,
             min: 0,
-            max: 90,
+            max: 100,
             title: {
               display: true,
               text: 'Umidade (%)'
@@ -129,6 +135,7 @@
           x: {
             title: {
               display: true,
+              text: 'Horário'
             }
           }
         }
@@ -143,7 +150,7 @@
         datasets: [
           {
             label: 'Temperatura (°C)',
-            data: [30, 29, 28, 25, 22, 23],
+            data: [17, 19, 17, 16, 14, 12],
             borderColor: '#f75d52',
             backgroundColor: 'rgba(247, 93, 82, 0.1)',
             borderWidth: 3,
@@ -168,7 +175,9 @@
             title: {
               display: true,
               text: 'Temperatura (°C)'
-            }
+            },
+            min: 5,
+            max: 25,
           },
           x: {
             title: {
