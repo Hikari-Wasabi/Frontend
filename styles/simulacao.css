@@ -102,6 +102,7 @@
 
     .div_input button {
         border: none;
+        cursor: pointer;
         box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.4);
         border-radius: 5px;
         width: 30%;
