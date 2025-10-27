@@ -20,6 +20,7 @@ body {
     display: flex;
     justify-content: space-between;
     width: 90%;
+    gap: 100px;
 }
 
 .div_logoWasabi {
@@ -39,12 +40,12 @@ body {
     text-align: center;
     color: #195925;
     font-size: 38px;
-    padding: 0px 0px 0px 10%;
+    /* padding: 0px 0px 0px 10%; */
 }
 
 .container_cards {
     display: flex;
-    justify-content: flex-end;
+    justify-content: center;
     flex-wrap: wrap;
     gap: 35px;
     /* flex-direction: column; */
