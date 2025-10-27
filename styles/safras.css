@@ -4,7 +4,7 @@ body {
 
 .titulo_safra {
     margin: 0px;
-    padding: 10px 0px 10px 40px;
+    padding: 20px 0px 20px 40px;
     color: #195925;
     font-weight: bolder;
 }
@@ -32,20 +32,22 @@ body {
 
 .div_safras {
     width: 100%;
-    max-width: 675px;
+    /* max-width: 675px; */
 }
 
 .div_safras h1 {
     text-align: center;
     color: #195925;
     font-size: 38px;
+    padding: 0px 0px 0px 10%;
 }
 
 .container_cards {
     display: flex;
     justify-content: flex-end;
     flex-wrap: wrap;
-    gap: 15px;
+    gap: 35px;
+    /* flex-direction: column; */
 }
 
 .card-safra {
