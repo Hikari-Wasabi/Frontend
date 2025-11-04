@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro</title>
+    <link rel="stylesheet" href="../styles/index.css">
+    <link rel="stylesheet" href="../styles/login.css">
+</head>
+
+<body>
+
+    <header class="header">
+        <div class="div_logo">
+            <img src="../assets/logo.png" alt="logo wasabi">
+        </div>
+        <nav class="navbar">
+            <span><a href="../index.html#section_home">Home</a></span>
+            <span><a href="./simulacao.html">Simulação</a></span>
+            <span><a href="./contato.html">Contato</a></span>
+            <span><a href="../index.html#section_duvida">Dúvidas</a></span>
+        </nav>
+        <div class="div_authButtons">
+            <a href="./login.html">Login</a>
+            <a href="#">Registrar</a>
+        </div>
+    </header>
+
+    <section class="section_main">
+        <div class="container">
+
+            <!-- Página 1 -->
+            <form id="pg1">
+                <h1>Cadastre-se!</h1>
+                <div class="container_inputs">
+
+                    <label>Token</label>
+                    <input type="text" id="input_token" placeholder="Insira o Token">
+
+                    <label>Nome</label>
+                    <input type="text" id="input_nome" placeholder="Insira o nome">
+
+                    <label>Telefone</label>
+                    <input type="text" id="input_telefone" placeholder="Insira o telefone" maxlength="11">
+
+                    <label>Email</label>
+                    <input type="text" id="input_email" placeholder="Insira o email">
+
+                    <label>Senha</label>
+                    <input type="password" id="input_senha" placeholder="Insira a senha">
+
+                    <label>Confirmar Senha</label>
+                    <input type="password" id="input_Confsenha" placeholder="Confirme a senha">
+
+                    <p id="mensagemErro1" style="display:none; color:red"></p>
+                </div>
+                <center>
+                    <button type="button" onclick="cadastrar()">Cadastrar</button>
+                </center>
+            </form>
+
+
+
+            <div class="div_imagem">
+                <img src="../assets/logo.png" alt="imagem wasabi">
+                <h2>precisão que cabe em qualquer safra</h2>
+            </div>
+        </div>
+    </section>
+    <footer>
+        <div class="div_imgs">
+            <img src="../assets/icon/iconeInstagram.svg" alt="icone instagram">
+            <img src="../assets/icon/iconeFacebook.svg" alt="icone facebook">
+            <img src="../assets/icon/iconeLinkedin.svg" alt="icone linkedin">
+            <img src="../assets/icon/iconeEmail.svg" alt="icone email">
+        </div>
+        <div class="div_links">
+            <ul>
+                <li><a href="../index.html#section_home">Home</a></li>
+                <li><a href="../pages/simulacao.html">Simulação</a></li>
+                <li><a href="./contato.html">Contato</a></li>
+                <li><a href="../index.html#section_duvida">Dúvidas</a></li>
+            </ul>
+        </div>
+        <center>
+            <span>Wasabi @ 2025</span>
+        </center>
+    </footer>
+
+    <script>
+
+        function cadastrar() {
+            var token = input_token.value
+            var nome = input_nome.value
+            var telefone = input_telefone.value
+            var email = input_email.value
+            var senha = input_senha.value
+            var Confsenha = input_Confsenha.value
+            var TokenIsValid = false
+            var houveErro = false
+            mensagemErro1.style.display = 'none'
+            mensagemErro1.innerHTML= ''
+
+
+
+            // Verifica campos vazios
+            if (
+                token == "" || nome == "" || telefone == "" || email == "" ||
+                senha == "" || Confsenha == ""
+            ) {
+                houveErro = true
+                mensagemErro1.style.display = 'block'
+                mensagemErro1.innerHTML += "<br> Não podem ter campos vazios!"
+
+            }
+            //Verifica Token
+            if (token == "A1B2C3") {
+                TokenIsValid = true
+            } else {
+                houveErro = true
+                mensagemErro1.style.display = 'block'
+                mensagemErro1.innerHTML += "<br> O Token está inválido!"
+
+            }
+
+            // Formata tel (11) 12345-6789
+            if (telefone.length == 11) {
+                telefone = "(" + telefone.substring(0, 2) + ") " +
+                    telefone.substring(2, 7) + "-" +
+                    telefone.substring(7, 11)
+            }
+        
+            // Verifica email
+            if (
+                !email.includes("@") ||
+                !email.endsWith(".com") ||
+                email.indexOf("@") === 0 ||                  
+                email.indexOf("@") === email.length - 5 ||    
+                email[email.indexOf("@") + 1] === '.'         
+            ) {
+                houveErro = true
+                mensagemErro1.style.display = 'block'
+                mensagemErro1.innerHTML += "<br>Email está em formato incorreto!"
+            }
+
+        // Verifica senha
+
+        var temMaiuscula = false
+        var temMinuscula = false
+        var temNumero = false
+        var temEspecial = false
+        var i = 0
+
+        while (i < senha.length) {
+            var c = senha[i]
+            if (c >= "A" && c <= "Z") temMaiuscula = true
+            else if (c >= "a" && c <= "z") temMinuscula = true
+            else if (c >= "0" && c <= "9") temNumero = true
+            else temEspecial = true
+            i = i + 1
+        }
+
+        if (senha.length < 8 || !temMaiuscula || !temMinuscula || !temNumero || !temEspecial) {
+            houveErro = true
+            mensagemErro1.style.display = 'block'
+            mensagemErro1.innerHTML += "<br> Senha Fraca!"
+        }
+
+        // Confirma senha 
+        if (Confsenha !== senha) {
+            houveErro = true
+            mensagemErro1.style.display = 'block'
+            mensagemErro1.innerHTML = "Confirmação de senha inválida!"
+        } if (houveErro) {
+            mensagemErro1.style.display = 'block';
+            mensagemErro1.innerHTML += "<br> Cadastro não realizado!"
+        } else {
+            alert(
+                "Cadastro realizado com sucesso!\n\n" +
+                "Nome: " + nome +
+                "\nToken: " + token +
+                "\nTelefone: " + telefone +
+                "\nEmail: " + email)
+            window.location.href = "./login.html"
+
+
+        }
+        
+    };
+    </script>
+</body>
+
+</html>
+<script>
+/*
+ADAPTAR O SCIPT DO DATA-VIZ PARA O PROJETO WASABI
+
+  // Array para armazenar empresas cadastradas para validação de código de ativação 
+  let listaEmpresasCadastradas = [];
+
+  function cadastrar() {
+    // aguardar();
+
+    //Recupere o valor da nova input pelo nome do id
+    // Agora vá para o método fetch logo abaixo
+    var nomeVar = nome_input.value;
+    var emailVar = email_input.value;
+    var senhaVar = senha_input.value;
+    var confirmacaoSenhaVar = confirmacao_senha_input.value;
+    var codigoVar = codigo_input.value;
+    var idEmpresaVincular
+
+    // Verificando se há algum campo em branco
+    if (
+      nomeVar == "" ||
+      emailVar == "" ||
+      senhaVar == "" ||
+      confirmacaoSenhaVar == "" ||
+      codigoVar == ""
+    ) {
+      cardErro.style.display = "block";
+      mensagem_erro.innerHTML =
+        "(Mensagem de erro para todos os campos em branco)";
+
+      finalizarAguardar();
+      return false;
+    } else {
+      setInterval(sumirMensagem, 5000);
+    }
+
+    // Verificando se o código de ativação é de alguma empresa cadastrada
+    for (let i = 0; i < listaEmpresasCadastradas.length; i++) {
+      if (listaEmpresasCadastradas[i].codigo_ativacao == codigoVar) {
+        idEmpresaVincular = listaEmpresasCadastradas[i].id
+        console.log("Código de ativação válido.");
+        break;
+      } else {
+        cardErro.style.display = "block";
+        mensagem_erro.innerHTML = "(Mensagem de erro para código inválido)";
+        finalizarAguardar();
+      }
+    }
+
+    // Enviando o valor da nova input
+    fetch("/usuarios/cadastrar", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        // crie um atributo que recebe o valor recuperado aqui
+        // Agora vá para o arquivo routes/usuario.js
+        nomeServer: nomeVar,
+        emailServer: emailVar,
+        senhaServer: senhaVar,
+        idEmpresaVincularServer: idEmpresaVincular
+      }),
+    })
+      .then(function (resposta) {
+        console.log("resposta: ", resposta);
+
+        if (resposta.ok) {
+          cardErro.style.display = "block";
+
+          mensagem_erro.innerHTML =
+            "Cadastro realizado com sucesso! Redirecionando para tela de Login...";
+
+          setTimeout(() => {
+            window.location = "login.html";
+          }, "2000");
+
+          limparFormulario();
+          finalizarAguardar();
+        } else {
+          throw "Houve um erro ao tentar realizar o cadastro!";
+        }
+      })
+      .catch(function (resposta) {
+        console.log(#ERRO: ${resposta});
+        finalizarAguardar();
+      });
+
+    return false;
+  }
+
+  // Listando empresas cadastradas 
+  function listar() {
+    fetch("/empresas/listar", {
+      method: "GET",
+    })
+      .then(function (resposta) {
+        resposta.json().then((empresas) => {
+          empresas.forEach((empresa) => {
+            listaEmpresasCadastradas.push(empresa);
+
+            console.log("listaEmpresasCadastradas")
+            console.log(listaEmpresasCadastradas[0].codigo_ativacao)
+          });
+        });
+      })
+      .catch(function (resposta) {
+        console.log(#ERRO: ${resposta});
+      });
+  }
+
+  function sumirMensagem() {
+    cardErro.style.display = "none";
+  }
+  
+  */
+</script>

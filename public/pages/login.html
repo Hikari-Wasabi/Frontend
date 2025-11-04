@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="../styles/login.css">
+    <link rel="stylesheet" href="../styles/index.css">
+    <link rel="stylesheet" href="../styles/login.css">
+    <link rel="shortcut icon" type="imagex/png" href="./assets/imagem_wasabi_login.png">
+</head>
+<body>
+    <!-- HEADER -->
+    <header class="header">
+        <div class="div_logo">
+            <img src="../assets/logo.png" alt="logo wasabi">
+        </div>
+        <nav class="navbar">
+            <span><a href="../index.html#section_home">Home</a></span>
+            <span><a href="./simulacao.html">Simulação</a></span>
+            <span><a href="./contato.html">Contato</a></span>
+            <span><a href="../index.html#section_duvida">Dúvidas</a></span>
+        </nav>
+        <div class="div_authButtons">
+            <a href="#">Login</a>
+            <a href="./cadastro.html">Registrar</a>
+        </div>
+    </header>
+    
+    <section class="section_main">
+        <div class="container">
+            <form id="formulario_login">
+                <h1>Bem vindo de volta!</h1>
+                <div class="container_inputs">
+                    <label for="">Email</label>
+                    <input placeholder="Insira o email da empresa" type="text" id="input_email">
+                    <label for="">Senha</label>
+                    <input placeholder="Insira a senha" type="password" id="input_senha">
+                    <span>
+                        <span>
+                            <input class="checkbox_senha" id="checkbox_senha" type="checkbox">
+                            <label for="checkbox_senha">Lembrar senha</label>
+                        </span>
+                        <span>Esqueci minha senha</span>
+                    </span>
+                    <div id="div_mensagem_erro"></div>
+                </div>
+                <button type="button" onclick="validacao_login()">Entrar</button>
+            </form>
+            <div class="div_imagem">
+                <img src="../assets/logo.png" alt="imagem wasabi">
+                <h2>precisão que cabe em qualquer safra</h2>
+            </div>
+        </div>
+    </section>
+      <footer>
+        <div class="div_imgs">
+            <img src="../assets/icon/iconeInstagram.svg" alt="icone instagram">
+            <img src="../assets/icon/iconeFacebook.svg" alt="icone facebook">
+            <img src="../assets/icon/iconeLinkedin.svg" alt="icone linkedin">
+            <img src="../assets/icon/iconeEmail.svg" alt="icone email">
+        </div>
+        <div class="div_links">
+            <ul>
+                <li><a href="../index.html#section_home">Home</a></li>
+                <li><a href="../pages/simulacao.html">Simulação</a></li>
+                <li><a href="./contato.html">Contato</a></li>
+                <li><a href="../index.html#section_duvida">Dúvidas</a></li>
+            </ul>
+        </div>
+        <center>
+            <span>Wasabi @ 2025</span>
+        </center>
+    </footer>
+</body>
+</html>
+
+<script>
+    function validacao_login() {
+        var senha_usuario = input_senha.value
+        var email_usuario = input_email.value    
+        
+    
+        var senha_empresa = "12345Wasabi"
+        var email_empresa = "admin@empresa.com"
+        
+           
+        if (senha_empresa == senha_usuario && email_empresa == email_usuario){
+            // div_mensagem_erro.innerHTML = `conta autorizada bem vindo a o site!`
+            window.location.href = "./safras.html"
+        } else {
+            div_mensagem_erro.innerHTML = `<span><b style="color: red;">Credenciais incorretas</b></span>` 
+        } 
+
+    
+    
+    }
+    
+</script>
+<script>
+/*
+ADAPTAR O SCIPT DO DATA-VIZ PARA O PROJETO WASABI
+
+    function entrar() {
+        aguardar();
+
+        var emailVar = email_input.value;
+        var senhaVar = senha_input.value;
+
+        if (emailVar == "" || senhaVar == "") {
+            cardErro.style.display = "block"
+            mensagem_erro.innerHTML = "(Mensagem de erro para todos os campos em branco)";
+            finalizarAguardar();
+            return false;
+        }
+        else {
+            setInterval(sumirMensagem, 5000)
+        }
+
+        console.log("FORM LOGIN: ", emailVar);
+        console.log("FORM SENHA: ", senhaVar);
+
+        fetch("/usuarios/autenticar", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                emailServer: emailVar,
+                senhaServer: senhaVar
+            })
+        }).then(function (resposta) {
+            console.log("ESTOU NO THEN DO entrar()!")
+
+            if (resposta.ok) {
+                console.log(resposta);
+
+                resposta.json().then(json => {
+                    console.log(json);
+                    console.log(JSON.stringify(json));
+                    sessionStorage.EMAIL_USUARIO = json.email;
+                    sessionStorage.NOME_USUARIO = json.nome;
+                    sessionStorage.ID_USUARIO = json.id;
+                    sessionStorage.AQUARIOS = JSON.stringify(json.aquarios)
+
+                    setTimeout(function () {
+                        window.location = "./dashboard/cards.html";
+                    }, 1000); // apenas para exibir o loading
+
+                });
+
+            } else {
+
+                console.log("Houve um erro ao tentar realizar o login!");
+
+                resposta.text().then(texto => {
+                    console.error(texto);
+                    finalizarAguardar(texto);
+                });
+            }
+
+        }).catch(function (erro) {
+            console.log(erro);
+        })
+
+        return false;
+    }
+
+    function sumirMensagem() {
+        cardErro.style.display = "none"
+    }
+*/
+</script>
