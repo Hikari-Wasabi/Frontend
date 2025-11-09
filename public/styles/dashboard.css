@@ -108,102 +108,129 @@ body {
 }
 
 .example_status {
-      text-align: center;
-      font-size: 1.5rem;
-      font-weight: 600;
-      margin: 2rem 0 1rem;
+  text-align: center;
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin: 2rem 0 1rem;
   color: black;
 }
 
-    .container_kpi {
-      display: flex;
-      justify-content: center;
-      gap: 10px;
-      flex-wrap: wrap;
-      margin-bottom: 20px;
-      padding: 30px 20px;
-    }
+.container_kpi {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-bottom: 15px;
+  padding: 30px 20px 0px 20px;
+}
 
-    .container_kpi button {
-      padding: 12.8px 0px;
-      width: 120px;
-      font-size: 15px;
-      border: none;
-      border-radius: 80px;
-      font-weight: 600;
-      cursor: pointer;
-      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    }
+.container_kpi button {
+  padding: 12.8px 0px;
+  width: 120px;
+  font-size: 15px;
+  border: none;
+  border-radius: 80px;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
 
-    .style_critico {
-      background-color: #8b0000;
-      color: white;
-    }
+.container_legenda {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 40px;
+}
 
-    .style_instavel {
-      background-color: #c7490e;
-      color: white;
-    }
+.container_legenda span {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
 
-    .style_adequado {
-      background-color: #228b22;
-      color: white;
-    }
+.container_legenda span div {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
 
-    .style_inóspito {
-      background-color: #ffa500;
-      color: white;
-    }
+.container_legenda span div span {
+  height: 18px;
+  width: 18px;
+  border-radius: 5px;
+  background-color: #8b0000;
+}
+.container_legenda span div p {
+  font-size: 13px;
+}
 
-    .container_kpi button.active {
-      transform: scale(1.05);
-      box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.2);
-    }
+.style_critico {
+  background-color: #8b0000;
+  color: white;
+}
 
-    .graficos {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
-      gap: 32px;
-      padding: 0 32px 48px;
-      max-width: 1400px;
-      margin: 0 auto;
-    }
+.style_instavel {
+  background-color: #c7490e;
+  color: white;
+}
 
-    .chart-container {
-      background: white;
-      border-radius: 12px;
-      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
-      padding: 24px;
-    }
+.style_adequado {
+  background-color: #228b22;
+  color: white;
+}
 
-    .chart-container canvas {
-      width: 100%;
-      /* height: 500px; */
-    }
+.style_inóspito {
+  background-color: #ffa500;
+  color: white;
+}
 
-    .chart-container div {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
+.container_kpi button.active {
+  transform: scale(1.05);
+  box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.2);
+}
 
-     .chart-container div span p {
-      font-size: 14px;
-      color: #766b6b;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-     }
+.graficos {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+  gap: 32px;
+  padding: 0 32px 48px;
+  max-width: 1400px;
+  margin: 0 auto;
+}
 
-     .chart-container div span h4 {
-      text-align: center;
-      color: #54b7e2;
-      font-weight: bolder;
-      font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-     }
+.chart-container {
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+  padding: 24px;
+}
 
-     .chart-container div span p img {
-      height: 20px;
-     }
+.chart-container canvas {
+  width: 100%;
+  /* height: 500px; */
+}
 
-    
+.chart-container div {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.chart-container div span p {
+  font-size: 14px;
+  color: #766b6b;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.chart-container div span h4 {
+  text-align: center;
+  color: #54b7e2;
+  font-weight: bolder;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+.chart-container div span p img {
+  height: 20px;
+}
