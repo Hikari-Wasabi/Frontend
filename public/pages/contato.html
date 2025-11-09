@@ -51,7 +51,8 @@
             <form action="">
                 <div class="container_inputs">
                     <label for="">Razão Social</label>
-                    <input placeholder="Insira a razão social da empresa" id="input_nome" type="text" oninput="contato_registro()">
+                    <input placeholder="Insira a razão social da empresa" id="input_nome" type="text"
+                        oninput="contato_registro()">
                     <span id="mensagemErro_nome"></span>
                     <label for="">Email</label>
                     <input placeholder="Insira o email" id="input_email" type="text" oninput="contato_registro()">
@@ -63,7 +64,8 @@
                         <label for="">Mensagem</label>
                         <span id="contagem_mensagem"></span>
                     </div>
-                    <textarea maxlength="290" placeholder="Digite sua mensagem" id="input_mensagem" type="text" oninput="contato_registro()"></textarea>
+                    <textarea maxlength="290" placeholder="Digite sua mensagem" id="input_mensagem" type="text"
+                        oninput="contato_registro()"></textarea>
                 </div>
                 <button type="button" onclick="botao_enviar()">Enviar</button>
                 <div id="div_erro_enviar"></div>
@@ -89,7 +91,7 @@
             <span>Wasabi @ 2025</span>
         </center>
     </footer>
-    
+
 </body>
 
 </html>
@@ -115,7 +117,7 @@
             mensagemErro_nome.innerHTML = ''
             contador2++
         }
-        
+
 
 
         if (email.endsWith('.com') && email.includes('@')) {
@@ -133,7 +135,7 @@
             mensagemErro_Pais.innerHTML = `<b style="color: red;">Nome País vazio ou nome muito longo!</b>`
         } else {
             mensagemErro_Pais.innerHTML = ``
-            contador2++ 
+            contador2++
         }
 
         contagem_mensagem.innerHTML = `${cont_mensagem}/290`
@@ -145,13 +147,35 @@
         contador1 = contador2
     }
 
-    function botao_enviar(){
-        if (contador1 >= 3){
+    function botao_enviar() {
+        if (contador1 >= 3) {
             alert("Contato enviado com sucesso!")
-            div_erro_enviar.innerHTML = `` 
+            div_erro_enviar.innerHTML = ``
 
+            var var_nome = input_nome.value
+            var var_email = input_email.value
+            var var_pais = input_pais.value
+            var var_mensagem = input_mensagem.value
+
+            fetch("/botao_enviar",{
+                method: "POST",
+                headers:{
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    emailServer: var_email,
+                    paisServer: var_pais,
+                    meansagemServer: var_mensagem
+                }).then(function (resposta){
+                    resposta.JSON().then(JSON => {
+                        sessionStorage.email = JSON.email;
+                        sessionStorage.pais = JSON.pais;
+                        sessionStorage.mensagem = JSON.mensagem;
+                    })
+                })
+            })
         } else {
-            div_erro_enviar.innerHTML = `<b style="color: red;">Alguma informação não está preechida corretamentamente</b>` 
+            div_erro_enviar.innerHTML = `<b style="color: red;">Alguma informação não está preechida corretamentamente</b>`
         }
     }
 </script>
