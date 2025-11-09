@@ -181,4 +181,29 @@ body {
       /* height: 500px; */
     }
 
+    .chart-container div {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+     .chart-container div span p {
+      font-size: 14px;
+      color: #766b6b;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+     }
+
+     .chart-container div span h4 {
+      text-align: center;
+      color: #54b7e2;
+      font-weight: bolder;
+      font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+     }
+
+     .chart-container div span p img {
+      height: 20px;
+     }
+
     
