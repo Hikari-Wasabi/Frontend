@@ -12,200 +12,245 @@
 </head>
 
 <body>
-    <!-- HEADER -->
-    <header class="header">
-      <div class="div_logo">
-        <img src="../assets/logo.png" alt="logo wasabi">
-      </div>
-      <nav class="navbar">
-        <span><a href="../index.html#section_home">Home</a></span>
-        <span><a href="./simulacao.html">Simulação</a></span>
-        <span><a href="./contato.html">Contato</a></span>
-        <span><a href="../index.html#section_duvida">Dúvidas</a></span>
-      </nav>
-
-    </header>
-    <div class="div_father">
-      <div></div>
-      <div class="containerTemp">
-        <div class="divTemp">
-          <span>Safra</span>
-          <div class="temp-value" style="font-size: 40px; color: #676565;">#1001</div>
-        </div>
-      </div><div class="containerTemp ">
-        <div class="divTemp">
-          <span>Sensor</span>
-          <div class="temp-value" style="font-size: 40px; color: #676565;">#101</div>
-        </div>
-      </div>
-      <div></div>
+  <!-- HEADER -->
+  <header class="header">
+    <div class="div_logo">
+      <img src="../assets/logo.png" alt="logo wasabi">
     </div>
-    <div class="div_father">
-      <div class="containerTemp">
-        <div class="divTemp">
-          <span>Temperatura</span>
-          <div class="temp-value" style="font-size: 40px;">12°C</div>
-          <div class="temp-trend">
-            <span style="color: #FF4500">+2°C desde ontem</span>
-          </div>
-        </div>
+    <nav class="navbar">
+      <span><a href="../index.html#section_home">Home</a></span>
+      <span><a href="./simulacao.html">Simulação</a></span>
+      <span><a href="./contato.html">Contato</a></span>
+      <span><a href="../index.html#section_duvida">Dúvidas</a></span>
+    </nav>
+
+  </header>
+  <div class="div_father">
+    <div></div>
+    <div class="containerTemp">
+      <div class="divTemp">
+        <span>Safra</span>
+        <div class="temp-value" style="font-size: 40px; color: #676565;">#1001</div>
       </div>
-      <div class="containerTemp">
-        <div class="divTemp">
-          <span>Status</span>
-          <div class="temp-value" style="font-size: 40px; color: #228b22;">Adequado</div>
-          <div class="temp-trend">
-          </div>
-        </div>
+    </div>
+    <div class="containerTemp ">
+      <div class="divTemp">
+        <span>Sensor</span>
+        <div class="temp-value" style="font-size: 40px; color: #676565;">#101</div>
       </div>
-      <div class="containerUmi">
-        <div class="divUmi">
-          <span>Umidade</span>
-          <div class="umi-value" style="font-size: 40px;">86%</div>
-          <div class="umi-trend">
-            <span style="color: #3498db;">-5% desde ontem</span>
-          </div>
+    </div>
+    <div></div>
+  </div>
+  <div class="div_father">
+    <div class="containerTemp">
+      <div class="divTemp">
+        <span>Temperatura</span>
+        <div id="valor_temperatura" class="temp-value" style="font-size: 40px;">12°C</div>
+        <div class="temp-trend">
+          <span style="color: #676565;">+2°C desde ontem</span>
         </div>
       </div>
     </div>
-
-    <div class="container_kpi">
-
-      <button title="Quando a temperatura e umidade estão em níveis inadequados" class="style_critico">Crítico</button>
-      <button title="Quando a temperatura ou umidade estão em níveis inadequados" class="style_instavel">Instável</button>
-      <button title="Quando a temperatura e umidade estão em níveis adequados" class="style_adequado">Adequado</button>
-    </div>
-
-    <div class="graficos">
-      <div class="chart-container">
-        <div>
-          <h3>Variação de Umidade</h3>
-          <span>
-            <h4>Ideal</h4>
-            <p>
-              <img src="../assets/drop.png" alt="">
-              Entre 60% e 90%
-            </p>
-          </span>
+    <div class="containerTemp">
+      <div class="divTemp">
+        <span>Status</span>
+        <div id="valor_status" class="temp-value" style="font-size: 40px; color: #228b22;">Adequado</div>
+        <div class="temp-trend">
         </div>
-        <canvas id="dashboardCSS"></canvas>
-      </div>
-      <div class="chart-container">
-        <div>
-          <h3>Variação de Temperatura</h3>
-
-          <span>
-            <h4 style="color: #f97c00;">Ideal</h4>
-            <p>
-              <img src="../assets/sunny.png" alt="">
-              Entre 8°C e 20°C
-            </p>
-          </span>
-        </div>
-        <canvas id="line"></canvas>
       </div>
     </div>
+    <div class="containerUmi">
+      <div class="divUmi">
+        <span>Umidade</span>
+        <div id="valor_umidade" class="umi-value" style="font-size: 40px;">96%</div>
+        <div class="umi-trend">
+          <span style="color: #676565;">-5% desde ontem</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="container_kpi">
+
+    <button title="Quando a temperatura e umidade estão em níveis inadequados" class="style_critico">Crítico</button>
+    <button title="Quando a temperatura ou umidade estão em níveis inadequados" class="style_instavel">Instável</button>
+    <button title="Quando a temperatura e umidade estão em níveis adequados" class="style_adequado">Adequado</button>
+  </div>
+
+  <div class="graficos">
+    <div class="chart-container">
+      <div>
+        <h3>Variação de Umidade</h3>
+        <span>
+          <h4>Ideal</h4>
+          <p>
+            <img src="../assets/drop.png" alt="">
+            Entre 60% e 90%
+          </p>
+        </span>
+      </div>
+      <canvas id="dashboardCSS"></canvas>
+    </div>
+    <div class="chart-container">
+      <div>
+        <h3>Variação de Temperatura</h3>
+
+        <span>
+          <h4 style="color: #f97c00;">Ideal</h4>
+          <p>
+            <img src="../assets/sunny.png" alt="">
+            Entre 8°C e 20°C
+          </p>
+        </span>
+      </div>
+      <canvas id="line"></canvas>
+    </div>
+  </div>
 
 
-  </body>
+</body>
 
 </html>
 
 <script>
-    // Configuração dos gráficos
-    const ctx = document.getElementById('dashboardCSS');
+  // LÓGICA DA API E REQUISIÇÃO AQUI
 
-    new Chart(ctx, {
-      type: 'line',
-      data: {
-        labels: ['12:00', '13:00', '14:00', '15:00', '16:00', '17:00'],
-        datasets: [
-          {
-            label: 'Umidade Média (%)',
-            data: [85, 88, 91, 94, 90, 86],
-            borderColor: '#32b9cd',
-            backgroundColor: 'rgba(50, 185, 205, 0.1)',
-            borderWidth: 3,
-            tension: 0.3,
-            fill: true
-          },
-        ]
+  function mudarCorDosKPI() {
+    var temperatura = valor_temperatura.innerHTML
+    var umidade = valor_umidade.innerHTML
+    var status = valor_status.innerHTML
+
+    temperatura = Number(temperatura.split("°")[0])
+    umidade = Number(umidade.split("%")[0])
+
+    console.log(temperatura, umidade);
+
+    var temperaturaIdeal = temperatura >= 8 && temperatura <= 20
+    var umidadeIdeal = umidade >= 60 && umidade <= 90
+
+    if (!temperaturaIdeal) {
+      valor_temperatura.style.color = "#FF4500"
+    } else {
+      valor_temperatura.style.color = "#228b22"
+    }
+
+    if (!umidadeIdeal) {
+      valor_umidade.style.color = "#FF4500"
+    } else {
+      valor_umidade.style.color = "#228b22"
+    }
+
+    if (!temperaturaIdeal && !umidadeIdeal) {
+      valor_status.style.color = "#FF4500"
+      valor_status.innerHTML = "Crítico"
+    }
+    else if (!temperaturaIdeal || !umidadeIdeal) {
+      valor_status.style.color = "#FF4500"
+      valor_status.innerHTML = "Instável"
+    } else {
+      valor_status.style.color = "#228b22"
+      valor_status.innerHTML = "Adequado"
+    }
+  }
+
+  mudarCorDosKPI()
+</script>
+
+<script>
+  // Configuração dos gráficos
+  const ctx = document.getElementById('dashboardCSS');
+
+  new Chart(ctx, {
+    type: 'line',
+    data: {
+      labels: ['12:00', '13:00', '14:00', '15:00', '16:00', '17:00'],
+      datasets: [
+        {
+          label: 'Umidade Média (%)',
+          data: [85, 88, 91, 94, 90, 86],
+          borderColor: '#32b9cd',
+          backgroundColor: 'rgba(50, 185, 205, 0.1)',
+          borderWidth: 3,
+          tension: 0.3,
+          fill: true
+        },
+      ]
+    },
+    options: {
+      responsive: true,
+      plugins: {
+        legend: {
+          position: 'top',
+        },
+        title: {
+          display: true,
+        }
       },
-      options: {
-        responsive: true,
-        plugins: {
-          legend: {
-            position: 'top',
-          },
+      scales: {
+        y: {
+          beginAtZero: false,
+          min: 0,
+          max: 100,
           title: {
             display: true,
+            text: 'Umidade (%)'
           }
         },
-        scales: {
-          y: {
-            beginAtZero: false,
-            min: 0,
-            max: 100,
-            title: {
-              display: true,
-              text: 'Umidade (%)'
-            }
-          },
-          x: {
-            title: {
-              display: true,
-              text: 'Horário'
-            }
+        x: {
+          title: {
+            display: true,
+            text: 'Horário'
           }
         }
       }
-    });
+    }
+  });
 
-    const lineCtx = document.getElementById('line');
-    new Chart(lineCtx, {
-      type: 'line',
-      data: {
-        labels: ['12:00', '13:00', '14:00', '15:00', '16:00', '17:00'],
-        datasets: [
-          {
-            label: 'Temperatura (°C)',
-            data: [17, 19, 17, 16, 14, 12],
-            borderColor: '#f75d52',
-            backgroundColor: 'rgba(247, 93, 82, 0.1)',
-            borderWidth: 3,
-            tension: 0.3,
-            fill: true
-          },
-        ]
+  const lineCtx = document.getElementById('line');
+  new Chart(lineCtx, {
+    type: 'line',
+    data: {
+      labels: ['12:00', '13:00', '14:00', '15:00', '16:00', '17:00'],
+      datasets: [
+        {
+          label: 'Temperatura (°C)',
+          data: [17, 19, 17, 16, 14, 12],
+          borderColor: '#f75d52',
+          backgroundColor: 'rgba(247, 93, 82, 0.1)',
+          borderWidth: 3,
+          tension: 0.3,
+          fill: true
+        },
+      ]
+    },
+    options: {
+      responsive: true,
+      plugins: {
+        legend: {
+          position: 'top',
+        },
+        title: {
+          display: true,
+        }
       },
-      options: {
-        responsive: true,
-        plugins: {
-          legend: {
-            position: 'top',
-          },
+      scales: {
+        y: {
+          beginAtZero: false,
           title: {
             display: true,
-          }
-        },
-        scales: {
-          y: {
-            beginAtZero: false,
-            title: {
-              display: true,
-              text: 'Temperatura (°C)'
-            },
-            min: 5,
-            max: 25,
+            text: 'Temperatura (°C)'
           },
-          x: {
-            title: {
-              display: true,
-              text: 'Horário'
-            }
+          min: 5,
+          max: 25,
+        },
+        x: {
+          title: {
+            display: true,
+            text: 'Horário'
           }
         }
       }
-    });
+    }
+  });
 
-    </script>
+</script>
