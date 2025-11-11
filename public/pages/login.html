@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,8 +10,8 @@
     <link rel="stylesheet" href="../styles/login.css">
     <link rel="shortcut icon" type="imagex/png" href="./assets/imagem_wasabi_login.png">
 </head>
+
 <body>
-    <!-- HEADER -->
     <header class="header">
         <div class="div_logo">
             <img src="../assets/logo.png" alt="logo wasabi">
@@ -26,7 +27,7 @@
             <a href="./cadastro.html">Registrar</a>
         </div>
     </header>
-    
+
     <section class="section_main">
         <div class="container">
             <form id="formulario_login">
@@ -49,11 +50,11 @@
             </form>
             <div class="div_imagem">
                 <img src="../assets/logo.png" alt="imagem wasabi">
-                <h2>precisão que cabe em qualquer safra</h2>
+                <h2>precisão que cabe em qualquer safra</h2>
             </div>
         </div>
     </section>
-      <footer>
+    <footer>
         <div class="div_imgs">
             <img src="../assets/icon/iconeInstagram.svg" alt="icone instagram">
             <img src="../assets/icon/iconeFacebook.svg" alt="icone facebook">
@@ -73,101 +74,64 @@
         </center>
     </footer>
 </body>
+
 </html>
 
 <script>
     function validacao_login() {
-        var senha_usuario = input_senha.value
-        var email_usuario = input_email.value    
-        
-    
-        var senha_empresa = "12345Wasabi"
-        var email_empresa = "admin@empresa.com"
-        
-           
-        if (senha_empresa == senha_usuario && email_empresa == email_usuario){
-            // div_mensagem_erro.innerHTML = `conta autorizada bem vindo a o site!`
-            window.location.href = "./safras.html"
-        } else {
-            div_mensagem_erro.innerHTML = `<span><b style="color: red;">Credenciais incorretas</b></span>` 
-        } 
 
-    
-    
-    }
-    
-</script>
-<script>
-/*
-ADAPTAR O SCIPT DO DATA-VIZ PARA O PROJETO WASABI
+        var emailVar = input_email.value;
+        var senhaVar = input_senha.value;             
 
-    function entrar() {
-        aguardar();
-
-        var emailVar = email_input.value;
-        var senhaVar = senha_input.value;
+        div_mensagem_erro.innerHTML = '';
 
         if (emailVar == "" || senhaVar == "") {
-            cardErro.style.display = "block"
-            mensagem_erro.innerHTML = "(Mensagem de erro para todos os campos em branco)";
-            finalizarAguardar();
+            div_mensagem_erro.innerHTML = `<span><b style="color: red;">Preencha todos os campos para realizar o login.</b></span>`;
             return false;
         }
-        else {
-            setInterval(sumirMensagem, 5000)
-        }
 
-        console.log("FORM LOGIN: ", emailVar);
-        console.log("FORM SENHA: ", senhaVar);
-
-        fetch("/usuarios/autenticar", {
+        fetch("/usuarios/autenticar", {               /* Execução da chamada à API usando a rota que ela usa */
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
             },
-            body: JSON.stringify({
+            body: JSON.stringify({                    /* Converte o JS pra JSON */
                 emailServer: emailVar,
                 senhaServer: senhaVar
             })
         }).then(function (resposta) {
-            console.log("ESTOU NO THEN DO entrar()!")
 
             if (resposta.ok) {
                 console.log(resposta);
 
                 resposta.json().then(json => {
                     console.log(json);
-                    console.log(JSON.stringify(json));
-                    sessionStorage.EMAIL_USUARIO = json.email;
+
+                    sessionStorage.EMAIL_USUARIO = json.email;        /* Armazenamento na Session Storage */
                     sessionStorage.NOME_USUARIO = json.nome;
                     sessionStorage.ID_USUARIO = json.id;
-                    sessionStorage.AQUARIOS = JSON.stringify(json.aquarios)
+                    sessionStorage.INFO_ADICIONAL = JSON.stringify(json.info_adicional);
 
                     setTimeout(function () {
-                        window.location = "./dashboard/cards.html";
-                    }, 1000); // apenas para exibir o loading
+                        window.location.href = "./safras.html";          /* Redirect pra tela de safras */
+                    }, 1000);
 
                 });
 
             } else {
-
                 console.log("Houve um erro ao tentar realizar o login!");
 
-                resposta.text().then(texto => {
+                resposta.text().then(texto => {                /* Deixa expresso no console o erro  */
                     console.error(texto);
-                    finalizarAguardar(texto);
+                    div_mensagem_erro.innerHTML = `<span><b style="color: red;">Credenciais incorretas ou erro no servidor.</b></span>`;
                 });
             }
 
         }).catch(function (erro) {
             console.log(erro);
+            div_mensagem_erro.innerHTML = `<span><b style="color: red;">Erro de conexão. Verifique o servidor.</b></span>`;
         })
 
         return false;
     }
-
-    function sumirMensagem() {
-        cardErro.style.display = "none"
-    }
-*/
 </script>
