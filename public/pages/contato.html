@@ -157,7 +157,7 @@
             var var_pais = input_pais.value
             var var_mensagem = input_mensagem.value
 
-            fetch("/botao_enviar",{
+            fetch("http://127.0.0.1:3333/mensagem/botao_enviar",{
                 method: "POST",
                 headers:{
                     "Content-Type": "application/json"
@@ -165,13 +165,8 @@
                 body: JSON.stringify({
                     emailServer: var_email,
                     paisServer: var_pais,
-                    meansagemServer: var_mensagem
-                }).then(function (resposta){
-                    resposta.JSON().then(JSON => {
-                        sessionStorage.email = JSON.email;
-                        sessionStorage.pais = JSON.pais;
-                        sessionStorage.mensagem = JSON.mensagem;
-                    })
+                    mensagemServer: var_mensagem,
+                    razaoSocialServer: var_nome
                 })
             })
         } else {
