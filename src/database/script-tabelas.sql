@@ -11,7 +11,8 @@ CREATE DATABASE wasabi_db;
 USE wasabi_db;
 
 CREATE TABLE `contato_inicial`(
-`idContato_inicial` INT PRIMARY KEY,
+`idContato_inicial` INT PRIMARY KEY AUTO_INCREMENT,
+`razão_social` VARCHAR(100) NOT NULL,
 `email` VARCHAR(100) NOT NULL,
 `pais` VARCHAR(50)  NOT NULL,
 `mensagem` VARCHAR(500) NOT NULL,
