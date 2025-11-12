@@ -172,7 +172,7 @@
                   telefoneVar.substring(7, 11);
               }
 
-              fetch("/usuarios/cadastrar", {
+              fetch("http://127.0.0.1:3333/usuarios/cadastrar", {
                 method: "POST",                                    /* Envia os dados requisição POST */
                 headers: {
                   "Content-Type": "application/json",
