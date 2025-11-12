@@ -140,17 +140,21 @@
         return;
       }
 
-      fetch("/empresas/listar", {                                   /* Usa a rota expressa na API pra puxar os dados */
+      fetch("http://127.0.0.1:3333/empresas/listar", {                                   /* Usa a rota expressa na API pra puxar os dados */
         method: "GET",                                              
       })
         .then(function (resposta) {
           if (resposta.ok) {
-            resposta.json().then(function (empresas) {
+            resposta.json().then(function (json) {
               var idEmpresaVincular = null;
 
-              for (var i = 0; i < empresas.length; i++) {
-                if (empresas[i].token == tokenVar) {          /* Busca o id da empresa pelo token, o idEmpresaVincular = fk.empresa na tabela funcionario */
-                  idEmpresaVincular = empresas[i].id;
+              var token = []
+
+              for (var i = 0; i < json.length; i++){
+                token.push(json[i].token)
+                console.log(`${token}`)
+                if (json[i].token == tokenVar) {          /* Busca o id da empresa pelo token, o idEmpresaVincular = fk.empresa na tabela funcionario */
+                  idEmpresaVincular = json[i].idEmpresa;
                   break;
                 }
               }
