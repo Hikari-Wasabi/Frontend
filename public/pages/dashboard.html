@@ -110,7 +110,7 @@
           </p>
         </span>
       </div>
-      <canvas id="dashboardCSS"></canvas>
+      <canvas id="dashboard-umidade"></canvas>
     </div>
     <div class="chart-container">
       <div>
@@ -124,7 +124,7 @@
           </p>
         </span>
       </div>
-      <canvas id="line"></canvas>
+      <canvas id="dashboard-temperatura"></canvas>
     </div>
   </div>
 
@@ -176,7 +176,9 @@
 
   mudarCorDosKPI()
 
-  obterDadosGrafico(100)
+  // Solução de contorno TEMPORÁRIO !!!
+  obterDadosGrafico(100) // -> essa função deve ser chamada passando o id do sensor que estara na session storage. by Gomes, Luís
+
   function obterDadosGrafico(id_registro) {
 
     // alterarTitulo(id_registro)
@@ -214,28 +216,31 @@
     let labels = [];
 
     // Criando estrutura para plotar gráfico - dados
-    let dados = {
+    let dadosUmidade = {
       labels: labels,
       datasets: [{
         label: 'Umidade Média (%)',
         data: [],
-        fill: false,
-        borderColor: '#f75d52',
-        backgroundColor: 'rgba(247, 93, 82, 0.1)',
+        fill: true,
+        borderColor: '#32b9cd',
+        backgroundColor: 'rgba(50, 185, 205, 0.1)',
         borderWidth: 3,
-        tension: 0.1
-      },
-      {
+        tension: 0.3
+      }],
+    };
+
+    let dadosTemperatura = {
+      labels: labels,
+      datasets: [{
         label: 'Temperatura (°C)',
         data: [],
-        fill: false,
+        fill: true,
         borderColor: '#f75d52',
         backgroundColor: 'rgba(247, 93, 82, 0.1)',
         borderWidth: 3,
-        tension: 0.1
+        tension: 0.3
       }]
-
-    };
+    }
 
     console.log('----------------------------------------------')
     console.log('Estes dados foram recebidos pela funcao "obterDadosGrafico" e passados para "plotarGrafico":')
@@ -245,8 +250,8 @@
     for (i = 0; i < resposta.length; i++) {
       var registro = resposta[i];
       labels.push(registro.momento_grafico);
-      dados.datasets[0].data.push(registro.umidade);
-      dados.datasets[1].data.push(registro.temperatura);
+      dadosUmidade.datasets[0].data.push(registro.umidade);
+      dadosTemperatura.datasets[0].data.push(registro.temperatura);
     }
 
     console.log('----------------------------------------------')
@@ -254,22 +259,33 @@
     console.log('Labels:')
     console.log(labels)
     console.log('Dados:')
-    console.log(dados.datasets)
+    console.log(dadosTemperatura.datasets)
+    console.log(dadosUmidade.datasets)
     console.log('----------------------------------------------')
 
     // Criando estrutura para plotar gráfico - config
-    const config = {
+    const configUmidade = {
       type: 'line',
-      data: dados,
+      data: dadosUmidade,
+    };
+
+    const configTemperatura = {
+      type: 'line',
+      data: dadosTemperatura,
     };
 
     // Adicionando gráfico criado em div na tela
-    let myChart = new Chart(
-      document.getElementById(`myChartCanvas${id_registro}`),
-      config
+    let dashboardUmidade = new Chart(
+      document.getElementById(`dashboard-umidade`),
+      configUmidade
     );
 
-    setTimeout(() => atualizarGrafico(id_registro, dados, myChart), 2000);
+    let dashboardTemperatura = new Chart(
+      document.getElementById(`dashboard-temperatura`),
+      configTemperatura
+    );
+
+    setTimeout(() => atualizarGrafico(id_registro, dadosUmidade, dashboardUmidade, dadosTemperatura, dashboardTemperatura), 2000);
   }
 
 
@@ -278,7 +294,7 @@
 
   //     Se quiser alterar a busca, ajuste as regras de negócio em src/controllers
   //     Para ajustar o "select", ajuste o comando sql em src/models
-  function atualizarGrafico(id_registro, dados, myChart) {
+  function atualizarGrafico(id_registro, dadosUmidade, dashboardUmidade, dadosTemperatura, dashboardTemperatura) {
 
 
 
@@ -289,38 +305,47 @@
           // obterdados(id_registro);
           // alertar(novoRegistro, id_registro);
           console.log(`Dados recebidos: ${JSON.stringify(novoRegistro)}`);
-          console.log(`Dados atuais do gráfico:`);
-          console.log(dados);
+          console.log(`Dados atuais do gráfico de temperatura:`);
+          console.log(dadosTemperatura);
+
+          console.log(`Dados atuais do gráfico de umidade:`);
+          console.log(dadosUmidade);
+
 
           // let avisoCaptura = document.getElementById(`avisoCaptura${id_registro}`)
           // avisoCaptura.innerHTML = ""
 
 
-          if (novoRegistro[0].momento_grafico == dados.labels[dados.labels.length - 1]) {
+          if (novoRegistro[0].momento_grafico == dadosTemperatura.labels[dadosTemperatura.labels.length - 1]) {
             console.log("---------------------------------------------------------------")
             console.log("Como não há dados novos para captura, o gráfico não atualizará.")
             // avisoCaptura.innerHTML = "<i class='fa-solid fa-triangle-exclamation'></i> Foi trazido o dado mais atual capturado pelo sensor. <br> Como não há dados novos a exibir, o gráfico não atualizará."
             console.log("Horário do novo dado capturado:")
             console.log(novoRegistro[0].momento_grafico)
             console.log("Horário do último dado capturado:")
-            console.log(dados.labels[dados.labels.length - 1])
+            console.log(dadosTemperatura.labels[dadosTemperatura.labels.length - 1])
             console.log("---------------------------------------------------------------")
           } else {
             // tirando e colocando valores no gráfico
-            dados.labels.shift(); // apagar o primeiro
-            dados.labels.push(novoRegistro[0].momento_grafico); // incluir um novo momento
+            dadosTemperatura.labels.shift(); // apagar o primeiro
+            dadosTemperatura.labels.push(novoRegistro[0].momento_grafico); // incluir um novo momento
 
-            dados.datasets[0].data.shift();  // apagar o primeiro de umidade
-            dados.datasets[0].data.push(novoRegistro[0].umidade); // incluir uma nova medida de umidade
+            dadosUmidade.labels.shift(); // apagar o primeiro
+            dadosUmidade.labels.push(novoRegistro[0].momento_grafico); // incluir um novo momento
 
-            dados.datasets[1].data.shift();  // apagar o primeiro de temperatura
-            dados.datasets[1].data.push(novoRegistro[0].temperatura); // incluir uma nova medida de temperatura
+            dadosUmidade.datasets[0].data.shift();  // apagar o primeiro de umidade
+            dadosUmidade.datasets[0].data.push(novoRegistro[0].umidade); // incluir uma nova medida de umidade
 
-            myChart.update();
+            dadosTemperatura.datasets[0].data.shift();  // apagar o primeiro de temperatura
+            dadosTemperatura.datasets[0].data.push(novoRegistro[0].temperatura); // incluir uma nova medida de temperatura
+
+            dashboardTemperatura.update();
+            dashboardUmidade.update()
+            mudarCorDosKPI() // -> Atualizar essa função para ser AtualizarKpi, e ela deverá atualizar as informações do kpi de acordo com os ultimos registros. by Gomes, Luis
           }
 
           // Altere aqui o valor em ms se quiser que o gráfico atualize mais rápido ou mais devagar
-          proximaAtualizacao = setTimeout(() => atualizarGrafico(id_registro, dados, myChart), 2000);
+          proximaAtualizacao = setTimeout(() => atualizarGrafico(id_registro, dadosUmidade, dashboardUmidade, dadosTemperatura, dashboardTemperatura), 2000);
         });
       } else {
         console.error('Nenhum dado encontrado ou erro na API');
