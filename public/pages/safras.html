@@ -24,7 +24,7 @@
         </nav>
     </header>
 
-    <h1 class="titulo_safra">Olá, Brandão!</h1>
+    <h1 class="titulo_safra"><span id="usuario"></span></h1>
     <section class="section_main">
         <div class="container">
             <div class="div_logoWasabi">
@@ -122,6 +122,7 @@
 </html>
 
 <script>
+    usuario.innerHTML =  `Olá  ${sessionStorage.NOME_USUARIO}`
     function navegar() {
         window.location.href = "./dashboard.html"
     }
