@@ -176,13 +176,14 @@
 
   mudarCorDosKPI()
 
+  obterDadosGrafico(100)
   function obterDadosGrafico(id_registro) {
 
-    alterarTitulo(id_registro)
+    // alterarTitulo(id_registro)
 
-    if (proximaAtualizacao != undefined) {
-      clearTimeout(proximaAtualizacao);
-    }
+    // if (proximaAtualizacao != undefined) {
+    //   clearTimeout(proximaAtualizacao);
+    // }
 
     fetch(`/medidas/ultimas/${id_registro}`, { cache: 'no-store' }).then(function (response) {
       if (response.ok) {
@@ -285,20 +286,20 @@
       if (response.ok) {
         response.json().then(function (novoRegistro) {
 
-          obterdados(id_registro);
+          // obterdados(id_registro);
           // alertar(novoRegistro, id_registro);
           console.log(`Dados recebidos: ${JSON.stringify(novoRegistro)}`);
           console.log(`Dados atuais do gráfico:`);
           console.log(dados);
 
-          let avisoCaptura = document.getElementById(`avisoCaptura${id_registro}`)
-          avisoCaptura.innerHTML = ""
+          // let avisoCaptura = document.getElementById(`avisoCaptura${id_registro}`)
+          // avisoCaptura.innerHTML = ""
 
 
           if (novoRegistro[0].momento_grafico == dados.labels[dados.labels.length - 1]) {
             console.log("---------------------------------------------------------------")
             console.log("Como não há dados novos para captura, o gráfico não atualizará.")
-            avisoCaptura.innerHTML = "<i class='fa-solid fa-triangle-exclamation'></i> Foi trazido o dado mais atual capturado pelo sensor. <br> Como não há dados novos a exibir, o gráfico não atualizará."
+            // avisoCaptura.innerHTML = "<i class='fa-solid fa-triangle-exclamation'></i> Foi trazido o dado mais atual capturado pelo sensor. <br> Como não há dados novos a exibir, o gráfico não atualizará."
             console.log("Horário do novo dado capturado:")
             console.log(novoRegistro[0].momento_grafico)
             console.log("Horário do último dado capturado:")
@@ -335,99 +336,99 @@
 
 <script>
   // Configuração dos gráficos
-  const ctx = document.getElementById('dashboardCSS');
+  // const ctx = document.getElementById('dashboardCSS');
 
-  new Chart(ctx, {
-    type: 'line',
-    data: {
-      labels: ['12:00', '13:00', '14:00', '15:00', '16:00', '17:00'],
-      datasets: [
-        {
-          label: 'Umidade Média (%)',
-          data: [85, 88, 91, 94, 90, 86],
-          borderColor: '#32b9cd',
-          backgroundColor: 'rgba(50, 185, 205, 0.1)',
-          borderWidth: 3,
-          tension: 0.3,
-          fill: true
-        },
-      ]
-    },
-    options: {
-      responsive: true,
-      plugins: {
-        legend: {
-          position: 'top',
-        },
-        title: {
-          display: true,
-        }
-      },
-      scales: {
-        y: {
-          beginAtZero: false,
-          min: 0,
-          max: 100,
-          title: {
-            display: true,
-            text: 'Umidade (%)'
-          }
-        },
-        x: {
-          title: {
-            display: true,
-            text: 'Horário'
-          }
-        }
-      }
-    }
-  });
+  // new Chart(ctx, {
+  //   type: 'line',
+  //   data: {
+  //     labels: ['12:00', '13:00', '14:00', '15:00', '16:00', '17:00'],
+  //     datasets: [
+  //       {
+  //         label: 'Umidade Média (%)',
+  //         data: [85, 88, 91, 94, 90, 86],
+  //         borderColor: '#32b9cd',
+  //         backgroundColor: 'rgba(50, 185, 205, 0.1)',
+  //         borderWidth: 3,
+  //         tension: 0.3,
+  //         fill: true
+  //       },
+  //     ]
+  //   },
+  //   options: {
+  //     responsive: true,
+  //     plugins: {
+  //       legend: {
+  //         position: 'top',
+  //       },
+  //       title: {
+  //         display: true,
+  //       }
+  //     },
+  //     scales: {
+  //       y: {
+  //         beginAtZero: false,
+  //         min: 0,
+  //         max: 100,
+  //         title: {
+  //           display: true,
+  //           text: 'Umidade (%)'
+  //         }
+  //       },
+  //       x: {
+  //         title: {
+  //           display: true,
+  //           text: 'Horário'
+  //         }
+  //       }
+  //     }
+  //   }
+  // });
 
-  const lineCtx = document.getElementById('line');
-  new Chart(lineCtx, {
-    type: 'line',
-    data: {
-      labels: ['12:00', '13:00', '14:00', '15:00', '16:00', '17:00'],
-      datasets: [
-        {
-          label: 'Temperatura (°C)',
-          data: [17, 19, 17, 16, 14, 12],
-          borderColor: '#f75d52',
-          backgroundColor: 'rgba(247, 93, 82, 0.1)',
-          borderWidth: 3,
-          tension: 0.3,
-          fill: true
-        },
-      ]
-    },
-    options: {
-      responsive: true,
-      plugins: {
-        legend: {
-          position: 'top',
-        },
-        title: {
-          display: true,
-        }
-      },
-      scales: {
-        y: {
-          beginAtZero: false,
-          title: {
-            display: true,
-            text: 'Temperatura (°C)'
-          },
-          min: 5,
-          max: 25,
-        },
-        x: {
-          title: {
-            display: true,
-            text: 'Horário'
-          }
-        }
-      }
-    }
-  });
+  // const lineCtx = document.getElementById('line');
+  // new Chart(lineCtx, {
+  //   type: 'line',
+  //   data: {
+  //     labels: ['12:00', '13:00', '14:00', '15:00', '16:00', '17:00'],
+  //     datasets: [
+  //       {
+  //         label: 'Temperatura (°C)',
+  //         data: [17, 19, 17, 16, 14, 12],
+  //         borderColor: '#f75d52',
+  //         backgroundColor: 'rgba(247, 93, 82, 0.1)',
+  //         borderWidth: 3,
+  //         tension: 0.3,
+  //         fill: true
+  //       },
+  //     ]
+  //   },
+  //   options: {
+  //     responsive: true,
+  //     plugins: {
+  //       legend: {
+  //         position: 'top',
+  //       },
+  //       title: {
+  //         display: true,
+  //       }
+  //     },
+  //     scales: {
+  //       y: {
+  //         beginAtZero: false,
+  //         title: {
+  //           display: true,
+  //           text: 'Temperatura (°C)'
+  //         },
+  //         min: 5,
+  //         max: 25,
+  //       },
+  //       x: {
+  //         title: {
+  //           display: true,
+  //           text: 'Horário'
+  //         }
+  //       }
+  //     }
+  //   }
+  // });
 
 </script>

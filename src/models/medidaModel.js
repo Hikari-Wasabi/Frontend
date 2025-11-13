@@ -9,7 +9,7 @@ function buscarUltimasMedidas(idSensor, limite_linhas) {
                         DATE_FORMAT(data_hora,'%H:%i:%s') as momento_grafico
                     FROM wasabi_daily
                     WHERE fk_sensor = ${idSensor}
-                    ORDER BY id DESC LIMIT ${limite_linhas}`;
+                    ORDER BY id_registro DESC LIMIT ${limite_linhas}`;
 
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
     return database.executar(instrucaoSql);
@@ -23,7 +23,7 @@ function buscarMedidasEmTempoReal(idSensor) {
                         DATE_FORMAT(data_hora,'%H:%i:%s') as momento_grafico, 
                         fk_sensor 
                         FROM wasabi_daily WHERE fk_sensor = ${idSensor} 
-                    ORDER BY id DESC LIMIT 1`;
+                    ORDER BY id_registro DESC LIMIT 1`;
 
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
     return database.executar(instrucaoSql);
