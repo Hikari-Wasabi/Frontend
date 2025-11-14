@@ -46,6 +46,7 @@
             </div>
         </div>
     </section>
+    <div id="mensagem"></div>
 
     <footer>
         <div class="div_imgs">
@@ -89,7 +90,7 @@
     }).then(function (response) {
             if (response.ok) {
                 console.log("o codigo deu certo")
-                div_safras.innerHTML += JSON
+                mensagem.innerHTML += JSON.stringify()
             } else {
                 console.log('Nenhum dado encontrado ou erro na API');
             }
