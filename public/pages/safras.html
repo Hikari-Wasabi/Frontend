@@ -30,24 +30,13 @@
             <div class="div_logoWasabi">
                 <img class="img_logo" src="../assets/logo.png" alt="imagem de wasabi">
             </div>
-            <div class="div_safras">
-                <button onclick="Listar_safras()">Listar</button>
+            <div class="div_safras" id="div_safras">
+                
                 <h1>Safras</h1>
-                 <div class="container_cards">
-                    <div onclick="navegar()" class="card-safra">
-                        <img src="../assets/safra_wasabi2.jpeg" alt="imagem de wasabi">
-                        <span>
-                            <h2><span>SAFRA:</span> #1001</h2>
-                            <p><span>Sensor:</span> #101</p>
-                            <p><span>Status:</span> ativo</p>
-                            <p><span>Modelo:</span> Arduino Uno R3</p>
-                        </span>
-                    </div>
-            </div>
+                
         </div>
     </section>
-    <div id="mensagem"></div>
-
+    
     <footer>
         <div class="div_imgs">
             <img src="../assets/icon/iconeInstagram.svg" alt="icone instagram">
@@ -87,10 +76,33 @@
     
     fetch(`http://127.0.0.1:3333/safra/mostrarSafra/${sessionStorage.EMAIL_USUARIO}/${sessionStorage.ID_USUARIO}`, 
     {  method: "GET"
-    }).then(function (response) {
+    }).then(r => console.log(r)).then(function (response) {
             if (response.ok) {
-                console.log("o codigo deu certo")
-                mensagem.innerHTML += JSON.stringify()
+                console.log("o codigo deu certo", response.idSafra)
+
+                    var idsafra = response.idSafra
+                    var idsensor = response.idsensor
+                    var status_ativo = response.status_ativo
+
+                    if(idsafra == undefined || idsensor == undefined || status_ativo == undefined){
+                        div_safras.innerHTML += `<h1 style="color: red;">Nenhuma safra cadastrada!</h1>` 
+                    }
+                    else {
+                    div_safras.innerHTML += ` <div class="container_cards">
+                    <div onclick="navegar()" class="card-safra">
+                        <img src="../assets/safra_wasabi2.jpeg" alt="imagem de wasabi">
+                        <span>
+                            <h2><span>SAFRA:</span> ${idsafra}</h2>
+                            <p><span>Sensor:</span> ${idsensor}</p>
+                            <p><span>Status:</span> ${status_ativo}</p>
+                            <p><span>Modelo:</span> Arduino Uno R3</p>
+                        </span>
+                    </div>` 
+                }
+ 
+
+            
+                
             } else {
                 console.log('Nenhum dado encontrado ou erro na API');
             }
