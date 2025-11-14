@@ -169,3 +169,13 @@ VALUES
 (2, 101, '2025-02-15 10:30:00', 'Rua L', 'B2'),
 (3, 102, '2025-03-05 08:45:00', 'Rua M', 'C3');
 
+
+SELECT idSafra, 
+		idsensor, 
+        status_ativo  
+        FROM safra_wasabi JOIN funcionario 
+        ON fk_funcionario = idFuncionario 
+        JOIN sensor 
+        ON fk_safra = idSafra 
+        WHERE nome = 'João Silva' AND email = 'joão@wasabibr.com' AND senha = 'senhaJoao';
+
