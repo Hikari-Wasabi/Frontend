@@ -10,7 +10,7 @@
     <link rel="shortcut icon" type="imagex/png" href="./assets/imagem_wasabi_login.png">
 </head>
 
-<body>
+<body onload="Listar_safras()">
     <!-- HEADER -->
     <header class="header">
         <div class="div_logo">
@@ -30,73 +30,13 @@
             <div class="div_logoWasabi">
                 <img class="img_logo" src="../assets/logo.png" alt="imagem de wasabi">
             </div>
-            <div class="div_safras">
+            <div class="div_safras" id="div_safras">
+                
                 <h1>Safras</h1>
-                <div class="container_cards">
-                    <div onclick="navegar()" class="card-safra">
-                        <img src="../assets/safra_wasabi2.jpeg" alt="imagem de wasabi">
-                        <span>
-                            <h2><span>SAFRA:</span> #1001</h2>
-                            <p><span>Sensor:</span> #101</p>
-                            <p><span>Status:</span> ativo</p>
-                            <p><span>Modelo:</span> Arduino Uno R3</p>
-                        </span>
-                    </div>
-
-                    <div onclick="navegar()" class="card-safra">
-                        <img src="../assets/safra_wasabi2.jpeg" alt="imagem de wasabi">
-                        <span>
-                            <h2><span>SAFRA:</span> #1002</h2>
-                            <p><span>Sensor:</span> #102</p>
-                            <p><span>Status:</span> ativo</p>
-                            <p><span>Modelo:</span> Arduino Uno R3</p>
-                        </span>
-                    </div>
-
-                    <div onclick="navegar()" class="card-safra">
-                        <img src="../assets/safra_wasabi2.jpeg" alt="imagem de wasabi">
-                        <span>
-                            <h2><span>SAFRA:</span> #1003</h2>
-                            <p><span>Sensor:</span> #103</p>
-                            <p><span>Status:</span> ativo</p>
-                            <p><span>Modelo:</span> Arduino Uno R3</p>
-                        </span>
-                    </div>
-
-                    <div onclick="navegar()" class="card-safra">
-                        <img src="../assets/safra_wasabi2.jpeg" alt="imagem de wasabi">
-                        <span>
-                            <h2><span>SAFRA:</span> #1004</h2>
-                            <p><span>Sensor:</span> #104</p>
-                            <p><span>Status:</span> ativo</p>
-                            <p><span>Modelo:</span> Arduino Uno R3</p>
-                        </span>
-                    </div>
-
-                    <div onclick="navegar()" class="card-safra">
-                        <img src="../assets/safra_wasabi2.jpeg" alt="imagem de wasabi">
-                        <span>
-                            <h2><span>SAFRA:</span> #1005</h2>
-                            <p><span>Sensor:</span> #105</p>
-                            <p><span>Status:</span> ativo</p>
-                            <p><span>Modelo:</span> Arduino Uno R3</p>
-                        </span>
-                    </div>
-
-                    <div onclick="navegar()" class="card-safra">
-                        <img src="../assets/safra_wasabi2.jpeg" alt="imagem de wasabi">
-                        <span>
-                            <h2><span>SAFRA:</span> #1006</h2>
-                            <p><span>Sensor:</span> #106</p>
-                            <p><span>Status:</span> ativo</p>
-                            <p><span>Modelo:</span> Arduino Uno R3</p>
-                        </span>
-                    </div>
-                </div>
-            </div>
+                
         </div>
     </section>
-
+    
     <footer>
         <div class="div_imgs">
             <img src="../assets/icon/iconeInstagram.svg" alt="icone instagram">
@@ -126,4 +66,81 @@
     function navegar() {
         window.location.href = "./dashboard.html"
     }
+    // 
+
+    
+    function Listar_safras(){
+    
+
+        var email = sessionStorage.EMAIL_USUARIO
+        var id_usuario = sessionStorage.ID_USUARIO
+    
+    fetch(`http://127.0.0.1:3333/safra/mostrarSafra/${email}/${id_usuario}`, {  
+        method: "GET",
+    }).then(function(response){
+        if (response.ok) {
+            return response.json();
+        } else {
+            console.log("Erro na api")
+        }
+    }  ).then(function (response) {
+            
+
+                 if(response.length ==  0){
+                        div_safras.innerHTML += `<h1 style="color: red;">Nenhuma safra cadastrada!</h1>` 
+                    }
+                    
+                
+                
+                console.log("o codigo deu certo", response.idSafra)
+
+                    var idsafra = 0
+                    var idsensor = 0
+                    var status_ativo = 0 
+
+                    console.log(response)
+                    
+                    for(i = 0; i < response.length; i++){
+
+                        idsafra = response[i].idSafra
+                        idsensor = response[i].idsensor
+                        status_ativo = response[i].status_ativo
+
+                    div_safras.innerHTML += ` <div class="container_cards">
+                    <div onclick="navegar()" class="card-safra">
+                        <img src="../assets/safra_wasabi2.jpeg" alt="imagem de wasabi">
+                        <span>
+                            <h2><span>SAFRA:</span> ${idsafra}</h2>
+                            <p><span>Sensor:</span> ${idsensor}</p>
+                            <p><span>Status:</span> ${status_ativo}</p>
+                            <p><span>Modelo:</span> Arduino Uno R3</p>
+                        </span>
+                    </div>                    
+                    ` 
+
+                }
+            
+    })
+
+}
+
+    
+        
 </script>
+
+
+<!-- 
+                <div class="container_cards">
+                    <div onclick="navegar()" class="card-safra">
+                        <img src="../assets/safra_wasabi2.jpeg" alt="imagem de wasabi">
+                        <span>
+                            <h2><span>SAFRA:</span> ${idSafra}</h2>
+                            <p><span>Sensor:</span> ${idSensor}</p>
+                            <p><span>Status:</span> ${statusAtivo}</p>
+                            <p><span>Modelo:</span> Arduino Uno R3</p>
+                        </span>
+                    </div>
+
+
+
+-->
