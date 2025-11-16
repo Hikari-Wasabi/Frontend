@@ -72,22 +72,40 @@
     function Listar_safras(){
     
 
-
+        var email = sessionStorage.EMAIL_USUARIO
+        var id_usuario = sessionStorage.ID_USUARIO
     
-    fetch(`http://127.0.0.1:3333/safra/mostrarSafra/${sessionStorage.EMAIL_USUARIO}/${sessionStorage.ID_USUARIO}`, 
-    {  method: "GET"
-    }).then(r => console.log(r)).then(function (response) {
-            if (response.ok) {
-                console.log("o codigo deu certo", response.idSafra)
+    fetch(`http://127.0.0.1:3333/safra/mostrarSafra/${email}/${id_usuario}`, {  
+        method: "GET",
+    }).then(function(response){
+        if (response.ok) {
+            return response.json();
+        } else {
+            console.log("Erro na api")
+        }
+    }  ).then(function (response) {
+            
 
-                    var idsafra = response.idSafra
-                    var idsensor = response.idsensor
-                    var status_ativo = response.status_ativo
-
-                    if(idsafra == undefined || idsensor == undefined || status_ativo == undefined){
+                 if(response.length ==  0){
                         div_safras.innerHTML += `<h1 style="color: red;">Nenhuma safra cadastrada!</h1>` 
                     }
-                    else {
+                    
+                
+                
+                console.log("o codigo deu certo", response.idSafra)
+
+                    var idsafra = 0
+                    var idsensor = 0
+                    var status_ativo = 0 
+
+                    console.log(response)
+                    
+                    for(i = 0; i < response.length; i++){
+
+                        idsafra = response[i].idSafra
+                        idsensor = response[i].idsensor
+                        status_ativo = response[i].status_ativo
+
                     div_safras.innerHTML += ` <div class="container_cards">
                     <div onclick="navegar()" class="card-safra">
                         <img src="../assets/safra_wasabi2.jpeg" alt="imagem de wasabi">
@@ -97,15 +115,11 @@
                             <p><span>Status:</span> ${status_ativo}</p>
                             <p><span>Modelo:</span> Arduino Uno R3</p>
                         </span>
-                    </div>` 
-                }
- 
+                    </div>                    
+                    ` 
 
+                }
             
-                
-            } else {
-                console.log('Nenhum dado encontrado ou erro na API');
-            }
     })
 
 }
