@@ -30,10 +30,12 @@
             <div class="div_logoWasabi">
                 <img class="img_logo" src="../assets/logo.png" alt="imagem de wasabi">
             </div>
-            <div class="div_safras" id="div_safras">
+            <div class="div_safras">
                 
                 <h1>Safras</h1>
-                
+                <div id="div_safras" class="container_cards">
+
+                </div>
         </div>
     </section>
     
@@ -106,7 +108,7 @@
                         idsensor = response[i].idsensor
                         status_ativo = response[i].status_ativo
 
-                    div_safras.innerHTML += ` <div class="container_cards">
+                    div_safras.innerHTML += `
                     <div onclick="navegar()" class="card-safra">
                         <img src="../assets/safra_wasabi2.jpeg" alt="imagem de wasabi">
                         <span>
