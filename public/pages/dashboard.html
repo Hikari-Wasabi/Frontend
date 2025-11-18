@@ -45,7 +45,7 @@
     <div class="containerTemp">
       <div class="divTemp">
         <span>Temperatura</span>
-        <div id="valor_temperatura" class="temp-value" style="font-size: 40px;">12°C</div>
+        <div id="valor_temperatura" class="temp-value" style="font-size: 40px;">0°C</div>
         <div class="temp-trend">
           <span style="color: #676565;">+2°C desde ontem</span>
         </div>
@@ -54,7 +54,7 @@
     <div class="containerTemp">
       <div class="divTemp">
         <span>Status</span>
-        <div id="valor_status" class="temp-value" style="font-size: 40px; color: #228b22;">Adequado</div>
+        <div id="valor_status" class="temp-value" style="font-size: 40px; color: #228b22;"></div>
         <div class="temp-trend">
         </div>
       </div>
@@ -62,7 +62,7 @@
     <div class="containerUmi">
       <div class="divUmi">
         <span>Umidade</span>
-        <div id="valor_umidade" class="umi-value" style="font-size: 40px;">96%</div>
+        <div id="valor_umidade" class="umi-value" style="font-size: 40px;">0%</div>
         <div class="umi-trend">
           <span style="color: #676565;">-5% desde ontem</span>
         </div>
@@ -136,18 +136,15 @@
 <script>
   // LÓGICA DA API E REQUISIÇÃO AQUI
 
-  function mudarCorDosKPI() {
-    var temperatura = valor_temperatura.innerHTML
-    var umidade = valor_umidade.innerHTML
-    var status = valor_status.innerHTML
-
-    temperatura = Number(temperatura.split("°")[0])
-    umidade = Number(umidade.split("%")[0])
+  function mudarCorDosKPI(temperatura, umidade) {
+  
 
     console.log(temperatura, umidade);
 
     var temperaturaIdeal = temperatura >= 8 && temperatura <= 20
     var umidadeIdeal = umidade >= 60 && umidade <= 90
+       valor_temperatura.innerHTML = `${parseInt(temperatura)}°C `
+       valor_umidade.innerHTML = `${parseInt(umidade)} %`
 
     if (!temperaturaIdeal) {
       valor_temperatura.style.color = "#FF4500"
@@ -174,7 +171,6 @@
     }
   }
 
-  mudarCorDosKPI()
 
   // Solução de contorno TEMPORÁRIO !!!
   obterDadosGrafico(100) // -> essa função deve ser chamada passando o id do sensor que estara na session storage. by Gomes, Luís
@@ -193,6 +189,8 @@
           console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
           resposta.reverse();
 
+      
+          
           plotarGrafico(resposta, id_registro);
 
         });
@@ -252,6 +250,9 @@
       labels.push(registro.momento_grafico);
       dadosUmidade.datasets[0].data.push(registro.umidade);
       dadosTemperatura.datasets[0].data.push(registro.temperatura);
+
+      mudarCorDosKPI( registro.temperatura, registro.umidade)
+
     }
 
     console.log('----------------------------------------------')
@@ -341,7 +342,7 @@
 
             dashboardTemperatura.update();
             dashboardUmidade.update()
-            mudarCorDosKPI() // -> Atualizar essa função para ser AtualizarKpi, e ela deverá atualizar as informações do kpi de acordo com os ultimos registros. by Gomes, Luis
+            mudarCorDosKPI(novoRegistro[0].temperatura, novoRegistro[0].umidade ) // -> Atualizar essa função para ser AtualizarKpi, e ela deverá atualizar as informações do kpi de acordo com os ultimos registros. by Gomes, Luis
           }
 
           // Altere aqui o valor em ms se quiser que o gráfico atualize mais rápido ou mais devagar
@@ -357,103 +358,4 @@
         console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
       });
   }
-</script>
-
-<script>
-  // Configuração dos gráficos
-  // const ctx = document.getElementById('dashboardCSS');
-
-  // new Chart(ctx, {
-  //   type: 'line',
-  //   data: {
-  //     labels: ['12:00', '13:00', '14:00', '15:00', '16:00', '17:00'],
-  //     datasets: [
-  //       {
-  //         label: 'Umidade Média (%)',
-  //         data: [85, 88, 91, 94, 90, 86],
-  //         borderColor: '#32b9cd',
-  //         backgroundColor: 'rgba(50, 185, 205, 0.1)',
-  //         borderWidth: 3,
-  //         tension: 0.3,
-  //         fill: true
-  //       },
-  //     ]
-  //   },
-  //   options: {
-  //     responsive: true,
-  //     plugins: {
-  //       legend: {
-  //         position: 'top',
-  //       },
-  //       title: {
-  //         display: true,
-  //       }
-  //     },
-  //     scales: {
-  //       y: {
-  //         beginAtZero: false,
-  //         min: 0,
-  //         max: 100,
-  //         title: {
-  //           display: true,
-  //           text: 'Umidade (%)'
-  //         }
-  //       },
-  //       x: {
-  //         title: {
-  //           display: true,
-  //           text: 'Horário'
-  //         }
-  //       }
-  //     }
-  //   }
-  // });
-
-  // const lineCtx = document.getElementById('line');
-  // new Chart(lineCtx, {
-  //   type: 'line',
-  //   data: {
-  //     labels: ['12:00', '13:00', '14:00', '15:00', '16:00', '17:00'],
-  //     datasets: [
-  //       {
-  //         label: 'Temperatura (°C)',
-  //         data: [17, 19, 17, 16, 14, 12],
-  //         borderColor: '#f75d52',
-  //         backgroundColor: 'rgba(247, 93, 82, 0.1)',
-  //         borderWidth: 3,
-  //         tension: 0.3,
-  //         fill: true
-  //       },
-  //     ]
-  //   },
-  //   options: {
-  //     responsive: true,
-  //     plugins: {
-  //       legend: {
-  //         position: 'top',
-  //       },
-  //       title: {
-  //         display: true,
-  //       }
-  //     },
-  //     scales: {
-  //       y: {
-  //         beginAtZero: false,
-  //         title: {
-  //           display: true,
-  //           text: 'Temperatura (°C)'
-  //         },
-  //         min: 5,
-  //         max: 25,
-  //       },
-  //       x: {
-  //         title: {
-  //           display: true,
-  //           text: 'Horário'
-  //         }
-  //       }
-  //     }
-  //   }
-  // });
-
 </script>
