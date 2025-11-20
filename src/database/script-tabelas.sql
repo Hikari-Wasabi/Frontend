@@ -48,7 +48,6 @@ CREATE TABLE `funcionario`(
 `nome` VARCHAR(100) NOT NULL,
 `email` VARCHAR(100) NOT NULL,
 `senha` VARCHAR(255),
-`data_nascimento` DATE NOT NULL,
 `fk_supervisor` INT,
 CONSTRAINT `pk_empresa_funcionario` PRIMARY KEY (`idFuncionario`,`fk_empresa`),
 CONSTRAINT `fk_empresa_funcionario` FOREIGN KEY (`fk_empresa`) REFERENCES `empresa`(`idEmpresa`),
@@ -131,15 +130,15 @@ VALUES
 
 INSERT INTO funcionario (fk_empresa, nome, email, senha, data_nascimento, fk_supervisor)
 VALUES
-(1, 'João Silva', 'joao@wasabibr.com', 'senhaJoao', '1988-05-12', NULL),
-(2, 'Maria Souza', 'maria@greenagro.com.br', 'senhaMaria', '1990-09-22', NULL),
-(3, 'Carlos Oliveira', 'carlos@agrotech.com.br', 'senhaCarlos', '1985-02-10', NULL);
+(1, 'João Silva', 'joao@wasabibr.com', 'senhaJoao', NULL),
+(2, 'Maria Souza', 'maria@greenagro.com.br', 'senhaMaria', NULL),
+(3, 'Carlos Oliveira', 'carlos@agrotech.com.br', 'senhaCarlos', NULL);
 
 
 INSERT INTO funcionario (fk_empresa, nome, email, senha, data_nascimento, fk_supervisor) VALUE
-	(1, 'Mario augusto', 'mario@wasabibr.com', 'senhaJoao', '2000-10-19', 1),
-	(2, 'Fernanda Lima', 'fernanda@greenagro.com.br', 'senhaFernanda', '1995-03-08', 2),
-	(3, 'Bruno Pereira', 'bruno@agrotech.com.br', 'senhaBruno', '1999-01-25', 3);
+	(1, 'Mario augusto', 'mario@wasabibr.com', 'senhaJoao', 1),
+	(2, 'Fernanda Lima', 'fernanda@greenagro.com.br', 'senhaFernanda', 2),
+	(3, 'Bruno Pereira', 'bruno@agrotech.com.br', 'senhaBruno', 3);
 
 INSERT INTO safra_wasabi (numeracao_colheita, area_total, densidade_cultivo, inicio_safra, termino_estimado, tipo_cultivo, tipo_wasabi, fk_empresa)
 VALUES
@@ -178,4 +177,6 @@ SELECT idSafra,
         JOIN sensor 
         ON fk_safra = idSafra 
         WHERE nome = 'João Silva' AND email = 'joão@wasabibr.com' AND senha = 'senhaJoao';
+
+
 
