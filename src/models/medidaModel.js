@@ -6,7 +6,7 @@ function buscarUltimasMedidas(idSensor, limite_linhas) {
         valor_temperatura as temperatura, 
         valor_umidade as umidade,
                         data_hora,
-                        DATE_FORMAT(data_hora,'%H:%i') as momento_grafico
+                        DATE_FORMAT(data_hora,'%H:%i:%S') as momento_grafico
                     FROM wasabi_daily
                     WHERE fk_sensor = ${idSensor}
                     ORDER BY id_registro DESC LIMIT ${limite_linhas}`;
@@ -20,7 +20,7 @@ function buscarMedidasEmTempoReal(idSensor) {
     var instrucaoSql = `SELECT 
        valor_temperatura as temperatura, 
         valor_umidade as umidade,
-                        DATE_FORMAT(data_hora,'%H:%i') as momento_grafico, 
+                        DATE_FORMAT(data_hora,'%H:%i:%S') as momento_grafico, 
                         fk_sensor 
                         FROM wasabi_daily WHERE fk_sensor = ${idSensor} 
                     ORDER BY id_registro DESC LIMIT 1`;
