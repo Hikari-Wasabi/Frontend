@@ -128,14 +128,14 @@ VALUES
 ('Brasil', 'Minas Gerais', '30123-456', 'Próximo ao rio', '102', 2),
 ('Brasil', 'Rio de Janeiro', '22030-040', 'Bairro Jardim', '304', 3);
 
-INSERT INTO funcionario (fk_empresa, nome, email, senha, data_nascimento, fk_supervisor)
+INSERT INTO funcionario (fk_empresa, nome, email, senha, fk_supervisor)
 VALUES
 (1, 'João Silva', 'joao@wasabibr.com', 'senhaJoao', NULL),
 (2, 'Maria Souza', 'maria@greenagro.com.br', 'senhaMaria', NULL),
 (3, 'Carlos Oliveira', 'carlos@agrotech.com.br', 'senhaCarlos', NULL);
 
 
-INSERT INTO funcionario (fk_empresa, nome, email, senha, data_nascimento, fk_supervisor) VALUE
+INSERT INTO funcionario (fk_empresa, nome, email, senha, fk_supervisor) VALUE
 	(1, 'Mario augusto', 'mario@wasabibr.com', 'senhaJoao', 1),
 	(2, 'Fernanda Lima', 'fernanda@greenagro.com.br', 'senhaFernanda', 2),
 	(3, 'Bruno Pereira', 'bruno@agrotech.com.br', 'senhaBruno', 3);
