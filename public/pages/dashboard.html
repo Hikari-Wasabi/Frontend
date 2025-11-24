@@ -137,14 +137,14 @@
   // LÓGICA DA API E REQUISIÇÃO AQUI
 
   function mudarCorDosKPI(temperatura, umidade) {
-  
+
 
     console.log(temperatura, umidade);
 
     var temperaturaIdeal = temperatura >= 8 && temperatura <= 20
     var umidadeIdeal = umidade >= 60 && umidade <= 90
-       valor_temperatura.innerHTML = `${parseInt(temperatura)}°C `
-       valor_umidade.innerHTML = `${parseInt(umidade)} %`
+    valor_temperatura.innerHTML = `${parseInt(temperatura)}°C `
+    valor_umidade.innerHTML = `${parseInt(umidade)} %`
 
     if (!temperaturaIdeal) {
       valor_temperatura.style.color = "#FF4500"
@@ -189,8 +189,8 @@
           console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
           resposta.reverse();
 
-      
-          
+
+
           plotarGrafico(resposta, id_registro);
 
         });
@@ -226,18 +226,48 @@
         tension: 0.3
       }],
     };
-    
+
     let dadosTemperatura = {
       labels: labels,
-      datasets: [{
-        label: 'Temperatura (°C)',
-        data: [],
-        fill: true,
-        borderColor: '#f75d52',
-        backgroundColor: 'rgba(247, 93, 82, 0.1)',
-        borderWidth: 3,
-        tension: 0.3
-      }]
+      datasets: [
+        {
+          label: 'Faixa Máxima',
+          data: [20, 20, 20, 20, 20, 20, 20],
+          fill: true,
+          borderColor: 'limegreen',
+          backgroundColor: 'rgba(247, 93, 82, 0.1)',
+          borderWidth: 1.9,
+          tension: 0.3,
+          fill: false,
+          interaction: {
+            intersect: false
+          },
+          radius: 0,
+        },
+        {
+          label: 'Temperatura (°C)',
+          data: [],
+          fill: true,
+          borderColor: '#f75d52',
+          backgroundColor: 'rgba(247, 93, 82, 0.1)',
+          borderWidth: 3,
+          tension: 0.3
+        },
+        {
+          label: 'Faixa Miníma',
+          data: [8, 8, 8, 8, 8, 8, 8],
+          fill: true,
+          borderColor: 'limegreen',
+          backgroundColor: 'rgba(35, 207, 82, 0.1)',
+          borderWidth: 1.6,
+          tension: 0.3,
+          fill: false,
+          interaction: {
+            intersect: false
+          },
+          radius: 0,
+        },
+      ]
     }
 
     console.log('----------------------------------------------')
@@ -250,9 +280,9 @@
       var momentoGrafico = registro.momento_grafico.split(':')
       labels.push(`${momentoGrafico[0]}:${momentoGrafico[1]}`);
       dadosUmidade.datasets[0].data.push(registro.umidade);
-      dadosTemperatura.datasets[0].data.push(registro.temperatura);
+      dadosTemperatura.datasets[1].data.push(registro.temperatura);
 
-      mudarCorDosKPI( registro.temperatura, registro.umidade)
+      mudarCorDosKPI(registro.temperatura, registro.umidade)
 
     }
 
@@ -273,8 +303,20 @@
 
     const configTemperatura = {
       type: 'line',
-      data: dadosTemperatura,
+      data: dadosTemperatura
     };
+
+    // const configTemperaturaIdeal = {
+    //   type: 'line',
+    //   data: dadosTemperaturaIdeal,
+    //   options: {
+    //     fill: false,
+    //     interaction: {
+    //       intersect: false
+    //     },
+    //     radius: 0,
+    //   }
+    // };
 
     // Adicionando gráfico criado em div na tela
     let dashboardUmidade = new Chart(
@@ -284,7 +326,7 @@
 
     let dashboardTemperatura = new Chart(
       document.getElementById(`dashboard-temperatura`),
-      configTemperatura
+      configTemperatura, 
     );
 
     setTimeout(() => atualizarGrafico(id_registro, dadosUmidade, dashboardUmidade, dadosTemperatura, dashboardTemperatura), 2000);
@@ -330,7 +372,7 @@
             console.log("---------------------------------------------------------------")
           } else {
             // tirando e colocando valores no gráfico
-           
+
             dadosTemperatura.labels.shift(); // apagar o primeiro
             dadosTemperatura.labels.push(momentoGrafico); // incluir um novo momento
 
@@ -345,7 +387,7 @@
 
             dashboardTemperatura.update();
             dashboardUmidade.update()
-            mudarCorDosKPI(novoRegistro[0].temperatura, novoRegistro[0].umidade ) // -> Atualizar essa função para ser AtualizarKpi, e ela deverá atualizar as informações do kpi de acordo com os ultimos registros. by Gomes, Luis
+            mudarCorDosKPI(novoRegistro[0].temperatura, novoRegistro[0].umidade) // -> Atualizar essa função para ser AtualizarKpi, e ela deverá atualizar as informações do kpi de acordo com os ultimos registros. by Gomes, Luis
           }
 
           // Altere aqui o valor em ms se quiser que o gráfico atualize mais rápido ou mais devagar
