@@ -65,8 +65,12 @@
 
 <script>
     usuario.innerHTML =  `Olá  ${sessionStorage.NOME_USUARIO}`
-    function navegar() {
+    var idsensor = 0
+    function navegar(idsensor) {
         window.location.href = "./dashboard.html"
+        console.log(idsensor);
+        sessionStorage.ID_SENSOR = idsensor
+        
     }
     // 
 
@@ -97,8 +101,10 @@
                 console.log("o codigo deu certo", response.idSafra)
 
                     var idsafra = 0
-                    var idsensor = 0
+                    
                     var status_ativo = 0 
+                         /* Armazenamento na Session Storage */
+
 
                     console.log(response)
                     
@@ -107,9 +113,10 @@
                         idsafra = response[i].idSafra
                         idsensor = response[i].idsensor
                         status_ativo = response[i].status_ativo
+                        console.log(idsensor)
 
                     div_safras.innerHTML += `
-                    <div onclick="navegar()" class="card-safra">
+                    <div onclick="navegar(${idsensor})" class="card-safra">
                         <img src="../assets/safra_wasabi2.jpeg" alt="imagem de wasabi">
                         <span>
                             <h2><span>SAFRA:</span> ${idsafra}</h2>
