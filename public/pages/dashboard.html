@@ -117,7 +117,7 @@
         <h3>Variação de Temperatura</h3>
 
         <span>
-          <h4 style="color: #f97c00;">Ideal</h4>
+          <h4 style="color: #e8aa14;">Ideal</h4>
           <p>
             <img src="../assets/sunny.png" alt="">
             Entre 8°C e 20°C
@@ -234,10 +234,11 @@
           label: 'Faixa Máxima',
           data: [20, 20, 20, 20, 20, 20, 20],
           fill: true,
-          borderColor: 'limegreen',
-          backgroundColor: 'rgba(247, 93, 82, 0.1)',
+          borderColor: '#60d394',
+          backgroundColor: 'rgba(35, 207, 82, 0.1)',
           borderWidth: 1.9,
           tension: 0.3,
+          // fill: "+2",
           fill: false,
           interaction: {
             intersect: false
@@ -248,18 +249,19 @@
           label: 'Temperatura (°C)',
           data: [],
           fill: true,
-          borderColor: '#f75d52',
-          backgroundColor: 'rgba(247, 93, 82, 0.1)',
+          borderColor: '#ffd97d',
+          backgroundColor: 'rgb(255, 217, 125, 0.2)',
           borderWidth: 3,
-          tension: 0.3
+          tension: 0.3,
+          fill: true,
         },
         {
           label: 'Faixa Miníma',
           data: [8, 8, 8, 8, 8, 8, 8],
           fill: true,
-          borderColor: 'limegreen',
+          borderColor: '#60d394',
           backgroundColor: 'rgba(35, 207, 82, 0.1)',
-          borderWidth: 1.6,
+          borderWidth: 1.9,
           tension: 0.3,
           fill: false,
           interaction: {
