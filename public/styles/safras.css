@@ -70,10 +70,6 @@ body {
     border-radius: 15px;
 }
 
-.card-safra span {
-    
-}
-
 .card-safra span p {
     font-size: 17px;
     text-align: start;
@@ -95,4 +91,11 @@ body {
 .card-safra span h2 span {
     color: #808f28;
 }
+
+.cards-laterais {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
 

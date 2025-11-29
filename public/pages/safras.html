@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Safras</title> 
+    <title>Safras</title>
     <link rel="stylesheet" href="../styles/index.css">
     <link rel="stylesheet" href="../styles/safras.css">
     <link rel="shortcut icon" type="imagex/png" href="./assets/imagem_wasabi_login.png">
@@ -27,18 +27,40 @@
     <h1 class="titulo_safra"><span id="usuario"></span></h1>
     <section class="section_main">
         <div class="container">
-            <div class="div_logoWasabi">
-                <img class="img_logo" src="../assets/logo.png" alt="imagem de wasabi">
-            </div>
-            <div class="div_safras">
-                
-                <h1>Safras</h1>
-                <div id="div_safras" class="container_cards">
+            <div class="cards-laterais">
 
+                <div class="card-instavel-critica">
+                    <div>
+                        <h3>
+                            Safras
+                            <span class="instavel">INSTÁVEL</span> E
+                            <span class="critica">CRÍTICA</span>
+                        </h3>
+
+                        <button class="btn-lista" id="lista-instavel-critica"></button>
+
+                    </div>
                 </div>
+                <div class="card-adequada">
+                    <h3 class="titulo-verde">Adequadas</h3>
+
+                    <button class="btn-lista" id="lista-adequadas"></button>
+                </div>
+            </div>
+
+        </div>
+
+
+        </div>
+        <div class="div_safras">
+
+            <h1>Safras</h1>
+            <div id="div_safras" class="container_cards">
+
+            </div>
         </div>
     </section>
-    
+
     <footer>
         <div class="div_imgs">
             <img src="../assets/icon/iconeInstagram.svg" alt="icone instagram">
@@ -58,64 +80,64 @@
             <span>Wasabi @ 2025</span>
         </center>
     </footer>
-    
+
 </body>
 
 </html>
 
 <script>
-    usuario.innerHTML =  `Olá  ${sessionStorage.NOME_USUARIO}`
+    usuario.innerHTML = `Olá  ${sessionStorage.NOME_USUARIO}`
     var idsensor = 0
     function navegar(idsensor) {
         window.location.href = "./dashboard.html"
         console.log(idsensor);
         sessionStorage.ID_SENSOR = idsensor
-        
+
     }
     // 
 
-    
-    function Listar_safras(){
-    
+
+    function Listar_safras() {
+
 
         var email = sessionStorage.EMAIL_USUARIO
         var id_usuario = sessionStorage.ID_USUARIO
-    
-    fetch(`http://127.0.0.1:3333/safra/mostrarSafra/${email}/${id_usuario}`, {  
-        method: "GET",
-    }).then(function(response){
-        if (response.ok) {
-            return response.json();
-        } else {
-            console.log("Erro na api")
-        }
-    }  ).then(function (response) {
-            
 
-                 if(response.length ==  0){
-                        div_safras.innerHTML += `<h1 style="color: red;">Nenhuma safra cadastrada!</h1>` 
-                    }
-                    
-                
-                
-                console.log("o codigo deu certo", response.idSafra)
-
-                    var idsafra = 0
-                    
-                    var status_ativo = 0 
-                         /* Armazenamento na Session Storage */
+        fetch(`http://127.0.0.1:3333/safra/mostrarSafra/${email}/${id_usuario}`, {
+            method: "GET",
+        }).then(function (response) {
+            if (response.ok) {
+                return response.json();
+            } else {
+                console.log("Erro na api")
+            }
+        }).then(function (response) {
 
 
-                    console.log(response)
-                    
-                    for(i = 0; i < response.length; i++){
+            if (response.length == 0) {
+                div_safras.innerHTML += `<h1 style="color: red;">Nenhuma safra cadastrada!</h1>`
+            }
 
-                        idsafra = response[i].idSafra
-                        idsensor = response[i].idsensor
-                        status_ativo = response[i].status_ativo
-                        console.log(idsensor)
 
-                    div_safras.innerHTML += `
+
+            console.log("o codigo deu certo", response.idSafra)
+
+            var idsafra = 0
+
+            var status_ativo = 0
+            /* Armazenamento na Session Storage */
+
+
+            console.log(response)
+
+            for (i = 0; i < response.length; i++) {
+
+                idsafra = response[i].idSafra
+                idsensor = response[i].idsensor
+                status_ativo = response[i].status_ativo
+                console.log(idsensor)
+
+                div_safras.innerHTML += `
                     <div onclick="navegar(${idsensor})" class="card-safra">
                         <img src="../assets/safra_wasabi2.jpeg" alt="imagem de wasabi">
                         <span>
@@ -125,16 +147,16 @@
                             <p><span>Modelo:</span> Arduino Uno R3</p>
                         </span>
                     </div>                    
-                    ` 
+                    `
 
-                }
-            
-    })
+            }
 
-}
+        })
 
-    
-        
+    }
+
+
+
 </script>
 
 
