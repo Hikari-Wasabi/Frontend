@@ -137,8 +137,8 @@
   // LÓGICA DA API E REQUISIÇÃO AQUI
 
   // Criando estrutura para plotar gráfico - labels
-    var labels = [];
-    var labelsFormatado = [];
+  var labels = [];
+  var labelsFormatado = [];
 
   function mudarCorDosKPI(temperatura, umidade) {
 
@@ -218,15 +218,46 @@
     // Criando estrutura para plotar gráfico - dados
     let dadosUmidade = {
       labels: labelsFormatado,
-      datasets: [{
-        label: 'Umidade Média (%)',
-        data: [],
-        fill: true,
-        borderColor: '#32b9cd',
-        backgroundColor: 'rgba(50, 185, 205, 0.1)',
-        borderWidth: 3,
-        tension: 0.3
-      }],
+      datasets: [
+        {
+          label: 'Faixa Máxima',
+          data: [90, 90, 90, 90, 90, 90, 90],
+          fill: true,
+          borderColor: '#60d394',
+          backgroundColor: 'rgba(35, 207, 82, 0.1)',
+          borderWidth: 1.9,
+          tension: 0.3,
+          fill: "+2",
+          // fill: false,
+          interaction: {
+            intersect: false
+          },
+          radius: 0,
+        },
+        {
+          label: 'Umidade Média (%)',
+          data: [],
+          fill: false,
+          borderColor: '#6dd3ce',
+          backgroundColor: 'rgba(50, 185, 205, 0.1)',
+          borderWidth: 3,
+          tension: 0.3
+        },
+        {
+          label: 'Faixa Miníma',
+          data: [60, 60, 60, 60, 60, 60, 60],
+          fill: true,
+          borderColor: '#60d394',
+          backgroundColor: 'rgba(35, 207, 82, 0.1)',
+          borderWidth: 1.9,
+          tension: 0.3,
+          fill: false,
+          interaction: {
+            intersect: false
+          },
+          radius: 0,
+        },
+      ],
     };
 
     let dadosTemperatura = {
@@ -240,8 +271,8 @@
           backgroundColor: 'rgba(35, 207, 82, 0.1)',
           borderWidth: 1.9,
           tension: 0.3,
-          // fill: "+2",
-          fill: false,
+          fill: "+2",
+          // fill: false,
           interaction: {
             intersect: false
           },
@@ -284,12 +315,12 @@
 
       var momentoGrafico = registro.momento_grafico
       labels.push(momentoGrafico);
-      
+
       var momentoGraficoFormatado = registro.momento_grafico.split(':')
       momentoGraficoFormatado = `${momentoGraficoFormatado[0]}:${momentoGraficoFormatado[1]}`
       labelsFormatado.push(momentoGraficoFormatado)
 
-      dadosUmidade.datasets[0].data.push(registro.umidade);
+      dadosUmidade.datasets[1].data.push(registro.umidade);
       dadosTemperatura.datasets[1].data.push(registro.temperatura);
 
       mudarCorDosKPI(registro.temperatura, registro.umidade)
@@ -336,7 +367,7 @@
 
     let dashboardTemperatura = new Chart(
       document.getElementById(`dashboard-temperatura`),
-      configTemperatura, 
+      configTemperatura,
     );
 
     setTimeout(() => atualizarGrafico(id_registro, dadosUmidade, dashboardUmidade, dadosTemperatura, dashboardTemperatura), 2000);
@@ -396,8 +427,8 @@
             labels.push(momentoGrafico)
             labelsFormatado.push(momentoGraficoFormatado)
 
-            dadosUmidade.datasets[0].data.shift();  // apagar o primeiro de umidade
-            dadosUmidade.datasets[0].data.push(novoRegistro[0].umidade); // incluir uma nova medida de umidade
+            dadosUmidade.datasets[1].data.shift();  // apagar o primeiro de umidade
+            dadosUmidade.datasets[1].data.push(novoRegistro[0].umidade); // incluir uma nova medida de umidade
 
             dadosTemperatura.datasets[1].data.shift();  // apagar o primeiro de temperatura
             dadosTemperatura.datasets[1].data.push(novoRegistro[0].temperatura); // incluir uma nova medida de temperatura
