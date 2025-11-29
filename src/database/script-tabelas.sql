@@ -105,6 +105,9 @@ CONSTRAINT `fk_sensor_wasabi` FOREIGN KEY (`fk_sensor`) REFERENCES `sensor`(`idS
 
 SELECT * FROM wasabi_daily;
 
+INSERT INTO wasabi_daily (fk_Sensor, valor_umidade, valor_temperatura) VALUES
+(100, 80, 31);
+
 CREATE TABLE `localizacao_sensor`(
 `idLocalizacao` INT PRIMARY KEY,
 `fk_sensor` INT,
@@ -177,6 +180,7 @@ SELECT idSafra,
         JOIN sensor 
         ON fk_safra = idSafra 
         WHERE nome = 'João Silva' AND email = 'joão@wasabibr.com' AND senha = 'senhaJoao';
+
 
 
 
