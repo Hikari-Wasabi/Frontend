@@ -192,7 +192,7 @@ SELECT idSafra,
 SELECT * FROM wasabi_daily;
 
 INSERT INTO wasabi_daily (fk_Sensor, valor_umidade, valor_temperatura) VALUES
-(102, 50, 18);
+(101, 50, 18);
 
 
 
