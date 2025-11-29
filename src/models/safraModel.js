@@ -31,7 +31,9 @@ function obterSituacaoSafras(id_usuario) {
             FROM vw_situacao_safra
             WHERE idsensor = v.idsensor
         )
-        AND fk_funcionario = '${id_usuario}';
+        AND fk_funcionario = '${id_usuario}'
+        ORDER BY idSafra ASC
+        ;
     ` 
 
     console.log("Executando a instrução SQL: \n" + instrucaoSql);

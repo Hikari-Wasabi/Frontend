@@ -23,67 +23,34 @@
             <span><a href="../index.html#section_duvida">Dúvidas</a></span>
         </nav>
     </header>
-    <div class="title-safra"> <h1> Painel de Classificação</h1> </div>
-    <div class="all-in-container"> 
+    <div class="title-safra">
+        <h1> Painel de Classificação</h1>
+    </div>
+    <div class="all-in-container">
         <h1 style="display: flex; justify-content: center; align-items: center;" class="title-safra">Safras</h1>
         <section class="section_main">
             <div class="container">
                 <div class="cards-laterais">
-                    <div class="card-instavel-critica">
+                    <div id="div_situacao_safra_critica" class="card-instavel-critica">
                         <h2>Safras</h2>
                         <h3>
                             <span class="instavel">INSTÁVEL </span> <br>
                             <span class="critica">CRÍTICA</span>
                         </h3>
 
-                        <button class="btn-lista" id="lista-instavel-critica">
-                            <span>Safra #1000</span>
-                            <p>Sensor #100</p>
-                            <div>
-                                <img src="../assets/notSunny.png" alt="Temperatura inadequada">
-                                <img src="../assets/notDrop.png" alt="Umidade inadequada">
-                            </div>
-                        </button>
-                        
-                        <button class="btn-lista" id="lista-instavel-critica-2">
-                            <span>Safra #1001</span>
-                            <p>Sensor #101</p>
-                            <div>
-                                <img src="../assets/notSunny.png" alt="Temperatura inadequada">
-                                <img src="../assets/notDrop.png" alt="Umidade inadequada">
-                            </div>
-                        </button>
                     </div>
-                    
-                    <div class="card-adequada">
-                        <h3>Safras <span class="titulo-verde">Adequadas</span></h3>
 
-                        <button class="btn-lista" id="lista-adequadas">
-                            <span>Safra #2000</span>
-                            <p>Sensor #200</p>
-                            <div>
-                                <img src="../assets/sunny.png" alt="Temperatura adequada">
-                                <img src="../assets/drop.png" alt="Umidade adequada">
-                            </div>
-                        </button>
-                        
-                        <button class="btn-lista" id="lista-adequadas-2">
-                            <span>Safra #2001</span>
-                            <p>Sensor #201</p>
-                            <div>
-                                <img src="../assets/sunny.png" alt="Temperatura adequada">
-                                <img src="../assets/drop.png" alt="Umidade adequada">
-                            </div>
-                        </button>
+                    <div id="div_situacao_safra_adequado" class="card-adequada">
+                        <h3>Safras <span class="titulo-verde">Adequadas</span></h3>
                     </div>
                 </div>
-                
+
                 <div id="div_safras" class="container_cards">
 
-                    </div>
                 </div>
             </div>
-        </section>
+    </div>
+    </section>
     </div>
     </section>
 
@@ -114,6 +81,8 @@
 <script>
     var usuario = sessionStorage.NOME_USUARIO
     var idsensor = 0
+
+    obterSituacaoSafras()
     function navegar(idsensor) {
         window.location.href = "./dashboard.html"
         console.log(idsensor);
@@ -122,10 +91,91 @@
     }
     // 
 
+    var listaSafrasAdequadas = []
+    var listaSafrasCriticas = []
+    function obterSituacaoSafras() {
+        var id_usuario = sessionStorage.ID_USUARIO
+        fetch(`/safra/obter-situacao-safra/${id_usuario}`, {
+            method: "GET",
+        }).then(function (response) {
+            if (response.ok) {
+                return response.json();
+            } else {
+                console.log("Erro na api")
+            }
+        }).then(function (response) {
+
+
+            if (response.length == 0) {
+                // div_safras.innerHTML += `<h1 style="color: red;">Nenhuma safra cadastrada!</h1>`
+            }
+
+            var idsafra = 0
+
+            var status_ativo = 0
+            /* Armazenamento na Session Storage */
+
+
+            console.log(response)
+
+            for (var i = 0; i < response.length; i++) {
+                console.log(response[i])
+
+                if (response[i].situacao_safra == 'adequado') {
+                    listaSafrasAdequadas.push(response[i])
+                } else {
+                    listaSafrasCriticas.push(response[i])
+                }
+            }
+
+            var conteudoSafraAdequada = ``
+            for (var i = 0; i < listaSafrasAdequadas.length; i++) {
+                conteudoSafraAdequada += `
+                    <button onclick="navegar(${listaSafrasAdequadas[i].idsensor})" class="btn-lista">
+                        <span>Safra #${listaSafrasAdequadas[i].idSafra}</span>
+                        <p>Sensor #${listaSafrasAdequadas[i].idsensor}</p>
+                        <div>
+                            <img src="../assets/sunny.png" alt="Temperatura adequada">
+                            <img src="../assets/drop.png" alt="Umidade adequada">
+                        </div>
+                    </button>
+                `
+            }
+
+            var conteudoSafraCritica = ``
+            for (var i = 0; i < listaSafrasCriticas.length; i++) {
+                conteudoSafraCritica += `
+                    <button onclick="navegar(${listaSafrasCriticas[i].idsensor})" class="btn-lista">
+                        <span>Safra #${listaSafrasCriticas[i].idSafra}</span>
+                        <p>Sensor #${listaSafrasCriticas[i].idsensor}</p>
+                        <div>
+                            <img src="
+                                ${
+                                (listaSafrasCriticas[i].situacao_temperatura == "adequado" && "../assets/sunny.png")
+                                ||
+                                "../assets/notSunny.png"
+                                }
+                            " alt="Temperatura adequada">
+                            <img src="
+                                ${
+                                (listaSafrasCriticas[i].situacao_umidade == "adequado" && "../assets/drop.png")
+                                ||
+                                "../assets/notDrop.png"
+                                }
+                            " alt="Umidade adequada">
+                        </div>
+                    </button>
+                `
+            }
+
+            div_situacao_safra_adequado.innerHTML += conteudoSafraAdequada
+            div_situacao_safra_critica.innerHTML += conteudoSafraCritica
+
+        })
+
+    }
 
     function Listar_safras() {
-
-
         var email = sessionStorage.EMAIL_USUARIO
         var id_usuario = sessionStorage.ID_USUARIO
 
@@ -146,7 +196,7 @@
 
 
 
-            console.log("o codigo deu certo", response.idSafra)
+            console.log("o codigo deu certo")
 
             var idsafra = 0
 
@@ -156,7 +206,7 @@
 
             console.log(response)
 
-            for (i = 0; i < response.length; i++) {
+            for (var i = 0; i < response.length; i++) {
 
                 idsafra = response[i].idSafra
                 idsensor = response[i].idsensor

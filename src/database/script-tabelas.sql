@@ -192,7 +192,7 @@ SELECT idSafra,
 SELECT * FROM wasabi_daily;
 
 INSERT INTO wasabi_daily (fk_Sensor, valor_umidade, valor_temperatura) VALUES
-(100, 80, 31);
+(102, 50, 18);
 
 
 
@@ -249,6 +249,5 @@ WHERE id_registro = (
     FROM vw_situacao_safra
     WHERE idsensor = v.idsensor
 )
-AND fk_funcionario = 1
-;
+AND fk_funcionario = 1;
 
