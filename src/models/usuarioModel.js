@@ -5,7 +5,7 @@ function autenticar(email, senha) {
     var instrucaoSql = `
         SELECT idFuncionario, nome, email, senha, fk_empresa as idEmpresa FROM funcionario WHERE email = '${email}' AND senha = '${senha}';
     `;
-    console.log("Executando a instrução SQL: \n" + instrucaoSql);
+    console.log("Executando a instrução SQL: \n" + instrucaoSql);    
     return database.executar(instrucaoSql);
 }
 

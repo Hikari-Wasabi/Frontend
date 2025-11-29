@@ -23,69 +23,68 @@
             <span><a href="../index.html#section_duvida">Dúvidas</a></span>
         </nav>
     </header>
-
-    <h1 class="titulo_safra"><span id="usuario"></span></h1>
-    <section class="section_main">
-        <div class="container">
-            <div class="cards-laterais">
-
-                <div class="card-instavel-critica">
-                    <div>
+    <div class="title-safra"> <h1> Painel de Classificação</h1> </div>
+    <div class="all-in-container"> 
+        <h1 style="display: flex; justify-content: center; align-items: center;" class="title-safra">Safras</h1>
+        <section class="section_main">
+            <div class="container">
+                <div class="cards-laterais">
+                    <div class="card-instavel-critica">
+                        <h2>Safras</h2>
                         <h3>
-                            Safras
-                            <span class="instavel">INSTÁVEL</span> E
+                            <span class="instavel">INSTÁVEL </span> <br>
                             <span class="critica">CRÍTICA</span>
                         </h3>
 
                         <button class="btn-lista" id="lista-instavel-critica">
-                            <div></div>
-                            <div></div>
-                            <div></div>
-                            <div></div>
-                            <div></div>
-                            <div></div>
-                            <div></div>
+                            <span>Safra #1000</span>
+                            <p>Sensor #100</p>
                             <div>
-                                <span>Safra #1000</span>
-                                <p>Sensor #100</p>
-                            </div>
-                            <div></div>
-                            <div></div>
-                            <div></div>
-                            <div></div>
-                            <div>
-                                <div>
-                                    <img src="../assets/notSunny.png" alt="">
-                                </div>
-                                <div>
-                                    <img src="../assets/notDrop.png" alt="">
-                                </div>
+                                <img src="../assets/notSunny.png" alt="Temperatura inadequada">
+                                <img src="../assets/notDrop.png" alt="Umidade inadequada">
                             </div>
                         </button>
-                        <button class="btn-lista" id="lista-instavel-critica"></button>
-                        <button class="btn-lista" id="lista-instavel-critica"></button>
                         
+                        <button class="btn-lista" id="lista-instavel-critica-2">
+                            <span>Safra #1001</span>
+                            <p>Sensor #101</p>
+                            <div>
+                                <img src="../assets/notSunny.png" alt="Temperatura inadequada">
+                                <img src="../assets/notDrop.png" alt="Umidade inadequada">
+                            </div>
+                        </button>
+                    </div>
+                    
+                    <div class="card-adequada">
+                        <h3>Safras <span class="titulo-verde">Adequadas</span></h3>
+
+                        <button class="btn-lista" id="lista-adequadas">
+                            <span>Safra #2000</span>
+                            <p>Sensor #200</p>
+                            <div>
+                                <img src="../assets/sunny.png" alt="Temperatura adequada">
+                                <img src="../assets/drop.png" alt="Umidade adequada">
+                            </div>
+                        </button>
+                        
+                        <button class="btn-lista" id="lista-adequadas-2">
+                            <span>Safra #2001</span>
+                            <p>Sensor #201</p>
+                            <div>
+                                <img src="../assets/sunny.png" alt="Temperatura adequada">
+                                <img src="../assets/drop.png" alt="Umidade adequada">
+                            </div>
+                        </button>
+                    </div>
+                </div>
+                
+                <div id="div_safras" class="div_safras">
 
                     </div>
                 </div>
-                <div class="card-adequada">
-                    <h3>
-                      Safras <span class="titulo-verde">Adequadas</span> 
-                    </h3>
-
-                    <button class="btn-lista" id="lista-adequadas"></button>
-                </div>
             </div>
-        </div>
-
-        </div>
-        <div class="div_safras">
-
-            <h1>Safras</h1>
-            <div id="div_safras" class="container_cards">
-
-            </div>
-        </div>
+        </section>
+    </div>
     </section>
 
     <footer>
@@ -113,7 +112,7 @@
 </html>
 
 <script>
-    usuario.innerHTML = `Olá  ${sessionStorage.NOME_USUARIO}`
+    var usuario = sessionStorage.NOME_USUARIO
     var idsensor = 0
     function navegar(idsensor) {
         window.location.href = "./dashboard.html"
@@ -185,20 +184,3 @@
 
 
 </script>
-
-
-<!-- 
-                <div class="container_cards">
-                    <div onclick="navegar()" class="card-safra">
-                        <img src="../assets/safra_wasabi2.jpeg" alt="imagem de wasabi">
-                        <span>
-                            <h2><span>SAFRA:</span> ${idSafra}</h2>
-                            <p><span>Sensor:</span> ${idSensor}</p>
-                            <p><span>Status:</span> ${statusAtivo}</p>
-                            <p><span>Modelo:</span> Arduino Uno R3</p>
-                        </span>
-                    </div>
-
-
-
--->
