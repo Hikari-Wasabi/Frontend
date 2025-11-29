@@ -68,14 +68,23 @@ CONSTRAINT `chkTipoWasabi`
 CHECK (`tipo_wasabi` IN ('Eutrema Japonicum', 'Sawa Wasabi', 'Oka Wasabi')),
 `fk_empresa` INT,
 CONSTRAINT `fk_empresa_safra` FOREIGN KEY (`fk_empresa`)
-REFERENCES `empresa`(`idEmpresa`),
+REFERENCES `empresa`(`idEmpresa`)
+/* 
 `fk_funcionario` INT, 
 CONSTRAINT `fk_safra_responsavel`
 	FOREIGN KEY (`fk_funcionario`)
 		REFERENCES `funcionario` (idFuncionario)
+*/
 )AUTO_INCREMENT=1000;
 
-
+CREATE TABLE `responsavel` (
+	`fk_funcionario` INT,
+    `fk_safra` INT,
+    `ultimo_log` DATETIME,
+    PRIMARY KEY (`fk_funcionario`, `fk_safra`),
+    FOREIGN KEY (`fk_funcionario`) REFERENCES `funcionario` (idFuncionario),
+    FOREIGN KEY (`fk_safra`) REFERENCES `safra_wasabi` (idSafra)
+);
 
 CREATE TABLE `sensor`(
 `idsensor` INT PRIMARY KEY AUTO_INCREMENT,
@@ -103,10 +112,7 @@ CREATE TABLE `wasabi_daily`(
 CONSTRAINT `pk_sensor_wasabi` PRIMARY KEY (`id_registro`,`fk_sensor`),
 CONSTRAINT `fk_sensor_wasabi` FOREIGN KEY (`fk_sensor`) REFERENCES `sensor`(`idSensor`));
 
-SELECT * FROM wasabi_daily;
 
-INSERT INTO wasabi_daily (fk_Sensor, valor_umidade, valor_temperatura) VALUES
-(100, 80, 31);
 
 CREATE TABLE `localizacao_sensor`(
 `idLocalizacao` INT PRIMARY KEY,
@@ -149,15 +155,13 @@ VALUES
 (1001, 180.30, 0.95, '2025-03-10', '2025-12-10', 'Estufa', 'Sawa Wasabi', 2),
 (1002, 300.00, 1.40, '2025-02-05', '2025-11-05', 'Tradicional', 'Oka Wasabi', 3);
 
-
-UPDATE safra_wasabi SET fk_funcionario = 1
-	WHERE idSafra = 1000; 
-    
-UPDATE safra_wasabi SET fk_funcionario = 2
-	WHERE idSafra = 1001;
-    
-UPDATE safra_wasabi SET fk_funcionario = 3
-	WHERE idSafra = 1002; 
+SELECT * FROM funcionario;
+SELECT * FROM safra_wasabi;
+SELECT * FROM responsavel;
+INSERT INTO responsavel (fk_funcionario, fk_safra) VALUES 
+(1, 1000),
+(1, 1001),
+(1, 1002);
 
 INSERT INTO sensor (modelo, numero_serie, status_ativo, max_temp, min_temp, min_umidade, max_umiddade, ultima_calibracao, fk_safra)
 VALUES
@@ -171,16 +175,80 @@ VALUES
 (2, 101, '2025-02-15 10:30:00', 'Rua L', 'B2'),
 (3, 102, '2025-03-05 08:45:00', 'Rua M', 'C3');
 
+SELECT * FROM sensor;
 
 SELECT idSafra, 
 		idsensor, 
         status_ativo  
-        FROM safra_wasabi JOIN funcionario 
+        FROM safra_wasabi 
+        JOIN responsavel r
+        ON r.fk_safra = idSafra
+        JOIN funcionario 
         ON fk_funcionario = idFuncionario 
-        JOIN sensor 
-        ON fk_safra = idSafra 
+        JOIN sensor s
+        ON s.fk_safra = idSafra 
         WHERE nome = 'João Silva' AND email = 'joão@wasabibr.com' AND senha = 'senhaJoao';
 
+SELECT * FROM wasabi_daily;
+
+INSERT INTO wasabi_daily (fk_Sensor, valor_umidade, valor_temperatura) VALUES
+(100, 80, 31);
 
 
+
+
+CREATE OR REPLACE VIEW vw_situacao_safra AS
+SELECT id_registro, idsensor, idSafra, valor_temperatura, valor_umidade,
+	CASE 
+		WHEN valor_temperatura >= 10 AND valor_temperatura <= 18
+        THEN 'adequado'
+        WHEN valor_temperatura >= 8 AND valor_temperatura <= 20
+        THEN 'instavel'
+        ELSE 'critico'
+    END AS situacao_temperatura,
+    CASE 
+		WHEN valor_umidade >= 62 AND valor_temperatura <= 88
+        THEN 'adequado'
+        WHEN valor_umidade >= 60 AND valor_temperatura <= 90
+        THEN 'instavel'
+        ELSE 'critico'
+    END AS situacao_umidade,
+	CASE 
+		WHEN 
+			valor_temperatura >= 10 AND valor_temperatura <= 18
+            AND
+            valor_umidade >= 62 AND valor_umidade <= 88
+        THEN 'adequado'
+        WHEN 
+			(
+				valor_temperatura >= 10 AND valor_temperatura <= 18
+				AND
+				(valor_umidade < 62 OR valor_umidade > 88)
+			)
+            OR 
+            (
+				valor_umidade >= 62 AND valor_umidade <= 88
+				AND
+				(valor_temperatura < 10 OR valor_temperatura > 18)
+			)
+		THEN 'instavel'
+        ELSE 'critico'
+	END AS situacao_safra
+	FROM safra_wasabi 
+	JOIN sensor ON fk_safra = idSafra
+	JOIN wasabi_daily ON fk_Sensor = idsensor
+    ORDER BY id_registro DESC
+    ;
+
+
+SELECT *
+FROM vw_situacao_safra v
+JOIN responsavel r ON v.idSafra = r.fk_safra
+WHERE id_registro = (
+    SELECT MAX(id_registro)
+    FROM vw_situacao_safra
+    WHERE idsensor = v.idsensor
+)
+AND fk_funcionario = 1
+;
 
