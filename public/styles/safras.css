@@ -31,6 +31,7 @@ body {
     width: 95%;
     gap: 20px;
     padding: 20px 0;
+    padding-left: 50px;
 }
 
 .cards-laterais {
@@ -138,11 +139,13 @@ body {
     justify-content: center;
     flex-wrap: wrap;
     gap: 35px;
+    height: fit-content;
 }
 
 .card-safra {
     display: flex;
     width: fit-content;
+    max-height: 150px;
     align-items: center;
     border-radius: 15px;
     border: 2px solid #558C03;

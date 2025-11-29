@@ -9,5 +9,8 @@ router.get("/mostrarSafra/:email/:id_usuario", function (req, res) {
     safraController.mostrarSafra(req, res);
 })
 
+router.get("/obter-situacao-safra/:id_usuario", function (req, res) {
+    safraController.obterSituacaoSafra(req, res);
+})
 
 module.exports = router;
