@@ -30,13 +30,13 @@
     <div class="containerTemp">
       <div class="divTemp">
         <span>Safra</span>
-        <div class="temp-value" style="font-size: 40px; color: #676565;">#1001</div>
+        <div id="div_num_safra" class="temp-value" style="font-size: 40px; color: #676565;"></div>
       </div>
     </div>
     <div class="containerTemp ">
       <div class="divTemp">
         <span>Sensor</span>
-        <div class="temp-value" style="font-size: 40px; color: #676565;">#101</div>
+        <div id="div_num_sensor" class="temp-value" style="font-size: 40px; color: #676565;"></div>
       </div>
     </div>
     <div></div>
@@ -140,6 +140,13 @@
   var labels = [];
   var labelsFormatado = [];
 
+  var idSensor = sessionStorage.ID_SENSOR
+  var idSafra = sessionStorage.ID_SAFRA
+
+  div_num_safra.innerHTML = `#${idSafra}`
+  div_num_sensor.innerHTML = `#${idSensor}`
+
+
   function mudarCorDosKPI(temperatura, umidade) {
 
 
@@ -175,9 +182,7 @@
     }
   }
 
-
-  // Solução de contorno TEMPORÁRIO !!!
-  obterDadosGrafico(100) // -> essa função deve ser chamada passando o id do sensor que estara na session storage. by Gomes, Luís
+  obterDadosGrafico(idSensor) // -> essa função deve ser chamada passando o id do sensor que estara na session storage. by Gomes, Luís
 
   function obterDadosGrafico(id_registro) {
 
