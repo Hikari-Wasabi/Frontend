@@ -155,7 +155,7 @@
             var var_pais = input_pais.value
             var var_mensagem = input_mensagem.value
 
-            fetch("http://127.0.0.1:3333/mensagem/botao_enviar",{
+            fetch("/mensagem/botao_enviar",{
                 method: "POST",
                 headers:{
                     "Content-Type": "application/json"

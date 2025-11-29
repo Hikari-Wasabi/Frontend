@@ -140,7 +140,7 @@
         return;
       }
 
-      fetch("http://127.0.0.1:3333/empresas/listar", {                                   /* Usa a rota expressa na API pra puxar os dados */
+      fetch("/empresas/listar", {                                   /* Usa a rota expressa na API pra puxar os dados */
         method: "GET",                                              
       })
         .then(function (resposta) {
@@ -172,7 +172,7 @@
                   telefoneVar.substring(7, 11);
               }
 
-              fetch("http://127.0.0.1:3333/usuarios/cadastrar", {
+              fetch("/usuarios/cadastrar", {
                 method: "POST",                                    /* Envia os dados requisição POST */
                 headers: {
                   "Content-Type": "application/json",

@@ -129,7 +129,7 @@
         var email = sessionStorage.EMAIL_USUARIO
         var id_usuario = sessionStorage.ID_USUARIO
 
-        fetch(`http://127.0.0.1:3333/safra/mostrarSafra/${email}/${id_usuario}`, {
+        fetch(`/safra/mostrarSafra/${email}/${id_usuario}`, {
             method: "GET",
         }).then(function (response) {
             if (response.ok) {
