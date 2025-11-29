@@ -141,17 +141,38 @@ body {
 }
 
 .btn-lista {
-    display: block;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     font-size: 14px;
     text-align: center;
     width: 100%;
-    height: 30px;
+    /* height: 30px; */
     background: #f5eaea;
-    padding: 10px;
+    padding: 5px 0px 3px 0px;
     margin-bottom: 10px;
     border: none;
     border-radius: 12px;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+.btn-lista span  {
+    font-size: 20px;
+    font-weight: 900;
+    text-shadow: 3px 2px 4px rgb(0, 0, 0, 0.4);
+}
+
+.btn-lista p {
+    text-shadow: 3px 2px 4px rgb(0, 0, 0, 0.4);
+    margin: 0px;
+    font-size: 16px;
+    color: #565d4b;
+    font-weight: 900;
+}
+
+.btn-lista img {
+    height: 20px;
+    padding-right: 12px;
 }
 
 .btn-lista:hover {
