@@ -27,25 +27,27 @@
         <h1> Painel de Classificação</h1>
     </div>
     <div class="all-in-container">
-        <h1 style="display: flex; justify-content: center; align-items: center;" class="title-safra">Safras</h1>
         <section class="section_main">
             <div class="container">
                 <div class="cards-laterais">
                     <div id="div_situacao_safra_critica" class="card-instavel-critica">
                         <h2>Safras</h2>
                         <h3>
-                            <span class="instavel">INSTÁVEL </span> <br>
+                            <span class="instavel">INSTÁVEL </span> |
                             <span class="critica">CRÍTICA</span>
                         </h3>
 
                     </div>
 
                     <div id="div_situacao_safra_adequado" class="card-adequada">
-                        <h3>Safras <span class="titulo-verde">Adequadas</span></h3>
+                        <h2>Safras</h2>
+                        <h3><span class="titulo-verde">Adequadas</span></h3>
                     </div>
                 </div>
-
-                <div id="div_safras" class="container_cards">
+                <div class="container-safras">
+                    <h1 class="title-safras">Safras</h1>
+                    <div id="div_safras" class="container_cards">
+                    </div>
 
                 </div>
             </div>
@@ -152,18 +154,16 @@
                         <p>Sensor #${listaSafrasCriticas[i].idsensor}</p>
                         <div>
                             <img src="
-                                ${
-                                (listaSafrasCriticas[i].situacao_temperatura == "adequado" && "../assets/sunny.png")
-                                ||
-                                "../assets/notSunny.png"
-                                }
+                                ${(listaSafrasCriticas[i].situacao_temperatura == "adequado" && "../assets/sunny.png")
+                    ||
+                    "../assets/notSunny.png"
+                    }
                             " alt="Temperatura adequada">
                             <img src="
-                                ${
-                                (listaSafrasCriticas[i].situacao_umidade == "adequado" && "../assets/drop.png")
-                                ||
-                                "../assets/notDrop.png"
-                                }
+                                ${(listaSafrasCriticas[i].situacao_umidade == "adequado" && "../assets/drop.png")
+                    ||
+                    "../assets/notDrop.png"
+                    }
                             " alt="Umidade adequada">
                         </div>
                     </button>
@@ -210,7 +210,7 @@
 
             for (var i = 0; i < response.length; i++) {
                 console.log(response);
-                
+
                 idsafra = response[i].idSafra
                 idsensor = response[i].idsensor
                 status_ativo = response[i].status_ativo
