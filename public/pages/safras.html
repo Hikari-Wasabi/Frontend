@@ -214,9 +214,25 @@
                 idsafra = response[i].idSafra
                 idsensor = response[i].idsensor
                 status_ativo = response[i].status_ativo
+                var situacao_temp = response[i].situacao_temperatura;
                 console.log(idsensor)
 
-                div_safras.innerHTML += `
+                var mensagem_safra = ""
+
+                if (situacao_temp === 'critico' || situacao_temp === 'instavel') {
+                    mensagem_safra += ` <div onclick="navegar(${idsensor}, ${idsafra})" class="card-safra">
+                        <img src="../assets/alerta.png" alt="imagem alerta">
+                        <img src="../assets/safra_wasabi2.jpeg" alt="imagem de wasabi">
+                        <span>
+                            <h2><span>SAFRA:</span> ${idsafra}</h2>
+                            <p><span>Sensor:</span> ${idsensor}</p>
+                            <p><span>Status:</span> ${status_ativo}</p>
+                            <p><span>Modelo:</span> Arduino Uno R3</p>
+                        </span>
+                    </div>                   
+                    `;
+                } else {
+                    mensagem_safra += `
                     <div onclick="navegar(${idsensor}, ${idsafra})" class="card-safra">
                         <img src="../assets/safra_wasabi2.jpeg" alt="imagem de wasabi">
                         <span>
@@ -227,7 +243,8 @@
                         </span>
                     </div>                    
                     `
-
+                }
+                div_safras.innerHTML+= mensagem_safra;
             }
 
         })
