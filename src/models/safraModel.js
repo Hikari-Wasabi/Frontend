@@ -3,17 +3,28 @@ var database = require("../database/config")
 
 function mostrarSafra(email, id_usuario) {
 
-    var instrucaoSql  = `SELECT idSafra, 
-		idsensor, 
-        status_ativo  
-        FROM safra_wasabi 
-        JOIN responsavel r
-        ON r.fk_safra = idSafra
-        JOIN funcionario 
-        ON fk_funcionario = idFuncionario 
-        JOIN sensor s
-        ON s.fk_safra = idSafra 
-        WHERE email = '${email}' AND fk_funcionario = '${id_usuario}';` 
+    var instrucaoSql  = `
+    SELECT 
+    s.idSafra,
+    sen.idsensor,
+    sen.status_ativo,         
+    v.valor_temperatura,
+    v.valor_umidade,
+    v.situacao_temperatura,
+    v.situacao_umidade,
+    v.situacao_safra
+    FROM safra_wasabi s
+JOIN responsavel r
+    ON r.fk_safra = s.idSafra
+JOIN funcionario f
+    ON r.fk_funcionario = f.idFuncionario
+JOIN sensor sen
+    ON sen.fk_safra = s.idSafra
+JOIN vw_situacao_safra v
+    ON v.idSafra = s.idSafra
+       AND v.idsensor = sen.idsensor
+WHERE f.email = '${email};' 
+    AND f.idFuncionario = '${id_usuario}';` 
 
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
     return database.executar(instrucaoSql);
