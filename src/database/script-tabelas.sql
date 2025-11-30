@@ -195,50 +195,45 @@ INSERT INTO wasabi_daily (fk_Sensor, valor_umidade, valor_temperatura) VALUES
 (101, 50, 18);
 
 
-
-
-CREATE OR REPLACE VIEW vw_situacao_safra AS
-SELECT id_registro, idsensor, idSafra, valor_temperatura, valor_umidade,
-	CASE 
-		WHEN valor_temperatura >= 10 AND valor_temperatura <= 18
+    CREATE OR REPLACE VIEW vw_situacao_safra AS
+SELECT 
+    id_registro, 
+    idsensor, 
+    idSafra, 
+    valor_temperatura, 
+    valor_umidade,
+    CASE 
+        WHEN valor_temperatura BETWEEN 8 AND 20
         THEN 'adequado'
-        WHEN valor_temperatura >= 8 AND valor_temperatura <= 20
-        THEN 'instavel'
-        ELSE 'critico'
+        WHEN valor_temperatura < 8 OR valor_temperatura > 20
+        THEN 'critico' 
+        ELSE 'instavel'
     END AS situacao_temperatura,
     CASE 
-		WHEN valor_umidade >= 62 AND valor_temperatura <= 88
+        WHEN valor_umidade BETWEEN 60 AND 90
         THEN 'adequado'
-        WHEN valor_umidade >= 60 AND valor_temperatura <= 90
+        WHEN valor_umidade < 60 OR valor_umidade > 90
+        THEN 'critico'
+        ELSE 'instavel'
+    END AS situacao_umidade,
+    CASE 
+        WHEN valor_temperatura BETWEEN 8 AND 20
+             AND valor_umidade BETWEEN 60 AND 90
+        THEN 'adequado'
+        WHEN (valor_temperatura NOT BETWEEN 8 AND 20
+              AND valor_umidade BETWEEN 60 AND 90)
+             OR
+             (valor_umidade NOT BETWEEN 60 AND 90
+              AND valor_temperatura BETWEEN 8 AND 20)
         THEN 'instavel'
         ELSE 'critico'
-    END AS situacao_umidade,
-	CASE 
-		WHEN 
-			valor_temperatura >= 10 AND valor_temperatura <= 18
-            AND
-            valor_umidade >= 62 AND valor_umidade <= 88
-        THEN 'adequado'
-        WHEN 
-			(
-				valor_temperatura >= 10 AND valor_temperatura <= 18
-				AND
-				(valor_umidade < 62 OR valor_umidade > 88)
-			)
-            OR 
-            (
-				valor_umidade >= 62 AND valor_umidade <= 88
-				AND
-				(valor_temperatura < 10 OR valor_temperatura > 18)
-			)
-		THEN 'instavel'
-        ELSE 'critico'
-	END AS situacao_safra
-	FROM safra_wasabi 
-	JOIN sensor ON fk_safra = idSafra
-	JOIN wasabi_daily ON fk_Sensor = idsensor
-    ORDER BY id_registro DESC
-    ;
+    END AS situacao_safra
+FROM safra_wasabi 
+JOIN sensor ON fk_safra = idSafra
+JOIN wasabi_daily ON fk_Sensor = idsensor
+ORDER BY id_registro DESC;
+
+select * from vw_situacao_safra;
 
 
 SELECT *
