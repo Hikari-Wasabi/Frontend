@@ -26,6 +26,7 @@
     <div class="title-safra">
         <h1> Painel de Classificação</h1>
     </div>
+    <h1 class="title-safras">Safras</h1>
     <div class="all-in-container">
         <section class="section_main">
             <div class="container">
@@ -45,7 +46,6 @@
                     </div>
                 </div>
                 <div class="container-safras">
-                    <h1 class="title-safras">Safras</h1>
                     <div id="div_safras" class="container_cards">
                     </div>
 
@@ -196,9 +196,15 @@
 
             idsafra = listaTodasSafras[i].idSafra
             idsensor = listaTodasSafras[i].idsensor
-            status_ativo = listaTodasSafras[i].status_ativo
+            var status_ativo = listaTodasSafras[i].status_ativo
             var situacao_safra = listaTodasSafras[i].situacao_safra;
-            console.log(situacao_safra)
+            var modelo_safra = listaTodasSafras[i].modelo;
+
+            if (status_ativo == 1) {
+                status_ativo = 'Ativo'
+            } else {
+                status_ativo = 'Desativado'
+            }
 
             var mensagem_safra = ""
 
@@ -210,7 +216,7 @@
                             <h2><span>SAFRA:</span> ${idsafra}</h2>
                             <p><span>Sensor:</span> ${idsensor}</p>
                             <p><span>Status:</span> ${status_ativo}</p>
-                            <p><span>Modelo:</span> Arduino Uno R3</p>
+                            <p><span>Modelo:</span> Arduino ${modelo_safra}</p>
                         </span>
                     </div>                   
                     `;
@@ -222,7 +228,7 @@
                             <h2><span>SAFRA:</span> ${idsafra}</h2>
                             <p><span>Sensor:</span> ${idsensor}</p>
                             <p><span>Status:</span> ${status_ativo}</p>
-                            <p><span>Modelo:</span> Arduino Uno R3</p>
+                            <p><span>Modelo:</span> Arduino ${status_ativo}</p>
                         </span>
                     </div>                    
                     `

@@ -7,6 +7,7 @@ function mostrarSafra(email, id_usuario) {
     SELECT 
     s.idSafra,
     sen.idsensor,
+    sen.modelo,
     sen.status_ativo,         
     v.valor_temperatura,
     v.valor_umidade,

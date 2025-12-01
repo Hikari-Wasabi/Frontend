@@ -205,7 +205,9 @@ INSERT INTO wasabi_daily (fk_Sensor, valor_umidade, valor_temperatura) VALUES
     CREATE OR REPLACE VIEW vw_situacao_safra AS
 SELECT 
     id_registro, 
-    idsensor, 
+    idsensor,
+    modelo,
+    status_ativo,
     idSafra, 
     valor_temperatura, 
     valor_umidade,

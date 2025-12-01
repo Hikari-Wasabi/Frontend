@@ -16,10 +16,8 @@ body {
     justify-content: center;
     font-size: 30px;
     font-weight: 400;
-    color: #ffffff;
-    text-shadow:
-        4px -2px 0 #21632c;
-    -webkit-text-stroke: 2px #21632c;
+    color: #21632c;
+    text-shadow: 1px solid black;
 }
 
 .container_cards {
@@ -164,6 +162,16 @@ body {
     flex-wrap: wrap;
     gap: 35px;
     height: fit-content;
+}
+
+.container-safras {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 20px;
+    padding: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
 }
 
 .card-safra {
