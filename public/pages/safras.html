@@ -10,7 +10,7 @@
     <link rel="shortcut icon" type="imagex/png" href="./assets/imagem_wasabi_login.png">
 </head>
 
-<body onload="Listar_safras()">
+<body onload="obterSituacaoSafras()">
     <!-- HEADER -->
     <header class="header">
         <div class="div_logo">
@@ -84,7 +84,7 @@
     var usuario = sessionStorage.NOME_USUARIO
     var idsensor = 0
 
-    obterSituacaoSafras()
+    // obterSituacaoSafras()
     function navegar(idsensor, idSafra) {
         window.location.href = "./dashboard.html"
         console.log(idsensor);
@@ -97,6 +97,8 @@
 
     var listaSafrasAdequadas = []
     var listaSafrasCriticas = []
+    var listaTodasSafras = []
+
     function obterSituacaoSafras() {
         var id_usuario = sessionStorage.ID_USUARIO
         fetch(`/safra/obter-situacao-safra/${id_usuario}`, {
@@ -132,8 +134,36 @@
                 }
             }
 
+
+            var conteudoSafraCritica = ``
+            for (var i = 0; i < listaSafrasCriticas.length; i++) {
+                listaTodasSafras.push(listaSafrasCriticas[i])
+                conteudoSafraCritica += `
+                                    <button onclick="navegar(${listaSafrasCriticas[i].idsensor}, ${listaSafrasCriticas[i].idSafra})" class="btn-lista">
+                                        <span>Safra #${listaSafrasCriticas[i].idSafra}</span>
+                                        <p>Sensor #${listaSafrasCriticas[i].idsensor}</p>
+                                        <div>
+                                            <img src="
+                                                ${(listaSafrasCriticas[i].situacao_temperatura == "adequado" && "../assets/sunny.png")
+                    ||
+                    "../assets/notSunny.png"
+                    }
+                                            " alt="Temperatura adequada">
+                                            <img src="
+                                                ${(listaSafrasCriticas[i].situacao_umidade == "adequado" && "../assets/drop.png")
+                    ||
+                    "../assets/notDrop.png"
+                    }
+                                            " alt="Umidade adequada">
+                                        </div>
+                                    </button>
+                                `
+            }
+
+
             var conteudoSafraAdequada = ``
             for (var i = 0; i < listaSafrasAdequadas.length; i++) {
+                listaTodasSafras.push(listaSafrasAdequadas[i])
                 conteudoSafraAdequada += `
                     <button onclick="navegar(${listaSafrasAdequadas[i].idsensor}, ${listaSafrasAdequadas[i].idSafra})" class="btn-lista">
                         <span>Safra #${listaSafrasAdequadas[i].idSafra}</span>
@@ -146,33 +176,9 @@
                 `
             }
 
-            var conteudoSafraCritica = ``
-            for (var i = 0; i < listaSafrasCriticas.length; i++) {
-                conteudoSafraCritica += `
-                    <button onclick="navegar(${listaSafrasCriticas[i].idsensor}, ${listaSafrasCriticas[i].idSafra})" class="btn-lista">
-                        <span>Safra #${listaSafrasCriticas[i].idSafra}</span>
-                        <p>Sensor #${listaSafrasCriticas[i].idsensor}</p>
-                        <div>
-                            <img src="
-                                ${(listaSafrasCriticas[i].situacao_temperatura == "adequado" && "../assets/sunny.png")
-                    ||
-                    "../assets/notSunny.png"
-                    }
-                            " alt="Temperatura adequada">
-                            <img src="
-                                ${(listaSafrasCriticas[i].situacao_umidade == "adequado" && "../assets/drop.png")
-                    ||
-                    "../assets/notDrop.png"
-                    }
-                            " alt="Umidade adequada">
-                        </div>
-                    </button>
-                `
-            }
-
             div_situacao_safra_adequado.innerHTML += conteudoSafraAdequada
             div_situacao_safra_critica.innerHTML += conteudoSafraCritica
-
+            Listar_safras()
         })
 
     }
@@ -181,46 +187,23 @@
         var email = sessionStorage.EMAIL_USUARIO
         var id_usuario = sessionStorage.ID_USUARIO
 
-        fetch(`/safra/mostrarSafra/${email}/${id_usuario}`, {
-            method: "GET",
-        }).then(function (response) {
-            if (response.ok) {
-                return response.json();
-            } else {
-                console.log("Erro na api")
-            }
-        }).then(function (response) {
+        if (listaTodasSafras.length == 0) {
+            div_safras.innerHTML += `<h1 style="color: red;">Nenhuma safra cadastrada!</h1>`
+        }
 
+        for (var i = 0; i < listaTodasSafras.length; i++) {
+            console.log(listaTodasSafras[i]);
 
-            if (response.length == 0) {
-                div_safras.innerHTML += `<h1 style="color: red;">Nenhuma safra cadastrada!</h1>`
-            }
+            idsafra = listaTodasSafras[i].idSafra
+            idsensor = listaTodasSafras[i].idsensor
+            status_ativo = listaTodasSafras[i].status_ativo
+            var situacao_safra = listaTodasSafras[i].situacao_safra;
+            console.log(situacao_safra)
 
+            var mensagem_safra = ""
 
-
-            console.log("o codigo deu certo")
-
-            var idsafra = 0
-
-            var status_ativo = 0
-            /* Armazenamento na Session Storage */
-
-
-            console.log(response)
-
-            for (var i = 0; i < response.length; i++) {
-                console.log(response);
-
-                idsafra = response[i].idSafra
-                idsensor = response[i].idsensor
-                status_ativo = response[i].status_ativo
-                var situacao_temp = response[i].situacao_temperatura;
-                console.log(idsensor)
-
-                var mensagem_safra = ""
-
-                if (situacao_temp === 'critico' || situacao_temp === 'instavel') {
-                    mensagem_safra += ` <div onclick="navegar(${idsensor}, ${idsafra})" class="card-safra">
+            if (situacao_safra === 'critico' || situacao_safra === 'instavel') {
+                mensagem_safra += ` <div onclick="navegar(${idsensor}, ${idsafra})" class="card-safra">
                         <img src="../assets/alerta.png" alt="imagem alerta">
                         <img src="../assets/safra_wasabi2.jpeg" alt="imagem de wasabi">
                         <span>
@@ -231,8 +214,8 @@
                         </span>
                     </div>                   
                     `;
-                } else {
-                    mensagem_safra += `
+            } else {
+                mensagem_safra += `
                     <div onclick="navegar(${idsensor}, ${idsafra})" class="card-safra">
                         <img src="../assets/safra_wasabi2.jpeg" alt="imagem de wasabi">
                         <span>
@@ -243,14 +226,10 @@
                         </span>
                     </div>                    
                     `
-                }
-                div_safras.innerHTML+= mensagem_safra;
             }
+            div_safras.innerHTML += mensagem_safra;
+        }
 
-        })
 
     }
-
-
-
 </script>
