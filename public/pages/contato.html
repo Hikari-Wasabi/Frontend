@@ -1,18 +1,13 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login</title>
-    <link rel="stylesheet" href="../styles/index.css">
-    <link rel="stylesheet" href="../styles/login.css">
+    <title>Contato - Wasabi</title>
     <link rel="stylesheet" href="../styles/contato.css">
-    <link rel="shortcut icon" type="imagex/png" href="./assets/imagem_wasabi_login.png">
+    <link rel="shortcut icon" type="imagex/png" href="../assets/imagem_wasabi_login.png">
 </head>
-
 <body>
-    <!-- HEADER -->
     <header class="header">
         <div class="div_logo">
             <img src="../assets/logo.png" alt="logo wasabi">
@@ -29,47 +24,51 @@
         </div>
     </header>
 
-    <section class="section_main">
-        <div class="container">
+    <section class="section_contato">
+        <div class="container_contato">
             <div class="div_contato">
-                <span>
+                <div>
                     <h1>Vamos conversar?</h1>
                     <h2>Envie sua dúvida para nós!</h2>
-                </span>
+                </div>
                 <span class="span_email">
                     <span>
                         <img src="../assets/icon/iconeEmail.svg" alt="icone do email">
                     </span>
                     <div>
                         <div>Email:</div>
-                        <a href="">comercial@hikari.wasabi.com</a>
+                        <a href="mailto:comercial@hikari.wasabi.com">comercial@hikari.wasabi.com</a>
                     </div>
                 </span>
-                <span></span>
-                <span></span>
             </div>
-            <form action="">
+            
+            <form>
                 <div class="container_inputs">
-                    <label for="">Razão Social</label>
+                    <label for="input_nome">Razão Social</label>
                     <input placeholder="Insira a razão social da empresa" id="input_nome" type="text">
                     <span id="mensagemErro_nome"></span>
-                    <label for="">Email</label>
+                    
+                    <label for="input_email">Email</label>
                     <input placeholder="Insira o email" id="input_email" type="text">
                     <span id="mensagemErro_email"></span>
-                    <label for="">País</label>
+                    
+                    <label for="input_pais">País</label>
                     <input placeholder="Insira o país" id="input_pais" type="text">
                     <span id="mensagemErro_Pais"></span>
+                    
                     <div>
-                        <label for="">Mensagem</label>
-                        <span id="contagem_mensagem"></span>
+                        <label for="input_mensagem">Mensagem</label>
+                        <span id="contagem_mensagem">0/290</span>
                     </div>
-                    <textarea maxlength="290" placeholder="Digite sua mensagem" id="input_mensagem" type="text"></textarea>
+                    <textarea maxlength="290" placeholder="Digite sua mensagem" id="input_mensagem"></textarea>
                 </div>
+                
                 <button type="button" onclick="botao_enviar()">Enviar</button>
                 <div id="div_erro_enviar"></div>
             </form>
         </div>
     </section>
+    
     <footer>
         <div class="div_imgs">
             <img src="../assets/icon/iconeInstagram.svg" alt="icone instagram">
@@ -90,12 +89,88 @@
         </center>
     </footer>
 
+    <script>
+        var contador1 = 0;
+        
+        function contato_registro() {
+            var contador2 = 0
+            var nome = input_nome.value
+            var email = input_email.value
+            var pais = input_pais.value
+            var mensagem = input_mensagem.value
+
+            var contagem_nome = nome.length
+            var contagem_pais = pais.length
+            var cont_mensagem = mensagem.length
+
+            if (contagem_nome >= 45 || contagem_nome == 0) {
+                mensagemErro_nome.innerHTML = `<b style="color: #DC3545;">Nome muito longo! ou vazio</b>`
+            } else {
+                mensagemErro_nome.innerHTML = ''
+                contador2++
+            }
+
+            if (email.endsWith('.com') && email.includes('@')) {
+                mensagemErro_email.innerHTML = ''
+                contador2++
+            } else {
+                mensagemErro_email.innerHTML = `<b style="color: #DC3545;">email invalido ou vazio!</b>`
+
+                if (email.includes(" ")) {
+                    mensagemErro_email.innerHTML = `<b style="color: #DC3545;">email invalido! com espaços</b>`
+                }
+            }
+
+            if (contagem_pais >= 45 || contagem_pais == 0) {
+                mensagemErro_Pais.innerHTML = `<b style="color: #DC3545;">Nome País vazio ou nome muito longo!</b>`
+            } else {
+                mensagemErro_Pais.innerHTML = ``
+                contador2++
+            }
+
+            contagem_mensagem.innerHTML = `${cont_mensagem}/290`
+            contador1 = contador2;
+
+            if (cont_mensagem >= 289) {
+                contagem_mensagem.innerHTML = `Limite da mensagem ultrapassado!`
+            }
+
+            contador1 = contador2
+        }
+
+        function botao_enviar() {
+            contato_registro()
+            if (contador1 >= 3) {
+                alert("Contato enviado com sucesso!")
+                div_erro_enviar.innerHTML = ``
+
+                var var_nome = input_nome.value
+                var var_email = input_email.value
+                var var_pais = input_pais.value
+                var var_mensagem = input_mensagem.value
+
+                fetch("/mensagem/botao_enviar",{
+                    method: "POST",
+                    headers:{
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify({
+                        emailServer: var_email,
+                        paisServer: var_pais,
+                        mensagemServer: var_mensagem,
+                        razaoSocialServer: var_nome
+                    })
+                })
+            } else {
+                div_erro_enviar.innerHTML = `<b style="color: #DC3545;">Alguma informação não está preechida corretamentamente</b>`
+            }
+        }
+    </script>
 </body>
-
 </html>
-
 <script>
-    contador1 = 0
+    var contador1 = 0;
+
     function contato_registro() {
         var contador2 = 0
         var nome = input_nome.value
@@ -107,36 +182,34 @@
         var contagem_pais = pais.length
         var cont_mensagem = mensagem.length
 
-
-
         if (contagem_nome >= 45 || contagem_nome == 0) {
-            mensagemErro_nome.innerHTML = `<b style="color: red;">Nome muito longo! ou vazio</b>`
+            mensagemErro_nome.innerHTML = `<b style="color: #DC3545;">Nome muito longo! ou vazio</b>`
         } else {
             mensagemErro_nome.innerHTML = ''
             contador2++
         }
 
-
-
         if (email.endsWith('.com') && email.includes('@')) {
             mensagemErro_email.innerHTML = ''
             contador2++
         } else {
-            mensagemErro_email.innerHTML = `<b style="color: red;">email invalido ou vazio!</b>`
+            mensagemErro_email.innerHTML = `<b style="color: #DC3545;">email invalido ou vazio!</b>`
 
             if (email.includes(" ")) {
-                mensagemErro_email.innerHTML = `<b style="color: red;">email invalido! com espaços</b>`
+                mensagemErro_email.innerHTML = `<b style="color: #DC3545;">email invalido! com espaços</b>`
             }
         }
 
         if (contagem_pais >= 45 || contagem_pais == 0) {
-            mensagemErro_Pais.innerHTML = `<b style="color: red;">Nome País vazio ou nome muito longo!</b>`
+            mensagemErro_Pais.innerHTML = `<b style="color: #DC3545;">Nome País vazio ou nome muito longo!</b>`
         } else {
             mensagemErro_Pais.innerHTML = ``
             contador2++
         }
 
         contagem_mensagem.innerHTML = `${cont_mensagem}/290`
+
+        contador1 = contador2;
 
         if (cont_mensagem >= 289) {
             contagem_mensagem.innerHTML = `Limite da mensagem ultrapassado!`
@@ -169,7 +242,9 @@
                 })
             })
         } else {
-            div_erro_enviar.innerHTML = `<b style="color: red;">Alguma informação não está preechida corretamentamente</b>`
+            div_erro_enviar.innerHTML = `<b style="color: #DC3545;">Alguma informação não está preechida corretamentamente</b>`
         }
     }
+
+
 </script>
