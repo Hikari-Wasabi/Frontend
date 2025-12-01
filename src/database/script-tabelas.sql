@@ -246,3 +246,11 @@ WHERE id_registro = (
 )
 AND fk_funcionario = 1;
 
+CREATE OR REPLACE VIEW vw_login_funcionario AS
+SELECT
+    idFuncionario,
+    nome,
+    email,
+    senha,
+    fk_empresa
+FROM funcionario;
