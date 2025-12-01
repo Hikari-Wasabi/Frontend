@@ -78,14 +78,21 @@ CONSTRAINT `fk_safra_responsavel`
 )AUTO_INCREMENT=1000;
 
 CREATE TABLE `responsavel` (
-	`fk_funcionario` INT,
-    `fk_safra` INT,
-    `ultimo_log` DATETIME,
-    PRIMARY KEY (`fk_funcionario`, `fk_safra`),
-    FOREIGN KEY (`fk_funcionario`) REFERENCES `funcionario` (idFuncionario),
-    FOREIGN KEY (`fk_safra`) REFERENCES `safra_wasabi` (idSafra)
-);
-
+  `idresponsavel` INT AUTO_INCREMENT,
+  `fk_funcionario` INT,
+  `fk_empresa` INT,
+  `fk_safra` INT,
+  `funcao` VARCHAR(100),
+  `comeco_gestao` TIME,
+  `fim_gestao` TIME,
+  PRIMARY KEY (`idresponsavel`, `fk_funcionario`, `fk_empresa`, `fk_safra`),
+  CONSTRAINT `fk_responsavel_Funcionario`
+    FOREIGN KEY (`fk_funcionario` , `fk_empresa`)
+    REFERENCES `Funcionario` (`idFuncionario` , `fk_empresa`),
+  CONSTRAINT `fk_responsavel_safra_wasabi`
+    FOREIGN KEY (`fk_safra`)
+    REFERENCES `safra_wasabi` (`idSafra`));
+    
 CREATE TABLE `sensor`(
 `idsensor` INT PRIMARY KEY AUTO_INCREMENT,
 `modelo` VARCHAR(45) NOT NULL,
@@ -158,10 +165,10 @@ VALUES
 SELECT * FROM funcionario;
 SELECT * FROM safra_wasabi;
 SELECT * FROM responsavel;
-INSERT INTO responsavel (fk_funcionario, fk_safra) VALUES 
-(1, 1000),
-(1, 1001),
-(1, 1002);
+INSERT INTO responsavel (fk_funcionario, fk_empresa ,fk_safra) VALUES 
+(1, 1, 1000),
+(1, 1, 1001),
+(1, 1, 1002);
 
 INSERT INTO sensor (modelo, numero_serie, status_ativo, max_temp, min_temp, min_umidade, max_umiddade, ultima_calibracao, fk_safra)
 VALUES
