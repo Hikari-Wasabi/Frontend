@@ -185,6 +185,13 @@ body {
     padding: 15px 12px;
     gap: 15px;
     cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.card-safra.critico {
+    border: 2px solid #dc3545;
+    background-color: rgba(220, 53, 69, 0.25); 
+    opacity: 0.9;
 }
 
 .card-safra img {
@@ -203,6 +210,10 @@ body {
     color: #8b9848;
 }
 
+.card-safra.critico span p span {
+    color: #a83a47;
+}
+
 .card-safra span h2 {
     font-weight: bolder;
     text-align: start;
@@ -213,3 +224,8 @@ body {
 .card-safra span h2 span {
     color: #808f28;
 }
+
+.card-safra.critico span h2 span {
+    color: #9c2a36; 
+}
+
