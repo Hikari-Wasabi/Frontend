@@ -59,7 +59,7 @@ body {
     padding: 15px 20px;
     border-radius: 15px;
     box-shadow: 0 2px 8px rgba(255, 0, 0, 0.938);
-    height: 300px;
+    height: fit-content;
 }
 
 .card-adequada {
@@ -67,14 +67,7 @@ body {
     padding: 15px 20px;
     border-radius: 15px;
     box-shadow: 0 2px 8px rgb(43, 255, 0);
-    height: 300px;
-}
-
-.card-instavel-critica h2 {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-top: 0;
+    height: fit-content;
 }
 
 .card-instavel-critica h3 {
@@ -84,19 +77,18 @@ body {
     font-weight: bold;
 }
 
-.card-adequada h2 {
-    color: black;
+.card-adequada h3 {
     text-align: center;
     font-size: 25px;
     font-weight: bold;
 }
-
 .titulo-verde {
     color: #17d600;
     text-align: center;
+    justify-self: center;
     font-size: 25px;
     font-weight: bold;
-    margin-left: 90px;
+
 }
 
 .instavel {
@@ -229,3 +221,11 @@ body {
     color: #9c2a36; 
 }
 
+.card-instavel-critica h1{
+    align-self: center;
+    color: #17d600;
+}
+.card-adequada h1{
+    justify-self: center;
+    color: #dc3545;
+}
