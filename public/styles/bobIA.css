@@ -1,25 +1,80 @@
 body {
-    font-family: Arial, sans-serif;
-    background-color: #63B1BC;
     margin: 0;
     padding: 0;
+    font-family: sans-serif;
+    background-color: #CDE2C7;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
 }
 
-#container {
-    width: 80%;
-    margin: 50px auto;
-    text-align: center;
+.header {
+    min-height: 60px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-wrap: nowrap;
+    gap: 30px;
+    padding: 5px 0px 0px 0px;
 }
 
-h1 {
-    color: #1F2A44;
+.header a {
+    color: #000000;
+    text-decoration: none;
+    outline: none;
+    font-size: 18px;
+}
+
+.div_logo img {
+    height: 55px;
+    display: block;
+}
+
+.navbar {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+}
+
+.navbar span a {
+    padding: 8px 12px;
+    border-radius: 5px;
+}
+
+.div_authButtons {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    gap: 20px;
+}
+
+.container-IA {
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    gap: 20px;
+}
+
+.container-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 15px;
 }
 
 textarea[type="text"] {
     padding: 8px;
     font-size: 16px;
-    border-radius: 5px;
+    border-radius: 10px;
+    border: 2px solid green;
+    /* border-color: green; */
     width: 400px;
+}
+
+textarea:focus {
+    row-gap: 4;
+    border-color: #719ECE;
 }
 
 select,
@@ -31,21 +86,14 @@ button {
 }
 
 button {
-    background-color: #ED145B;
+    justify-content: center;
+    background-color: green;
     color: #FFFFFF;
     border: none;
 }
 
 button:hover {
-    background-color: #EFB661;
+    transition: all 0.9s;
+    background-color: #8bdd20;
 }
 
-#resposta {
-    margin-top: 20px;
-    padding: 10px;
-    border-radius: 5px;
-    background-color: #D0D3D4;
-    border: 1px solid #63666A;
-    text-align: left;
-    display: none;
-}
