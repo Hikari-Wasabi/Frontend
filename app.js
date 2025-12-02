@@ -22,6 +22,7 @@ var medidasRouter = require("./src/routes/medidas");
 var empresasRouter = require("./src/routes/empresas");
 var mensagemRouter = require("./src/routes/mensagem");
 var safraRouter = require("./src/routes/safra")
+var bobIARouter = require("./src/routes/bobIA")
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -36,6 +37,7 @@ app.use("/medidas", medidasRouter);
 app.use("/empresas", empresasRouter);
 app.use("/mensagem", mensagemRouter);
 app.use("/safra", safraRouter);
+app.use("/bob-ia", bobIARouter)
 
 app.listen(PORTA_APP, function () {
     console.log(`
