@@ -44,16 +44,17 @@
   <div class="div_father">
     <div class="containerTemp">
       <div class="divTemp">
-        <span>Temperatura</span>
+        <span><p style="font-size: 35px;">Temperatura</p></span>
         <div id="valor_temperatura" class="temp-value" style="font-size: 40px;">0°C</div>
         <div class="temp-trend">
-          <span style="color: #676565;">+2°C desde ontem</span>
+          <span style="color: #676565;"></span>
+          <div></div>
         </div>
       </div>
     </div>
     <div class="containerTemp">
       <div class="divTemp">
-        <span>Status</span>
+        <span style="font-size: 35px;">Status</span>
         <div id="valor_status" class="temp-value" style="font-size: 40px; color: #228b22;"></div>
         <div class="temp-trend">
         </div>
@@ -61,10 +62,11 @@
     </div>
     <div class="containerUmi">
       <div class="divUmi">
-        <span>Umidade</span>
+        <span><p>Umidade</p></span>
         <div id="valor_umidade" class="umi-value" style="font-size: 40px;">0%</div>
         <div class="umi-trend">
-          <span style="color: #676565;">-5% desde ontem</span>
+          <span style="color: #676565;"></span>
+          <div></div>
         </div>
       </div>
     </div>
@@ -86,7 +88,7 @@
         </div>
 
         <div>
-          <span style="background-color: #c7490e;"></span>
+          <span style="background-color: yellow;"></span>
           <p>Quando a temperatura ou umidade estão em níveis inadequados</p>
         </div>
 
@@ -174,7 +176,7 @@
       valor_status.innerHTML = "Crítico"
     }
     else if (!temperaturaIdeal || !umidadeIdeal) {
-      valor_status.style.color = "#FF4500"
+      valor_status.style.color = "yellow"
       valor_status.innerHTML = "Instável"
     } else {
       valor_status.style.color = "#228b22"

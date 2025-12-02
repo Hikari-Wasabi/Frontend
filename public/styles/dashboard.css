@@ -73,9 +73,20 @@ body {
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
   padding: 1.5rem;
   display: flex;
+  height: 220px;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  
+}
+
+
+.containerUmi p{
+  font-size: 35px;
+}
+
+.divTempo p {
+  font-size: 35px;
 }
 
 .divTemp,
@@ -170,7 +181,7 @@ body {
 }
 
 .style_instavel {
-  background-color: #c7490e;
+  background-color: yellow;
   color: white;
 }
 
