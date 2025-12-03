@@ -18,9 +18,8 @@
         </div>
         <nav class="navbar">
             <span><a href="../index.html#section_home">Home</a></span>
-            <span><a href="./simulacao.html">Simulação</a></span>
-            <span><a href="./contato.html">Contato</a></span>
-            <span><a href="../index.html#section_duvida">Dúvidas</a></span>
+            <span><a href="https://suportehikariwasabi.atlassian.net/servicedesk/customer/portals">Suporte</a></span>
+            <span><a href="../index.html#section_home">Sair</a></span>
         </nav>
     </header>
     <div class="title-safra">
@@ -32,7 +31,6 @@
             <div class="container">
                 <div class="cards-laterais">
                     <div id="div_situacao_safra_critica" class="card-instavel-critica">
-                        <h2>Safras</h2>
                         <h3>
                             <span class="instavel">INSTÁVEL </span> |
                             <span class="critica">CRÍTICA</span>
@@ -41,7 +39,6 @@
                     </div>
 
                     <div id="div_situacao_safra_adequado" class="card-adequada">
-                        <h2>Safras</h2>
                         <h3><span class="titulo-verde">Adequadas</span></h3>
                     </div>
                 </div>
@@ -103,13 +100,13 @@
         var id_usuario = sessionStorage.ID_USUARIO
         fetch(`/safra/obter-situacao-safra/${id_usuario}`, {
             method: "GET",
-        }).then(function (response) {
+        }).then(function(response) {
             if (response.ok) {
                 return response.json();
             } else {
                 console.log("Erro na api")
             }
-        }).then(function (response) {
+        }).then(function(response) {
 
 
             if (response.length == 0) {
@@ -136,6 +133,12 @@
 
 
             var conteudoSafraCritica = ``
+            if (listaSafrasCriticas.length == 0) {
+
+                conteudoSafraCritica = `<h1> Nenhuma safra instável / crítica </h1>`
+            } else {
+                conteudoSafraCritica = ``
+            }
             for (var i = 0; i < listaSafrasCriticas.length; i++) {
                 listaTodasSafras.push(listaSafrasCriticas[i])
                 conteudoSafraCritica += `
@@ -160,10 +163,14 @@
                                 `
             }
 
-
             var conteudoSafraAdequada = ``
+            if (listaSafrasAdequadas.length == 0) {
+                conteudoSafraAdequada = `<h1> Nenhuma safra adequada </h1>`
+            } else {
+                conteudoSafraAdequada = ``
+            }
             for (var i = 0; i < listaSafrasAdequadas.length; i++) {
-                listaTodasSafras.push(listaSafrasAdequadas[i])
+                response.push(listaSafrasAdequadas[i])
                 conteudoSafraAdequada += `
                     <button onclick="navegar(${listaSafrasAdequadas[i].idsensor}, ${listaSafrasAdequadas[i].idSafra})" class="btn-lista">
                         <span>Safra #${listaSafrasAdequadas[i].idSafra}</span>
@@ -184,32 +191,66 @@
     }
 
     function Listar_safras() {
-        var email = sessionStorage.EMAIL_USUARIO
+
+
+
+
         var id_usuario = sessionStorage.ID_USUARIO
 
-        if (listaTodasSafras.length == 0) {
-            div_safras.innerHTML += `<h1 style="color: red;">Nenhuma safra cadastrada!</h1>`
-        }
-
-        for (var i = 0; i < listaTodasSafras.length; i++) {
-            console.log(listaTodasSafras[i]);
-
-            idsafra = listaTodasSafras[i].idSafra
-            idsensor = listaTodasSafras[i].idsensor
-            var status_ativo = listaTodasSafras[i].status_ativo
-            var situacao_safra = listaTodasSafras[i].situacao_safra;
-            var modelo_safra = listaTodasSafras[i].modelo;
-
-            if (status_ativo == 1) {
-                status_ativo = 'Ativo'
+        fetch(`/safra/mostrarSafra/${id_usuario}`, {
+            method: "GET",
+        }).then(function(response) {
+            if (response.ok) {
+                return response.json();
             } else {
-                status_ativo = 'Desativado'
+                console.log("Erro na api")
+            }
+        }).then(function(response) {
+
+
+            if (response.length == 0) {
+                div_safras.innerHTML += `<h1 style="color: red;">Nenhuma safra cadastrada!</h1>`
             }
 
-            var mensagem_safra = ""
 
-if (situacao_safra === 'critico' || situacao_safra === 'instavel') {
-    mensagem_safra += ` 
+
+            console.log("o codigo deu certo")
+
+            var idsafra = 0
+
+            var status_ativo = 0
+            /* Armazenamento na Session Storage */
+
+
+            console.log(response)
+
+
+
+
+
+            if (response.length == 0) {
+                div_safras.innerHTML += `<h1 style="color: red;">Nenhuma safra cadastrada!</h1>`
+            }
+
+            for (var i = 0; i < response.length; i++) {
+                console.log(response[i]);
+
+                idsafra = response[i].idSafra
+                idsensor = response[i].idsensor
+                var status_ativo = response[i].status_ativo
+                var situacao_safra = response[i].situacao_safra;
+                var modelo_safra = response[i].modelo;
+
+                if (status_ativo == 1) {
+                    status_ativo = 'Ativo'
+                } else {
+                    status_ativo = 'Desativado'
+                }
+
+                var mensagem_safra = ""
+
+                if (situacao_safra === 'critico' || situacao_safra === 'instavel') {
+                    mensagem_safra += ` 
         <div onclick="navegar(${idsensor}, ${idsafra})" class="card-safra critico">
             <img src="../assets/safra_wasabi2.jpeg" alt="imagem de wasabi">
             <span>
@@ -220,8 +261,8 @@ if (situacao_safra === 'critico' || situacao_safra === 'instavel') {
             </span>
         </div>                   
     `;
-} else {
-    mensagem_safra += `
+                } else {
+                    mensagem_safra += `
         <div onclick="navegar(${idsensor}, ${idsafra})" class="card-safra">
             <img src="../assets/safra_wasabi2.jpeg" alt="imagem de wasabi">
             <span>
@@ -232,10 +273,10 @@ if (situacao_safra === 'critico' || situacao_safra === 'instavel') {
             </span>
         </div>                    
     `
-}
-            div_safras.innerHTML += mensagem_safra;
-        }
+                }
+                div_safras.innerHTML += mensagem_safra;
+            }
 
-
+        })
     }
 </script>
