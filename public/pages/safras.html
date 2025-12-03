@@ -17,13 +17,12 @@
             <img src="../assets/logo.png" alt="logo wasabi">
         </div>
         <nav class="navbar">
-            <span><a href="../index.html#section_home">Home</a></span>
             <span><a href="https://suportehikariwasabi.atlassian.net/servicedesk/customer/portals">Suporte</a></span>
             <span><a href="../index.html#section_home">Sair</a></span>
         </nav>
     </header>
     <div class="title-safra">
-        <h1> Painel de Classificação</h1>
+        <h1>Painel de Classificação</h1>
     </div>
     <h1 class="title-safras">Safras</h1>
     <div class="all-in-container">
@@ -206,13 +205,6 @@
                 console.log("Erro na api")
             }
         }).then(function(response) {
-
-
-            if (response.length == 0) {
-                div_safras.innerHTML += `<h1 style="color: red;">Nenhuma safra cadastrada!</h1>`
-            }
-
-
 
             console.log("o codigo deu certo")
 

@@ -1,0 +1,248 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: sans-serif;
+    background-color: #CDE2C7;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+}
+
+.header {
+    min-height: 60px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-wrap: nowrap;
+    gap: 30px;
+    padding: 5px 0px 0px 0px;
+}
+
+.header a {
+    color: #000000;
+    text-decoration: none;
+    outline: none;
+    font-size: 18px;
+}
+
+.div_logo img {
+    height: 55px;
+    display: block;
+}
+
+.navbar {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+}
+
+.navbar span a {
+    padding: 8px 12px;
+    border-radius: 5px;
+}
+
+.div_authButtons {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    gap: 20px;
+}
+
+.header-left a {
+  text-decoration: none;
+  color: white;
+}
+
+.header-left {
+  /* position: fixed; */
+  top: 0;
+  left: 0;
+  z-index: 999;
+  height: 100vh;
+  width: 20%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  border-right: 5px solid rgb(115, 225, 115);
+  background-color: rgb(22, 115, 22);
+}
+
+.dash-right {
+  display: flex;
+  width: 70%;
+  height: fit-content;
+  background-color: #161618;
+  position: relative;
+  top: 0;
+  left: 25%;
+  height: 100vh;
+  overflow: auto;
+}
+
+.header-left h1 {
+  color: #ffffff;
+  -webkit-text-stroke:  2px #8bdd20;
+}
+
+.hello {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.hello h3 {
+  color: #e3b062;
+  font-weight: 300;
+  font-size: 1.2rem;
+}
+
+.hello h3 span {
+  font-weight: 800;
+}
+
+.btn-nav {
+  border: 3px solid #558C03;
+  border-radius: 10px;
+  color: #558C03;
+  background-color: #CCE4CB;
+  border-radius: 5px;
+  text-align: center;
+  padding: 2% 5%;
+}
+
+.btn-nav-white {
+  /* width: 40%; */
+  background-color: #CCE4CB;
+  border: 3px solid #558C03;
+  border-radius: 5px;
+  text-align: center;
+  padding: 2% 5%;
+  border-radius: 10px;
+}
+
+.btn-nav-white h3 {
+  color: #558C03;
+  padding: 0;
+  margin: 0;
+}
+
+.btn-nav h3,
+.btn-logout h3 {
+  margin: 0;
+  padding: 0;
+}
+
+.btn-logout {
+  margin: 0;
+  padding: 0;
+  width: 20%;
+  background-color: #558C03;
+  color: white;
+  border-radius: 10px;
+  text-align: center;
+  padding: 10px 15px;
+  margin-bottom: 100px;
+  cursor: pointer;
+}
+
+button {
+    background-color: #CCE4CB;
+    color: #558C03;
+    border: 2px solid #558C03;
+}
+
+section {
+    display: flex;
+    gap: 30px;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+}
+
+.container-suporte {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+    
+}
+
+.logo-wasabi {
+    height: 180px;
+}
+
+.titulo {
+    font-size: 40px;
+    color: #145811;
+    margin-bottom: 0px;
+}
+
+.container-IA {
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.container-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 15px;
+}
+
+textarea[type="text"] {
+    padding: 8px;
+    font-size: 16px;
+    border-radius: 10px;
+    border: 2px solid green;
+    /* border-color: green; */
+    width: 400px;
+    align-self: center;
+}
+
+textarea:focus {
+    row-gap: 4;
+    border-color: #719ECE;
+}
+
+select,
+button {
+    padding: 8px;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button {
+    justify-content: center;
+    background-color: green;
+    color: #FFFFFF;
+    border: none;
+}
+
+button:hover {
+    transition: all 0.9s;
+    background-color: #8bdd20;
+}
+
+#resposta {
+    width: 600px;
+    border: 2px solid #558C03;
+    border-radius: 10px;
+    padding: 10px 5px;
+}
+
+.container-questions {
+    display: flex;
+    flex-direction: column;
+
+}

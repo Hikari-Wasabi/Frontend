@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BobIA</title>
+    <link rel="stylesheet" href="../styles/suporte.css">
+    <script src="../js/sessao.js"></script>
+</head>
+<body>
+    
+    <div class="header-left">
+            <img class="logo-wasabi" src="../assets/imagem_wasabi_login.svg" alt="logo Wasabi">
+
+            <div class="btn-nav-white">
+                <a target="_blank" href="../assets/docs/Manual_instalação.pdf">
+                    <h3>Manual de instalação</h3>
+                </a>
+            </div>
+
+             <div class="btn-nav-white">
+                <a target="_blank" href="https://suportehikariwasabi.atlassian.net/servicedesk/customer/portals">
+                    <h3>Atendimento</h3>
+                </a>
+
+            </div>
+
+            <div class="btn-nav-white">
+                <a href="../assets/docs/Hikari_Wasabi-Documentação.docx">
+                    <h3>Documentação</h3>
+                </a>
+            </div>
+
+            <div class="btn-logout" onclick="limparSessao()">
+                <h3>Sair</h3>
+            </div>
+
+        </div>
+
+
+        
+        <section>
+            <h1 class="titulo">Painel de Suporte N3</h1>
+            <div class="container-IA">
+                <h1 style="display: flex; align-items: center; justify-content: center;">WasabIA</h1>    
+            <div class="container-questions">
+                <textarea id="pergunta" type="text" placeholder="Digite a pergunta..."></textarea>
+                <div class="container-button">
+                <button onclick="gerarResposta()">Gerar Resposta</button>
+                </div>
+                <h3 id="titulo_resposta" style="display: none;">Resposta N3:</h3>
+                <div style="background-color: #FFFFFF; display: none;" id="resposta"></div>
+            </div>
+        </div>
+        <div></div>
+    </section>
+
+
+    <script>
+        
+        async function gerarResposta() {
+            const pergunta = document.getElementById('pergunta').value;
+
+            const response = await fetch('/bob-ia/perguntar', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ pergunta })
+            });
+
+            const data = await response.json();
+
+            titulo_resposta.style.display = 'block'
+            resposta.style.display = 'block';
+            document.getElementById('resposta').innerText = data.resultado;
+        }
+
+    </script>
+    
+</body>
+</html>

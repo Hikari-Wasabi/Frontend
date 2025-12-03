@@ -111,9 +111,14 @@
                     sessionStorage.NOME_USUARIO = json.nome;
                     sessionStorage.ID_USUARIO = json.idFuncionario;
                   
+                    var email = json.email
 
                     setTimeout(function () {
-                        window.location.href = "./safras.html";          /* Redirect pra tela de safras */
+                        if (email.includes("@suporte.com")) {
+                            window.location.href = "./suporte.html";          /* Redirect pra tela de safras */
+                        } else {
+                            window.location.href = "./safras.html";          /* Redirect pra tela de safras */
+                        }
                     }, 250);
 
                 });

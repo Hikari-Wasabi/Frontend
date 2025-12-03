@@ -154,7 +154,7 @@ VALUES
 INSERT INTO funcionario (fk_empresa, nome, email, senha, fk_supervisor) VALUE
 	(1, 'Mario augusto', 'mario@wasabibr.com', 'senhaJoao', 1),
 	(2, 'Fernanda Lima', 'fernanda@greenagro.com.br', 'senhaFernanda', 2),
-	(3, 'Bruno Pereira', 'bruno@agrotech.com.br', 'senhaBruno', 3);
+	(3, 'Bruno Pereira', 'bruno@suporte.com.br', 'senhaBruno', 3);
 
 INSERT INTO safra_wasabi (numeracao_colheita, area_total, densidade_cultivo, inicio_safra, termino_estimado, tipo_cultivo, tipo_wasabi, fk_empresa)
 VALUES
@@ -198,8 +198,10 @@ SELECT idSafra,
 
 SELECT * FROM wasabi_daily;
 
+DESC funcionario;
+
 INSERT INTO wasabi_daily (fk_Sensor, valor_umidade, valor_temperatura) VALUES
-(101, 50, 18);
+(101, 80, 18);
 
 
     CREATE OR REPLACE VIEW vw_situacao_safra AS
