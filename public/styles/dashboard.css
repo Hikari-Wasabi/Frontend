@@ -181,8 +181,9 @@ body {
 }
 
 .style_instavel {
-  background-color: yellow;
+  background-color: rgb(255, 174, 0);
   color: white;
+  font-weight: bolder;
 }
 
 .style_adequado {
