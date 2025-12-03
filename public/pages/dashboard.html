@@ -136,9 +136,7 @@
 </html>
 
 <script>
-  // LÓGICA DA API E REQUISIÇÃO AQUI
 
-  // Criando estrutura para plotar gráfico - labels
   var labels = [];
   var labelsFormatado = [];
 
@@ -184,15 +182,9 @@
     }
   }
 
-  obterDadosGrafico(idSensor) // -> essa função deve ser chamada passando o id do sensor que estara na session storage. by Gomes, Luís
+  obterDadosGrafico(idSensor)
 
   function obterDadosGrafico(id_registro) {
-
-    // alterarTitulo(id_registro)
-
-    // if (proximaAtualizacao != undefined) {
-    //   clearTimeout(proximaAtualizacao);
-    // }
 
     fetch(`/medidas/ultimas/${id_registro}`, { cache: 'no-store' }).then(function (response) {
       if (response.ok) {
@@ -213,16 +205,10 @@
         console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
       });
   }
-
-  // Esta função *plotarGrafico* usa os dados capturados na função anterior para criar o gráfico
-  // Configura o gráfico (cores, tipo, etc), materializa-o na página e, 
-  // A função *plotarGrafico* também invoca a função *atualizarGrafico*
   function plotarGrafico(resposta, id_registro) {
 
     console.log('iniciando plotagem do gráfico...');
 
-
-    // Criando estrutura para plotar gráfico - dados
     let dadosUmidade = {
       labels: labelsFormatado,
       datasets: [
@@ -315,8 +301,7 @@
     console.log('----------------------------------------------')
     console.log('Estes dados foram recebidos pela funcao "obterDadosGrafico" e passados para "plotarGrafico":')
     console.log(resposta)
-
-    // Inserindo valores recebidos em estrutura para plotar o gráfico
+    
     for (i = 0; i < resposta.length; i++) {
       var registro = resposta[i];
 
@@ -334,16 +319,6 @@
 
     }
 
-    console.log('----------------------------------------------')
-    console.log('O gráfico será plotado com os respectivos valores:')
-    console.log('Labels:')
-    console.log(labels)
-    console.log('Dados:')
-    console.log(dadosTemperatura.datasets)
-    console.log(dadosUmidade.datasets)
-    console.log('----------------------------------------------')
-
-    // Criando estrutura para plotar gráfico - config
     const configUmidade = {
       type: 'line',
       data: dadosUmidade,
@@ -354,19 +329,6 @@
       data: dadosTemperatura
     };
 
-    // const configTemperaturaIdeal = {
-    //   type: 'line',
-    //   data: dadosTemperaturaIdeal,
-    //   options: {
-    //     fill: false,
-    //     interaction: {
-    //       intersect: false
-    //     },
-    //     radius: 0,
-    //   }
-    // };
-
-    // Adicionando gráfico criado em div na tela
     let dashboardUmidade = new Chart(
       document.getElementById(`dashboard-umidade`),
       configUmidade
@@ -380,12 +342,6 @@
     setTimeout(() => atualizarGrafico(id_registro, dadosUmidade, dashboardUmidade, dadosTemperatura, dashboardTemperatura), 2000);
   }
 
-
-  // Esta função *atualizarGrafico* atualiza o gráfico que foi renderizado na página,
-  // buscando a última medida inserida em tabela contendo as capturas, 
-
-  //     Se quiser alterar a busca, ajuste as regras de negócio em src/controllers
-  //     Para ajustar o "select", ajuste o comando sql em src/models
   function atualizarGrafico(id_registro, dadosUmidade, dashboardUmidade, dadosTemperatura, dashboardTemperatura) {
 
 
@@ -394,8 +350,6 @@
       if (response.ok) {
         response.json().then(function (novoRegistro) {
 
-          // obterdados(id_registro);
-          // alertar(novoRegistro, id_registro);
           console.log(`Dados recebidos: ${JSON.stringify(novoRegistro)}`);
           console.log(`Dados atuais do gráfico de temperatura:`);
           console.log(dadosTemperatura);
@@ -403,32 +357,25 @@
           console.log(`Dados atuais do gráfico de umidade:`);
           console.log(dadosUmidade);
 
-
-          // let avisoCaptura = document.getElementById(`avisoCaptura${id_registro}`)
-          // avisoCaptura.innerHTML = ""
-
           var momentoGrafico = novoRegistro[0].momento_grafico
           var momentoGraficoFormatado = novoRegistro[0].momento_grafico.split(':')
           momentoGraficoFormatado = `${momentoGraficoFormatado[0]}:${momentoGraficoFormatado[1]}`
           if (momentoGrafico == labels[labels.length - 1]) {
             console.log("---------------------------------------------------------------")
             console.log("Como não há dados novos para captura, o gráfico não atualizará.")
-            // avisoCaptura.innerHTML = "<i class='fa-solid fa-triangle-exclamation'></i> Foi trazido o dado mais atual capturado pelo sensor. <br> Como não há dados novos a exibir, o gráfico não atualizará."
             console.log("Horário do novo dado capturado:")
             console.log(momentoGrafico)
             console.log("Horário do último dado capturado:")
             console.log(labels[labels.length - 1])
             console.log("---------------------------------------------------------------")
           } else {
-            // tirando e colocando valores no gráfico
-
+    
             dadosTemperatura.labels.shift(); // apagar o primeiro
             dadosTemperatura.labels.push(momentoGraficoFormatado); // incluir um novo momento
 
             dadosUmidade.labels.shift(); // apagar o primeiro
             dadosUmidade.labels.push(momentoGraficoFormatado); // incluir um novo momento
 
-            // Variaveis globais para tratar e formatar labels
             labels.shift()
             labelsFormatado.shift()
             labels.push(momentoGrafico)
@@ -445,7 +392,6 @@
             mudarCorDosKPI(novoRegistro[0].temperatura, novoRegistro[0].umidade) // -> Atualizar essa função para ser AtualizarKpi, e ela deverá atualizar as informações do kpi de acordo com os ultimos registros. by Gomes, Luis
           }
 
-          // Altere aqui o valor em ms se quiser que o gráfico atualize mais rápido ou mais devagar
           proximaAtualizacao = setTimeout(() => atualizarGrafico(id_registro, dadosUmidade, dashboardUmidade, dadosTemperatura, dashboardTemperatura), 2000);
         });
       } else {
