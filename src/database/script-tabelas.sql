@@ -263,3 +263,23 @@ SELECT
     senha,
     fk_empresa
 FROM funcionario;
+
+CREATE OR REPLACE VIEW vw_ultimasmedidas_daily AS
+SELECT 
+       id_registro,
+       fk_sensor,
+       valor_temperatura as temperatura, 
+        valor_umidade as umidade,
+                        data_hora,
+                        DATE_FORMAT(data_hora,'%H:%i:%S') as momento_grafico
+                        FROM wasabi_daily;
+    
+CREATE OR REPLACE VIEW vw_temporeal_daily AS
+SELECT 
+       valor_temperatura as temperatura, 
+        valor_umidade as umidade,
+                        DATE_FORMAT(data_hora,'%H:%i:%S') as momento_grafico, 
+                        fk_sensor,
+                        id_registro
+                        FROM wasabi_daily;
+                        
