@@ -162,7 +162,7 @@ body {
     flex-wrap: wrap;
     gap: 20px;
     padding: 20px;
-    max-width: 1200px;
+    max-width: 800px;
     margin: 0 auto;
 }
 
@@ -223,7 +223,7 @@ body {
 
 .card-instavel-critica h1{
     align-self: center;
-    color: #17d600;
+    color: gray;
 }
 .card-adequada h1{
     justify-self: center;

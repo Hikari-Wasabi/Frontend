@@ -13,7 +13,7 @@ function mostrarSafra(id_usuario) {
             WHERE idsensor = v.idsensor
         )
         AND fk_funcionario = '${id_usuario}'
-        ORDER BY idSafra ASC
+        ORDER BY situacao_safra DESC
         ;` 
 
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
