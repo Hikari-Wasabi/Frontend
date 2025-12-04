@@ -30,14 +30,13 @@
                 <div class="cards-laterais">
                     <div id="div_situacao_safra_critica" class="card-instavel-critica">
                         <h3>
-                            <span class="instavel">INSTÁVEL </span> |
-                            <span class="critica">CRÍTICA</span>
+                            <span class="critica">CRÍTICAS</span>
                         </h3>
 
                     </div>
 
-                    <div id="div_situacao_safra_adequado" class="card-adequada">
-                        <h3><span class="titulo-verde">Adequadas</span></h3>
+                    <div id="div_situacao_safra_instaveis" class="card-instavel">
+                        <h3><span class="instavel">INSTÁVEIS</span></h3>
                     </div>
                 </div>
                 <div class="container-safras">
@@ -92,6 +91,7 @@
 
     var listaSafrasAdequadas = []
     var listaSafrasCriticas = []
+    var listaSafrasInstaveis = []
     var listaTodasSafras = []
 
     function obterSituacaoSafras() {
@@ -124,8 +124,12 @@
 
                 if (response[i].situacao_safra == 'adequado') {
                     listaSafrasAdequadas.push(response[i])
-                } else {
+                }
+                else if (response[i].situacao_safra == 'critico') {
                     listaSafrasCriticas.push(response[i])
+                }
+                else if (response[i].situacao_safra == 'instavel') {
+                    listaSafrasInstaveis.push(response[i])
                 }
             }
 
@@ -161,27 +165,37 @@
                                 `
             }
 
-            var conteudoSafraAdequada = ``
-            if (listaSafrasAdequadas.length == 0) {
-                conteudoSafraAdequada = `<h1> Nenhuma safra adequada </h1>`
+            var conteudoSafraInstavel = ``
+            if (listaSafrasInstaveis.length == 0) {
+                conteudoSafraInstavel = `<h1> Nenhuma safra adequada </h1>`
             } else {
-                conteudoSafraAdequada = ``
+                conteudoSafraInstavel = ``
             }
-            for (var i = 0; i < listaSafrasAdequadas.length; i++) {
-                response.push(listaSafrasAdequadas[i])
-                conteudoSafraAdequada += `
-                    <button onclick="navegar(${listaSafrasAdequadas[i].idsensor}, ${listaSafrasAdequadas[i].idSafra})" class="btn-lista">
-                        <span>Safra #${listaSafrasAdequadas[i].idSafra}</span>
-                        <p>Sensor #${listaSafrasAdequadas[i].idsensor}</p>
+            for (var i = 0; i < listaSafrasInstaveis.length; i++) {
+                listaTodasSafras.push(listaSafrasInstaveis[i])
+                conteudoSafraInstavel += `
+                    <button onclick="navegar(${listaSafrasInstaveis[i].idsensor}, ${listaSafrasInstaveis[i].idSafra})" class="btn-lista">
+                        <span>Safra #${listaSafrasInstaveis[i].idSafra}</span>
+                        <p>Sensor #${listaSafrasInstaveis[i].idsensor}</p>
                         <div>
-                            <img src="../assets/sunny.png" alt="Temperatura adequada">
-                            <img src="../assets/drop.png" alt="Umidade adequada">
-                        </div>
+                                            <img src="
+                                                ${(listaSafrasInstaveis[i].situacao_temperatura == "adequado" && "../assets/sunny.png")
+                                                ||
+                                                "../assets/notSunny.png"
+                                                }
+                                            " alt="Temperatura adequada">
+                                            <img src="
+                                                ${(listaSafrasInstaveis[i].situacao_umidade == "adequado" && "../assets/drop.png")
+                                                ||
+                                                "../assets/notDrop.png"
+                                                }
+                                            " alt="Umidade adequada">
+                                        </div>
                     </button>
                 `
             }
 
-            div_situacao_safra_adequado.innerHTML += conteudoSafraAdequada
+            div_situacao_safra_instaveis.innerHTML += conteudoSafraInstavel
             div_situacao_safra_critica.innerHTML += conteudoSafraCritica
             Listar_safras()
         })

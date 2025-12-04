@@ -56,28 +56,28 @@ body {
 
 .card-instavel-critica {
     background: white;
-    padding: 15px 20px;
+    padding: 10px 20px;
     border-radius: 15px;
     box-shadow: 0 2px 8px rgba(255, 0, 0, 0.938);
     height: fit-content;
 }
 
-.card-adequada {
+.card-instavel {
     background: white;
     padding: 15px 20px;
     border-radius: 15px;
-    box-shadow: 0 2px 8px rgb(43, 255, 0);
+    box-shadow: 0 2px 8px orange;
     height: fit-content;
 }
 
 .card-instavel-critica h3 {
     text-align: center;
-    font-size: 20px;
-    margin-bottom: 15px;
+    font-size: 25px;
+    margin-bottom: 25px;
     font-weight: bold;
 }
 
-.card-adequada h3 {
+.card-instavel h3 {
     text-align: center;
     font-size: 25px;
     font-weight: bold;
